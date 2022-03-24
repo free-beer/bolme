@@ -1,0 +1,13 @@
+<form class="{{cssClass}}" autocomplete="off">
+	<div class="language-sheet-body">
+		<div class="field">
+			<label class="label">{{localize "bolme.fields.name.label"}}</label>
+			<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}">
+		</div>
+
+        <div class="field">
+            <label class="label" for="data.description">{{localize "bolme.fields.language.description.label"}}</label>
+            {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+        </div>
+    </div>
+</form>

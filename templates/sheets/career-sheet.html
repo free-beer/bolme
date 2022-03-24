@@ -1,0 +1,24 @@
+<form class="{{cssClass}}" autocomplete="off">
+	<div class="career-sheet-body">
+		<div>
+			<img data-edit="img" src="{{item.img}}" title="{{item.name}}"/>
+		</div>
+
+        <div>
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.name.label"}}</label>
+				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.career.alternativeNames.label"}}</label>
+				<input name="data.alternativeNames" placeholder="{{localize 'bolme.fields.career.alternativeNames.placeholder'}}" type="text" value="{{data.data.alternativeNames}}">
+			</div>
+
+            <div class="field">
+                <label class="label" for="data.description">{{localize "bolme.fields.career.description.label"}}</label>
+                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+        </div>
+	</div>
+</form>

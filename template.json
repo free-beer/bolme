@@ -1,0 +1,41 @@
+{
+	"Actor": {
+		"types": ["character"],
+		"character": {}
+	},
+	"Item": {
+		"types": ["armour", "career", "language", "shield", "trait", "weapon"],
+		"armour": {
+			"arcaneCost": "",
+			"description": "",
+			"protection": "",
+			"penalties": "",
+			"type": "light"
+		},
+		"career": {
+			"advancementPoints": 0,
+			"alternativeNames": "",
+			"description": "",
+			"startingPoints": 0
+		},
+		"language": {
+			"description": ""
+		},
+		"shield": {
+			"description": "",
+			"size": "small"
+		},
+		"trait": {
+			"description": "",
+			"type": "boon"
+		},
+		"weapon": {
+			"damage": "d6",
+			"description": "",
+			"hands": "one",
+			"notes": "",
+			"rangeIncrement": "",
+			"type": "melee"
+		}
+	}
+}

@@ -1,0 +1,152 @@
+{
+	"bolme": {
+		"armour": {
+			"heavy": {
+			    "label": "Heavy Armour"
+			},
+			"helmet": {
+			    "label": "Helmet"
+			},
+			"light": {
+			    "label": "Light Armour"
+			},
+			"medium": {
+			    "label": "Medium Armour"
+			}
+		},
+		"fields": {
+			"armour": {
+				"arcaneCost": {
+					"label": "Arcane Cost",
+					"placeholder": "Usage arcane cost."
+				},
+				"penalties": {
+					"label": "Penalties",
+					"placeholder": "Penalties suffered while wearing the armour."
+				},
+				"protection": {
+					"label": "Protection",
+					"placeholder": "Armour protection rating."
+				},
+				"type": {
+					"label": "Type"
+				}
+			},
+			"career": {
+				"alternativeNames": {
+					"label": "Alternative Names",
+					"placeholder": "Enter alternative names for this career."
+				},
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				}
+			},
+			"language": {
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				}
+			},
+			"name": {
+				"label": "Name",
+				"placeholder": "Enter a name for this entity."
+			},
+			"shield": {
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				},
+				"size": {
+					"label": "Size"
+				}				
+			},
+			"trait": {
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				},
+				"type": {
+					"label": "Type"
+				}
+			},
+			"weapon": {
+				"damage": {
+					"label": "damage",
+					"placeholder": "Damage dealt by the weapon."
+				},
+				"description": {
+					"label": "Description"
+				},
+				"hands": {
+					"label": "Hands"
+				},
+				"notes": {
+					"label": "Notes",
+					"placeholder": "Weapon notes."
+				},
+				"rangeIncrement": {
+					"label": "Range Increment",
+					"placeholder": ""
+				},
+				"type": {
+					"label": "Type"
+				}
+			}
+		},
+		"sheets": {
+			"armour": {
+				"title": "Armour"
+			},
+			"career": {
+				"title": "Career"
+			},
+			"language": {
+				"title": "Language"
+			},
+			"shield": {
+				"title": "Shield"
+			},
+			"trait": {
+				"title": "Trait (Boon/Flaw)"
+			},
+			"weapon": {
+				"title": "Weapon"
+			}
+		},
+		"shields": {
+			"large": {
+			    "label": "Large"
+			},
+			"small": {
+			    "label": "Small"
+			}
+		},
+		"traits": {
+			"boon": {
+				"label": "Boon"
+			},
+			"flaw": {
+				"label": "Flaw"
+			}
+		},
+		"weapons": {
+			"hands": {
+				"one": {
+					"label": "1 Handed"
+				},
+				"two": {
+					"label": "2 Handed"
+				}
+			},
+			"types": {
+				"melee": {
+					"label": "Melee"
+				},
+				"ranged": {
+					"label": "Ranged"
+				}
+			}
+		}
+	}
+}

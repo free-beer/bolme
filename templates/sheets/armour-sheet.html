@@ -1,0 +1,45 @@
+<form class="{{cssClass}}" autocomplete="off">
+	<div class="armour-sheet-body">
+		<div>
+			<img data-edit="img" src="{{item.img}}" title="{{item.name}}"/>
+		</div>
+
+        <div>
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.name.label"}}</label>
+				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.armour.penalties.label"}}</label>
+				<input name="data.penalties" placeholder="{{localize 'bolme.fields.armour.penalties.placeholder'}}" type="text" value="{{data.data.penalties}}">
+			</div>
+
+			<div class="grid-3-col">
+				<div class="field">
+					<label class="label">{{localize "bolme.fields.armour.protection.label"}}</label>
+					<input name="data.protection" placeholder="{{localize 'bolme.fields.armour.protection.placeholder'}}" type="text" value="{{data.data.protection}}">
+				</div>
+
+				<div class="field">
+					<label class="label">{{localize "bolme.fields.armour.arcaneCost.label"}}</label>
+					<input name="data.arcaneCost" placeholder="{{localize 'bolme.fields.armour.arcaneCost.placeholder'}}" type="text" value="{{data.data.arcaneCost}}">
+				</div>
+
+				<div class="field">
+					<label class="label">{{localize "bolme.fields.armour.type.label"}}</label>
+					<select name="data.type">
+					{{#each constants.armourTypes}}
+						{{{selectOption ../data.data.type}}}
+					{{/each}}
+					</select>
+				</div>
+			</div>
+
+            <div class="field">
+                <label class="label" for="data.description">{{localize "bolme.fields.career.description.label"}}</label>
+                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+        </div>
+	</div>
+</form>
