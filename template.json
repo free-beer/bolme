@@ -1,10 +1,71 @@
 {
 	"Actor": {
-		"types": ["character"],
-		"character": {}
+		"types": ["beast", "character"],
+		"beast": {
+			"agility": 0,
+			"attack": 0,
+			"damage": "",
+			"defence": 0,
+			"description": "",
+			"found": "",
+			"lifeblood": 0,
+			"mind": 0,
+			"move": "",
+			"priority": "",
+			"protection": "",
+			"size": "medium",
+			"strength": 0
+		},
+		"character": {
+			"arcanePoints": {"value": 0},
+			"attributes": {
+				"agility": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				},
+				"appeal": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				},
+				"mind": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				},
+				"strength": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				}
+			},
+			"combat": {
+				"defence": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				},
+				"initiative": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				},
+				"melee": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				},
+				"ranged": {
+				    "advancementPoints": 0,
+				    "startingPoints": 0
+				}
+			},
+			"fate": 0,
+			"heroPoints": 5,
+			"lifeblood": {"value": 10},
+			"origin": "",
+			"points": {"advancement": 0,
+			           "starting": {"attributes": 4,
+			                        "careers":    4,
+			                        "combat":     4}}
+		}
 	},
 	"Item": {
-		"types": ["armour", "career", "language", "shield", "trait", "weapon"],
+		"types": ["armour", "career", "equipment", "language", "shield", "trait", "weapon"],
 		"armour": {
 			"arcaneCost": "",
 			"description": "",
@@ -16,8 +77,10 @@
 			"advancementPoints": 0,
 			"alternativeNames": "",
 			"description": "",
+			"grantsArcane": false,
 			"startingPoints": 0
 		},
+		"equipment": {},
 		"language": {
 			"description": ""
 		},
@@ -26,7 +89,9 @@
 			"size": "small"
 		},
 		"trait": {
+			"advancementPoints": 0,
 			"description": "",
+			"startingPoints": 0,
 			"type": "boon"
 		},
 		"weapon": {

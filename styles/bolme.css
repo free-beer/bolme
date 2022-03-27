@@ -4,10 +4,121 @@
 	grid-template-columns: 100px auto;
 }
 
+.attribute-icon {
+	cursor: pointer;
+	font-size: 1.1em;
+	margin: 0 2px;
+}
+
+.attribute-label {
+	display: block;
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 2px 0;
+	vertical-align: middle;
+}
+
+.background-image {
+	border: none;
+	margin:  0;
+}
+
+.career-icon {
+	cursor: pointer;
+	font-size: 1.1em;
+	margin: 0 2px;
+}
+
 .career-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
 	grid-template-columns: 100px auto;
+}
+
+.character-career-name {
+	font-size: 1.2em;
+}
+
+.character-career-row {
+	display: grid;
+	grid-gap: 5px 15px;
+	grid-template-columns: 2fr 3fr;
+	margin-bottom: 5px;
+}
+
+.character-sheet-armour-area {
+	height: 125px;
+	max-height: 125px;
+	overflow: auto;
+}
+
+.character-sheet-attributes {
+	display: grid;
+	grid-gap: 5px 15px;
+	grid-template-columns: 3fr 5fr;
+	margin-bottom: 15px;
+}
+
+.character-sheet-body {
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 270px auto;
+	margin: 0 0 15px 10px;
+}
+
+.character-sheet-combat {
+	display: grid;
+	grid-gap: 5px 15px;
+	grid-template-columns: 3fr 5fr;
+	margin-bottom: 15px;
+}
+
+.character-sheet-combat-equipment > div {
+	margin-bottom: 15px;
+}
+
+.character-sheet-form input {
+	border: none;
+}
+
+.character-sheet-header {
+	margin-bottom: 15px;
+}
+
+.character-sheet-other-stats > div {
+	margin-bottom: 15px;
+}
+
+.character-sheet-other-stats .label {
+	margin: 0;
+}
+
+.character-sheet-traits-area {
+	display: grid;
+	grid-gap: 5px 15px;
+	grid-template-columns: 3fr 1fr;
+	max-height: 320px;
+	overflow: auto;
+}
+
+.character-sheet-weapons-area {
+	display: grid;
+	grid-gap: 5px 15px;
+	grid-template-columns: auto 140px;
+}
+
+.character-sheet-weapons-list {
+	height: 200px;
+	max-height: 200px;
+	overflow: auto;
+}
+
+.character-weapon-row {
+	display: grid;
+	font-size: 1.1em;
+	grid-gap: 5px 15px;
+	grid-template-columns: 3fr 1fr 1fr 1fr;
+	margin-bottom: 5px;
 }
 
 .editor {
@@ -58,6 +169,23 @@
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
+h3.section-header {
+	border-bottom: groove; 4px #777;
+	font-size: 1.3em;
+	font-weight: bold;
+	height: 30px;
+}
+
+input.characteristic {
+	background-color: #fff !important;
+	text-align: center !important;
+	width: 35px;
+}
+
+input:readonly {
+	color: #aaa !important;
+}
+
 .label {
 	display: block;
 	font-weight: bold;
@@ -70,10 +198,31 @@
 	grid-template-columns: 100px auto;
 }
 
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-justify {
+	text-align: justify;
+}
+
+.text-left {
+	text-align: right;
+}
+
 .trait-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
 	grid-template-columns: 100px auto;
+}
+
+.weapon-icon {
+	cursor: pointer;
+	margin: 0 2px;
 }
 
 .weapon-sheet-body {

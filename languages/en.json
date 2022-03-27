@@ -14,6 +14,121 @@
 			    "label": "Medium Armour"
 			}
 		},
+		"attributes": {
+			"agility": {
+				"label": "Agility"
+			},
+			"appeal": {
+				"label": "Appeal"
+			},
+			"mind": {
+				"label": "Mind"
+			},
+			"strength": {
+				"label": "Strength"
+			}
+		},
+		"beasts": {
+			"priorities": {
+				"rabble": {
+					"label": "Rabble"
+				},
+				"tough": {
+					"label": "tough"
+				},
+				"villain": {
+					"label": "Villain"
+				}
+			},
+			"sizes": {
+				"tiny": {
+				    "label": "Tiny"
+				},
+				"verySmall": {
+				    "label": "Very Small"
+				},
+				"small": {
+				    "label": "Small"
+				},
+				"medium": {
+				    "label": "Medium"
+				},
+				"large": {
+				    "label": "Large"
+				},
+				"veryLarge": {
+				    "label": "Very Large"
+				},
+				"huge": {
+				    "label": "Huge"
+				},
+				"massive": {
+				    "label": "Massive"
+				},
+				"enormous": {
+				    "label": "Enormous"
+				},
+				"gigantic": {
+				    "label": "Gigantic"
+				},
+				"immense": {
+				    "label": "Immense"
+				},
+				"colossal": {
+				    "label": "Colossal"
+				}
+			}
+		},
+		"character": {
+			"titles": {
+				"armour": "Armour",
+				"attributes": "Attributes",
+				"careers": "Careers",
+				"combat": "Combat Abilities",
+				"traits": "Boons & Flaws",
+				"weapons": "Weapons"
+			}
+		},
+		"combat": {
+			"initiative": {
+				"label": "Initiative"
+			},
+			"melee": {
+				"label": "Melee"
+			},
+			"ranged": {
+				"label": "Ranged"
+			},
+			"defence": {
+				"label": "Defence"
+			}
+		},
+		"errors": {
+			"attributes": {
+				"decrement": {
+					"forbidden": "Attributes may not be reduced below {minimum}."
+				},
+				"increment": {
+					"advancement": "Insuficient advancement points available to pay for this increment.",
+					"starting": "Starting attributes may not be raised higher than 3."
+				}
+			},
+			"careers": {
+				"advancement": "Insufficient starting or advancement points to raise this career rank.",
+				"maxedOut": "This career is already at it's maximum rank.",
+				"minedOut": "This career is already at it's lowest possible rank.",
+				"unaffordable": "You do not have sufficient starting or advancement points to pay for this career."
+			},
+			"combatAbilities": {
+				"decrement": {
+					"forbidden": "Combat abilities may not be reduced below {minimum}."
+				},
+				"increment": {
+					"advancement": "Insuficient advancement points available to pay for this increment.",
+					"starting": "Starting combat abilities may not be raised higher than 3."
+				}
+			}
+		},
 		"fields": {
 			"armour": {
 				"arcaneCost": {
@@ -40,6 +155,41 @@
 				"description": {
 					"label": "Description",
 					"placeholder": ""
+				}
+			},
+			"character": {
+				"advancement": {
+					"available": {
+						"label": "Available"
+					},
+					"label": "Advancement",
+					"spent": {
+						"label": "Spent"
+					}
+				},
+				"arcane": {
+					"current": {
+						"label": "Current"
+					},
+					"label": "Arcane Points",
+					"maximum": {
+						"label": "Maximum"
+					}
+				},
+				"fatePoints": {
+					"label": "Fate"
+				},
+				"heroPoints": {
+					"label": "Hero"
+				},
+				"lifeblood": {
+					"current": {
+						"label": "Current"
+					},
+					"label": "Lifeblood",
+					"maximum": {
+						"label": "Maximum"
+					}
 				}
 			},
 			"language": {
@@ -100,6 +250,9 @@
 			},
 			"career": {
 				"title": "Career"
+			},
+			"character": {
+				"title": "Character"
 			},
 			"language": {
 				"title": "Language"

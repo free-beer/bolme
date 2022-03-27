@@ -1,0 +1,223 @@
+<form class="{{cssClass}} character-sheet-form" autocomplete="off">
+	<header class="character-sheet-header">
+		<div class="field">
+			<label class="label">{{localize "bolme.fields.name.label"}}</label>
+			<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{actor.name}}">
+		</div>
+	</header>
+
+	<section class="character-sheet-body">
+		<div>
+			<h3 class="section-header">{{localize "bolme.character.titles.attributes"}}</h3>
+			<div class="character-sheet-attributes">
+				<!-- Strength -->
+			    <label class="attribute-label">{{localize "bolme.attributes.strength.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="strength"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.strength.value}}">
+			    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="strength"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+				<!-- Agility -->
+			    <label class="attribute-label">{{localize "bolme.attributes.agility.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="agility"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.agility.value}}">
+			    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="agility"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+				<!-- Mind -->
+			    <label class="attribute-label">{{localize "bolme.attributes.mind.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="mind"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.mind.value}}">
+			    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="mind"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+				<!-- Appeal -->
+			    <label class="attribute-label">{{localize "bolme.attributes.appeal.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="appeal"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.appeal.value}}">
+			    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="appeal"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+			</div>
+
+			<h3 class="section-header">{{localize "bolme.character.titles.combat"}}</h3>
+			<div class="character-sheet-combat">
+				<!-- Initiative -->
+			    <label class="attribute-label">{{localize "bolme.combat.initiative.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon combat-ability-decrementer fas fa-minus" data-ability="initiative"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.initiative.value}}">
+			    	<i class="attribute-icon combat-ability-incrementer fas fa-plus" data-ability="initiative"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+				<!-- Melee -->
+			    <label class="attribute-label">{{localize "bolme.combat.melee.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon combat-ability-decrementer fas fa-minus" data-ability="melee"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.melee.value}}">
+			    	<i class="attribute-icon combat-ability-incrementer fas fa-plus" data-ability="melee"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+				<!-- Ranged -->
+			    <label class="attribute-label">{{localize "bolme.combat.ranged.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon combat-ability-decrementer fas fa-minus" data-ability="ranged"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.ranged.value}}">
+			    	<i class="attribute-icon combat-ability-incrementer fas fa-plus" data-ability="ranged"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+				<!-- Defence -->
+			    <label class="attribute-label">{{localize "bolme.combat.defence.label"}}</label>
+			    <div>
+			    	<i class="attribute-icon combat-ability-decrementer fas fa-minus" data-ability="defence"></i>
+			    	<input class="characteristic" readonly type="number" value="{{data.data.defence.value}}">
+			    	<i class="attribute-icon combat-ability-incrementer fas fa-plus" data-ability="defence"></i>
+			    	<i class="attribute-icon fas fa-dice"></i>
+			    </div>
+
+			</div>
+
+            <h3 class="section-header">{{localize "bolme.character.titles.careers"}}</h3>
+			<div class="character-sheet-careers">
+			{{#each data.careers}}
+			    <div class="character-career-row">
+			    	<div class="character-career-name">{{name}}</div>
+				    <div>
+				    	<i class="career-icon career-decrementer fas fa-minus" data-id="{{id}}"></i>
+				    	<input class="characteristic" name="rank" readonly type="number" value="{{rank}}">
+				    	<i class="career-icon career-incrementer fas fa-plus" data-id="{{id}}"></i>	
+				    	<i class="career-icon fas fa-dice" data-career="{{name}}"></i>
+				    	<i class="career-icon fas fa-times-circle" data-id="{{id}}"></i>
+				    </div>
+			    </div>
+			{{/each}}
+			</div>
+		</div>
+
+		<div>
+			<div class="character-sheet-combat-equipment">
+				<div class="character-sheet-weapons-area">
+					<div>
+						<h3 class="section-header">{{localize "bolme.character.titles.weapons"}}</h3>
+						<div class="character-sheet-weapons-list">
+						{{#each data.weapons}}
+							<div class="character-weapon-row">
+								<div>{{name}}</div>
+								<div>{{localizeWeaponType data.data.type}}</div>
+								<div>{{data.data.damage}}</div>
+								<div>
+									<i class="weapon-icon fas fa-dice" data-damage="{{data.data.damage}}" data-type="{{data.data.type}}"></i>
+									<i class="weapon-icon item-deleter fas fa-times-circle" data-id="{{id}}"></i>
+								</div>
+							</div>
+						{{/each}}
+					    </div>
+					</div>
+
+					<div>
+						<img data-edit="img" src="{{actor.img}}" title="{{actor.name}}"/>
+					</div>
+				</div>
+
+				<div class="character-sheet-traits-area">
+			        <div>
+			        	<h3 class="section-header">{{localize "bolme.character.titles.armour"}}</h3>
+			        	<div class="character-sheet-armour-area">
+			        	</div>
+
+			            <h3 class="section-header">{{localize "bolme.character.titles.traits"}}</h3>
+			        	<div class="character-sheet-boons-and-flaws-area">
+			        	</div>
+			        </div>
+
+			        <div class="character-sheet-other-stats">
+			        	<!-- Lifeblood -->
+			        	<div>
+		        			<label class="label text-center">{{localize "bolme.fields.character.lifeblood.label"}}</label>
+			        		<div class="grid-2-col">
+			        			<div>
+			        				<label class="label text-center">{{localize "bolme.fields.character.lifeblood.maximum.label"}}</label>
+			        				<center>
+			        					<input class="characteristic" name="data.lifeblood.max" readonly type="number" value="{{data.data.lifeblood.max}}">
+			        				</center>
+			        			</div>
+			        			<div>
+			        				<label class="label text-center">{{localize "bolme.fields.character.lifeblood.current.label"}}</label>
+			        				<center>
+			        					<input class="characteristic" name="data.lifeblood.value" type="number" value="{{data.data.lifeblood.value}}">
+			        				</center>
+			        			</div>
+			        		</div>
+			        	</div>
+
+			        	<!-- Arcane -->
+			        	<div>
+		        			<label class="label text-center">{{localize "bolme.fields.character.arcane.label"}}</label>
+			        		<div class="grid-2-col">
+			        			<div>
+			        				<label class="label text-center">{{localize "bolme.fields.character.arcane.maximum.label"}}</label>
+			        				<center>
+			        					<input class="characteristic" name="data.arcanePoints.max" readonly type="number" value="{{data.data.arcanePoints.max}}">
+			        				</center>
+			        			</div>
+			        			<div>
+			        				<label class="label text-center">{{localize "bolme.fields.character.arcane.current.label"}}</label>
+			        				<center>
+			        					<input class="characteristic" name="data.arcanePoints.value" type="number" value="{{data.data.arcanePoints.value}}">
+			        				</center>
+			        			</div>
+			        		</div>
+			        	</div>
+
+			        	<!-- Advance Points -->
+			        	<div>
+		        			<label class="label text-center">{{localize "bolme.fields.character.advancement.label"}}</label>
+			        		<div class="grid-2-col">
+			        			<div>
+			        				<label class="label text-center">{{localize "bolme.fields.character.advancement.available.label"}}</label>
+			        				<center>
+			        					<input class="characteristic" name="data.points.advancement" type="number" value="{{data.data.points.advancement}}">
+			        				</center>
+			        			</div>
+			        			<div>
+			        				<label class="label text-center">{{localize "bolme.fields.character.advancement.spent.label"}}</label>
+			        				<center>
+			        					<input class="characteristic" name="data.spentAdvancements" readonly type="number" value="{{data.data.spentAdvancements}}">
+			        				</center>
+			        			</div>
+			        		</div>
+			        	</div>
+
+                        <!-- Fate & Hero Points -->
+			        	<div class="grid-2-col">
+			        		<div class="field">
+			        			<label class="label text-center">{{localize "bolme.fields.character.fatePoints.label"}}</label>
+			        			<center>
+			        				<input class="characteristic" name="data.fate" type="number" value="{{data.data.fate}}">
+			        			</center>
+			        		</div>
+
+			        		<div class="field">
+			        			<label class="label text-center">{{localize "bolme.fields.character.heroPoints.label"}}</label>
+			        			<center>
+			        				<input class="characteristic" name="data.heroPoints" type="number" value="{{data.data.heroPoints}}">
+			        			</center>
+			        		</div>
+			        	</div>
+			        </div>
+				</div>
+			</div>
+		</div>
+	</section>
+</form>
