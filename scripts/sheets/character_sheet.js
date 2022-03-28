@@ -7,6 +7,7 @@ import {decrementCombatAbility,
         incrementCombatAbility} from "../combat_abilities.js";
 import constants from "../constants.js";
 import {decrementCareerRank,
+        deleteCareer,
         generateCareerList,
         incrementCareerRank} from "../careers.js";
 
@@ -28,6 +29,8 @@ export default class BoLMECharacterSheet extends ActorSheet {
     getData() {
         const context = super.getData();
         let career;
+
+        console.log("ACTOR:", context.actor);
 
         context.constants = constants;
         Object.keys(context.data.data.attributes).forEach((attribute) => {
@@ -70,6 +73,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".combat-ability-incrementer").click((e) => incrementCombatAbility(this.actor, e.currentTarget.dataset.ability));
         html.find(".career-decrementer").click((e) => decrementCareerRank(this.actor, e.currentTarget.dataset.id));
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id));
+        html.find(".career-deleter").click((e) => deleteCareer(this.actor, e.currentTarget.dataset.id));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
     }
 
@@ -85,6 +89,12 @@ export default class BoLMECharacterSheet extends ActorSheet {
         });
 
         return(output);
+    }
+
+    /**@override */
+    _onCreate() {
+        super._onCreate();
+        console.log("Character._onCreate() called.");
     }
 
     /** @override */

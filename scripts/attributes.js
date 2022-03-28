@@ -29,29 +29,40 @@ function calculateAttributeValue(attribute, settings) {
  */
 function decrementAttribute(actor, attribute) {
 	let data    = actor.data.data;
-	let benefit;
+	let policed = game.settings.get("bolme", "policeAdvancements");
 
-	if(!data[attribute]) {
-		data[attribute] = expandAttribute(actor.data, attribute);
-	}
-	benefit = data[attribute].decreaseRegain;
+	if(policed) {
+		let benefit;
 
-    if(data[attribute].value > -1) {
-		let changes = {data: {attributes: {},
-	                          points: {}}};
+        console.log("Advancment policing is on.");
+		if(!data[attribute]) {
+			data[attribute] = expandAttribute(actor.data, attribute);
+		}
+		benefit = data[attribute].decreaseRegain;
 
-	    if(data[attribute].advancementPoints > 0) {
-			changes.data.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints - benefit};
-			changes.data.points.advancement    = data.points.advancement + benefit;
+	    if(data[attribute].value > -1) {
+			let changes = {data: {attributes: {},
+		                          points: {}}};
+
+		    if(data[attribute].advancementPoints > 0) {
+				changes.data.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints - benefit};
+				changes.data.points.advancement    = data.points.advancement + benefit;
+		    } else {
+				changes.data.attributes[attribute] = {startingPoints: data[attribute].startingPoints - 1};
+				changes.data.points.starting       = {attributes: data.points.starting.attributes + 1};
+		    }
+		    actor.update(changes);
 	    } else {
-			changes.data.attributes[attribute] = {startingPoints: data[attribute].startingPoints - 1};
-			changes.data.points.starting       = {attributes: data.points.starting.attributes + 1};
+	    	console.log(`Unable to lower the '${attribute}' attribute as attributes are not permitted to drop below -1.`);
+	    	ui.notifications.error(game.i18n.format("bolme.errors.attributes.decrement.forbidden", {minimum: -1}));
 	    }
-	    actor.update(changes);
-    } else {
-    	console.log(`Unable to lower the '${attribute}' attribute as attributes are not permitted to drop below -1.`);
-    	ui.notifications.error(game.i18n.format("bolme.errors.attributes.decrement.forbidden", {minimum: -1}));
-    }
+	} else {
+		let changes = {data: {attributes: {}}};
+
+		console.log("Advancment policing is off.");
+		changes.data.attributes[attribute] = {startingPoints: actor.data.data.attributes[attribute].startingPoints - 1};
+		actor.update(changes);
+	}
 }
 
 /**
@@ -77,36 +88,47 @@ function expandAttribute(character, attribute) {
  * points total as needed.
  */
 function incrementAttribute(actor, attribute) {
-	let data = actor.data.data;
-	let cost;
+	let data    = actor.data.data;
+	let policed = game.settings.get("bolme", "policeAdvancements");
 
-	if(!data[attribute]) {
-		data[attribute] = expandAttribute(actor.data, attribute);
-	}
-	cost  = data[attribute].increaseCost;
+	if(policed) {
+		let cost;
 
-	if(data.points.starting.attributes > 0 || data.points.advancement >= cost) {
-		let changes = {data: {attributes: {},
-	                          points: {}}};
-
-		if(data.points.starting.attributes > 0) {
-			let value = data.attributes[attribute].startingPoints + 1;
-
-			if(value < 4) {
-				changes.data.attributes[attribute] = {startingPoints: value};
-				changes.data.points.starting       = {attributes: data.points.starting.attributes - 1};
-			} else {
-				console.error(`You can't use starting points to increment an attribute higher than 3.`);
-				ui.notifications.error(game.i18n.localize("bolme.errors.attributes.increment.starting"));
-			}
-		} else {
-			changes.data.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints + cost};
-			changes.data.points.advancement    = data.points.advancement - cost;
+        console.log("Advancment policing is on.");
+		if(!data[attribute]) {
+			data[attribute] = expandAttribute(actor.data, attribute);
 		}
-		actor.update(changes);
+		cost  = data[attribute].increaseCost;
+
+		if(data.points.starting.attributes > 0 || data.points.advancement >= cost) {
+			let changes = {data: {attributes: {},
+		                          points: {}}};
+
+			if(data.points.starting.attributes > 0) {
+				let value = data.attributes[attribute].startingPoints + 1;
+
+				if(value < 4) {
+					changes.data.attributes[attribute] = {startingPoints: value};
+					changes.data.points.starting       = {attributes: data.points.starting.attributes - 1};
+				} else {
+					console.error(`You can't use starting points to increment an attribute higher than 3.`);
+					ui.notifications.error(game.i18n.localize("bolme.errors.attributes.increment.starting"));
+				}
+			} else {
+				changes.data.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints + cost};
+				changes.data.points.advancement    = data.points.advancement - cost;
+			}
+			actor.update(changes);
+		} else {
+			console.error(`Increment for the '${attribute}' attribute failed because their are no advancements available to cover the cost.`);
+			ui.notifications.error(game.i18n.localize("bolme.errors.attributes.increment.advancement"));
+		}
 	} else {
-		console.error(`Increment for the '${attribute}' attribute failed because their are no advancements available to cover the cost.`);
-		ui.notifications.error(game.i18n.localize("bolme.errors.attributes.increment.advancement"));
+		let changes = {data: {attributes: {}}};
+
+		console.log("Advancment policing is off.");
+		changes.data.attributes[attribute] = {startingPoints: actor.data.data.attributes[attribute].startingPoints + 1};
+		actor.update(changes);
 	}
 }
 

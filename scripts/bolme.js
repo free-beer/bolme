@@ -15,6 +15,32 @@ async function preloadHandlebarsTemplates() {
 Hooks.once("init", () => {
     console.log("Initializing the Barbarian Of Lemuria (Mythic Edition) system.");
 
+    console.log("Registering module settings.");
+    game.settings.register("bolme", "policeAdvancements", {config:  true,
+                                                           default: true,
+                                                           hint:    "Indicates if changes to attributes, combat abilites and careers should be policed.",
+                                                           name:    "Police Advancement",
+                                                           scope:   "world",
+                                                           type:    Boolean});
+    game.settings.register("bolme", "startingAttributes", {config:  true,
+                                                           default: 4,
+                                                           hint:    "The number of starting attribute points for characters.",
+                                                           name:    "Starting Attribute Points",
+                                                           scope:   "world",
+                                                           type:    Number});
+    game.settings.register("bolme", "startingCombatAbilities", {config:  true,
+                                                                default: 4,
+                                                                hint:    "The number of starting combat ability points for characters.",
+                                                                name:    "Starting Combat Ability Points",
+                                                                scope:   "world",
+                                                                type:    Number});
+    game.settings.register("bolme", "startingCareers", {config:  true,
+                                                        default: 4,
+                                                        hint:    "The number of starting career points for characters.",
+                                                        name:    "Starting Career Points",
+                                                        scope:   "world",
+                                                        type:    Number});
+
     // Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("bolme",
                          BoLMECharacterSheet, {label: "bolme.sheets.character.title",
@@ -57,12 +83,25 @@ Hooks.once("init", () => {
         return(game.i18n.localize(`bolme.weapons.types.${type}.label`));
     });
 
-Hooks.on("dropActorSheetData", (actor, sheet, data) => {
-        setTimeout(() => {
-            let item = actor.items.contents[actor.items.contents.length - 1];
-            if(item.type === "career") {
-                careerAddedToCharacter(actor, item);
-            }
-        }, 250);
+    Hooks.on("dropActorSheetData", (actor, sheet, data) => {
+            setTimeout(() => {
+                let item = actor.items.contents[actor.items.contents.length - 1];
+                if(item.type === "career") {
+                    careerAddedToCharacter(actor, item);
+                }
+            }, 250);
+        });
+
+    Hooks.on("createActor", (actor, options, userId) => {
+        if(actor.type === "character") {
+            let attributes = game.settings.get("bolme", "startingAttributes");
+            let combat     = game.settings.get("bolme", "startingCombatAbilities");
+            let careers    = game.settings.get("bolme", "startingCareers");
+
+            console.log(`STARTING POINTS: attributes=${attributes}, careers=${careers}, combat=${combat}`);
+            actor.update({data: {points: {starting: {attributes: attributes,
+                                                     careers:    careers,
+                                                     combat:     combat}}}})
+        }
     });
 });

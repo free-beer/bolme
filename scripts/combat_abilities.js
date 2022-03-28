@@ -25,29 +25,40 @@ function calculateCombatAbilityValue(ability, settings) {
  */
 function decrementCombatAbility(actor, ability) {
 	let data    = actor.data.data;
-	let benefit;
+	let policed = game.settings.get("bolme", "policeAdvancements");
 
-	if(!data[ability]) {
-		data[ability] = expandCombatAbility(actor.data, ability);
-	}
-	benefit = data[ability].decreaseRegain;
+	if(policed) {
+		let benefit;
 
-    if(data[ability].value > -1) {
-		let changes = {data: {combat: {},
-	                          points: {}}};
+        console.log("Advancment policing is on.");
+		if(!data[ability]) {
+			data[ability] = expandCombatAbility(actor.data, ability);
+		}
+		benefit = data[ability].decreaseRegain;
 
-	    if(data[ability].advancementPoints > 0) {
-			changes.data.combat[ability] = {advancementPoints: data.combat[ability].advancementPoints - benefit};
-			changes.data.points.advancement    = data.points.advancement + benefit;
+	    if(data[ability].value > -1) {
+			let changes = {data: {combat: {},
+		                          points: {}}};
+
+		    if(data[ability].advancementPoints > 0) {
+				changes.data.combat[ability] = {advancementPoints: data.combat[ability].advancementPoints - benefit};
+				changes.data.points.advancement    = data.points.advancement + benefit;
+		    } else {
+				changes.data.combat[ability] = {startingPoints: data[ability].startingPoints - 1};
+				changes.data.points.starting       = {combat: data.points.starting.combat + 1};
+		    }
+		    actor.update(changes);
 	    } else {
-			changes.data.combat[ability] = {startingPoints: data[ability].startingPoints - 1};
-			changes.data.points.starting       = {combat: data.points.starting.combat + 1};
+	    	console.log(`Unable to lower the '${ability}' ability as combat abilities are not permitted to drop below -1.`);
+	    	ui.notifications.error(game.i18n.format("bolme.errors.combatAbilities.decrement.forbidden", {minimum: -1}));
 	    }
-	    actor.update(changes);
-    } else {
-    	console.log(`Unable to lower the '${ability}' ability as combat abilities are not permitted to drop below -1.`);
-    	ui.notifications.error(game.i18n.format("bolme.errors.combatAbilities.decrement.forbidden", {minimum: -1}));
-    }
+	} else {
+		let changes = {data: {combat: {}}};
+
+		console.log("Advancment policing is off.");
+		changes.data.combat[ability] = {startingPoints: actor.data.data.combat[ability].startingPoints - 1};
+		actor.update(changes);
+	}
 }
 
 /**
@@ -74,35 +85,46 @@ function expandCombatAbility(character, ability) {
  */
 function incrementCombatAbility(actor, ability) {
 	let data = actor.data.data;
-	let cost;
+	let policed = game.settings.get("bolme", "policeAdvancements");
 
-	if(!data[ability]) {
-		data[ability] = expandCombatAbility(actor.data, ability);
-	}
-	cost  = data[ability].increaseCost;
+	if(policed) {
+		let cost;
 
-	if(data.points.starting.combat > 0 || data.points.advancement >= cost) {
-		let changes = {data: {combat: {},
-	                          points: {}}};
-
-		if(data.points.starting.combat > 0) {
-			let value = data.combat[ability].startingPoints + 1;
-
-			if(value < 4) {
-				changes.data.combat[ability] = {startingPoints: value};
-				changes.data.points.starting = {combat: data.points.starting.combat - 1};
-			} else {
-				console.error(`You can't use starting points to increment a combat ability higher than 3.`);
-				ui.notifications.error(game.i18n.localize("bolme.errors.combatAbilities.increment.starting"));
-			}
-		} else {
-			changes.data.combat[ability]    = {advancementPoints: data.combat[ability].advancementPoints + cost};
-			changes.data.points.advancement = data.points.advancement - cost;
+        console.log("Advancment policing is on.");
+		if(!data[ability]) {
+			data[ability] = expandCombatAbility(actor.data, ability);
 		}
-		actor.update(changes);
+		cost = data[ability].increaseCost;
+
+		if(data.points.starting.combat > 0 || data.points.advancement >= cost) {
+			let changes = {data: {combat: {},
+		                          points: {}}};
+
+			if(data.points.starting.combat > 0) {
+				let value = data.combat[ability].startingPoints + 1;
+
+				if(value < 4) {
+					changes.data.combat[ability] = {startingPoints: value};
+					changes.data.points.starting = {combat: data.points.starting.combat - 1};
+				} else {
+					console.error(`You can't use starting points to increment a combat ability higher than 3.`);
+					ui.notifications.error(game.i18n.localize("bolme.errors.combatAbilities.increment.starting"));
+				}
+			} else {
+				changes.data.combat[ability]    = {advancementPoints: data.combat[ability].advancementPoints + cost};
+				changes.data.points.advancement = data.points.advancement - cost;
+			}
+			actor.update(changes);
+		} else {
+			console.error(`Increment for the '${ability}' ability failed because their are no advancements available to cover the cost.`);
+			ui.notifications.error(game.i18n.localize("bolme.errors.combatAbilities.increment.advancement"));
+		}
 	} else {
-		console.error(`Increment for the '${ability}' ability failed because their are no advancements available to cover the cost.`);
-		ui.notifications.error(game.i18n.localize("bolme.errors.combatAbilities.increment.advancement"));
+		let changes = {data: {combat: {}}};
+
+		console.log("Advancment policing is off.");
+		changes.data.combat[ability] = {startingPoints: actor.data.data.combat[ability].startingPoints + 1};
+		actor.update(changes);
 	}
 }
 
