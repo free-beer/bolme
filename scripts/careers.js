@@ -185,9 +185,13 @@ function incrementCareerRank(actor, careerId) {
                 console.log("Advancment policing is on.");
 				if(data.points.starting.careers > 0) {
 					console.log("Incrementing career rank using starting points.");
-					actorChanges.data.points.starting = {careers: data.points.starting.careers - 1};
-					careerChanges.data.startingPoints = career.data.data.startingPoints + 1;
-					changed                           = true;
+					if(expanded.rank < 3) {
+						actorChanges.data.points.starting = {careers: data.points.starting.careers - 1};
+						careerChanges.data.startingPoints = career.data.data.startingPoints + 1;
+						changed                           = true;
+					} else {
+						ui.notifications.error(game.i18n.localize("bolme.errors.careers.maxStart"));
+					}
 				} else if(data.points.advancement >= expanded.increaseCost) {
 					console.log("Incrementing career rank using advancement points.");
 					actorChanges.data.points.advancement = data.points.advancement - expanded.increaseCost;

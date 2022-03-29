@@ -117,6 +117,7 @@
 				"advancement": "Insufficient starting or advancement points to raise this career rank.",
 				"maxedOut": "This career is already at it's maximum rank.",
 				"minedOut": "This career is already at it's lowest possible rank.",
+				"maxStart": "Starting careers may not have a rank higher than 3.",
 				"unaffordable": "You do not have sufficient starting or advancement points to pay for this career."
 			},
 			"combatAbilities": {

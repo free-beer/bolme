@@ -60,7 +60,7 @@
 			"origin": "",
 			"points": {"advancement": 0,
 			           "starting": {"attributes": 4,
-			                        "careers":    4,
+			                        "careers":    8,
 			                        "combat":     4}}
 		}
 	},

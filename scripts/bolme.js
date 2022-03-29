@@ -35,7 +35,7 @@ Hooks.once("init", () => {
                                                                 scope:   "world",
                                                                 type:    Number});
     game.settings.register("bolme", "startingCareers", {config:  true,
-                                                        default: 4,
+                                                        default: 8,
                                                         hint:    "The number of starting career points for characters.",
                                                         name:    "Starting Career Points",
                                                         scope:   "world",
