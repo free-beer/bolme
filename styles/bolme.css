@@ -221,6 +221,8 @@ h4.section-header {
 	border: groove 3px;
 	font-size: 1.1em;
 	margin: 5px 0;
+	max-height: 500px;
+	overflow: auto;
 	padding: 5px 10px;
 	text-align: justify;
 }
