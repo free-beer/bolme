@@ -79,12 +79,16 @@
 				}
 			}
 		},
+		"buttons": {
+			"close": "Close"
+		},
 		"character": {
 			"titles": {
 				"armour": "Armour",
 				"attributes": "Attributes",
 				"careers": "Careers",
 				"combat": "Combat Abilities",
+				"languages": "Languages",
 				"traits": "Boons & Flaws",
 				"weapons": "Weapons"
 			}
@@ -101,6 +105,11 @@
 			},
 			"defence": {
 				"label": "Defence"
+			}
+		},
+		"dialogs": {
+			"titles": {
+				"info": "Information"
 			}
 		},
 		"errors": {
@@ -128,6 +137,12 @@
 					"advancement": "Insuficient advancement points available to pay for this increment.",
 					"starting": "Starting combat abilities may not be raised higher than 3."
 				}
+			},
+			"traits": {
+				"flaw": {
+				    "unaffordable": "You have insufficient advancement points to pay for the removal of this flaw."
+				},
+				"unaffordable": "You do not have sufficient starting or advancement points to pay for this trait."
 			}
 		},
 		"fields": {
@@ -269,19 +284,37 @@
 			}
 		},
 		"shields": {
-			"large": {
-			    "label": "Large"
+			"sizes": {
+				"large": {
+				    "label": "Large"
+				},
+				"small": {
+				    "label": "Small"
+				}
+			}
+		},
+		"startingPoints": {
+			"attributes": {
+			    "label": "Attributes"
 			},
-			"small": {
-			    "label": "Small"
+			"careers": {
+			    "label": "Careers"
+			},
+			"combat": {
+			    "label": "Combat Abilities"
+			},
+			"traits": {
+			    "label": "Traits"
 			}
 		},
 		"traits": {
-			"boon": {
-				"label": "Boon"
-			},
-			"flaw": {
-				"label": "Flaw"
+			"types": {
+				"boon": {
+					"label": "Boon"
+				},
+				"flaw": {
+					"label": "Flaw"
+				}
 			}
 		},
 		"weapons": {

@@ -35,6 +35,13 @@
 	grid-template-columns: 100px auto;
 }
 
+.character-armour-row {
+	display: grid;
+	font-size: 1.1em;
+	grid-gap: 5px 15px;
+	grid-template-columns: auto 50px 50px 150px 60px;
+}
+
 .character-career-name {
 	font-size: 1.2em;
 }
@@ -44,6 +51,17 @@
 	grid-gap: 5px 15px;
 	grid-template-columns: 2fr 3fr;
 	margin-bottom: 5px;
+}
+
+.character-language-name {
+	cursor: pointer;
+	font-size: 1.2em;
+}
+
+.character-language-row {
+	display: grid;
+	grid-gap: 5px 15px;
+	grid-template-columns: auto 60px;
 }
 
 .character-sheet-armour-area {
@@ -62,7 +80,7 @@
 .character-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
-	grid-template-columns: 270px auto;
+	grid-template-columns: 270px auto 150px;
 	margin: 0 0 15px 10px;
 }
 
@@ -85,6 +103,11 @@
 	margin-bottom: 15px;
 }
 
+.character-sheet-languages {
+	max-height: 150px;
+	overflow: auto;
+}
+
 .character-sheet-other-stats > div {
 	margin-bottom: 15px;
 }
@@ -102,9 +125,6 @@
 }
 
 .character-sheet-weapons-area {
-	display: grid;
-	grid-gap: 5px 15px;
-	grid-template-columns: auto 140px;
 }
 
 .character-sheet-weapons-list {
@@ -113,11 +133,26 @@
 	overflow: auto;
 }
 
+.character-shield-row {
+	display: grid;
+	font-size: 1.1em;
+	grid-gap: 5px 15px;
+	grid-template-columns: auto 75px 30px;
+}
+
+.character-trait-row {
+	display: grid;
+	font-size: 1.1em;
+	grid-gap: 5px 15px;
+	grid-template-columns: auto 100px 60px;
+	margin-bottom: 5px;
+}
+
 .character-weapon-row {
 	display: grid;
 	font-size: 1.1em;
 	grid-gap: 5px 15px;
-	grid-template-columns: 3fr 1fr 1fr 1fr;
+	grid-template-columns: 3fr 100px 75px 60px;
 	margin-bottom: 5px;
 }
 
@@ -176,6 +211,20 @@ h3.section-header {
 	height: 30px;
 }
 
+h4.section-header {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.info-dialog-content {
+	border: groove 3px;
+	font-size: 1.1em;
+	margin: 5px 0;
+	padding: 5px 10px;
+	text-align: justify;
+}
+
 input.characteristic {
 	background-color: #fff !important;
 	text-align: center !important;
@@ -184,6 +233,10 @@ input.characteristic {
 
 input:readonly {
 	color: #aaa !important;
+}
+
+.item-icon {
+	cursor: pointer;
 }
 
 .label {
@@ -196,6 +249,15 @@ input:readonly {
 	display: grid;
 	grid-gap: 5px 10px;
 	grid-template-columns: 100px auto;
+}
+
+.starting-points-bar {
+	background-color: #00a;
+	color: yellow;
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	padding: 3px;
 }
 
 .text-center {
@@ -212,6 +274,10 @@ input:readonly {
 
 .text-left {
 	text-align: right;
+}
+
+.trait-icon {
+	cursor: pointer;
 }
 
 .trait-sheet-body {

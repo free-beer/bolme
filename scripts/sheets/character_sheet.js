@@ -10,6 +10,9 @@ import {decrementCareerRank,
         deleteCareer,
         generateCareerList,
         incrementCareerRank} from "../careers.js";
+import InfoDialog from "../dialogs/info_dialog.js";
+import {deleteCharacterLanguage} from "../languages.js";
+import {traitRemovedFromCharacter} from "../traits.js";
 
 export default class BoLMECharacterSheet extends ActorSheet {
     static get defaultOptions() {
@@ -17,7 +20,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
                            {classes:  ["bolme", "sheet", "character-sheet"],
                             height:   900,
                             template: "systems/bolme/templates/sheets/character-sheet.html",
-                            width:    900}));
+                            width:    1100}));
     }
 
     /** @override */
@@ -29,6 +32,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
     getData() {
         const context = super.getData();
         let career;
+        let policed = game.settings.get("bolme", "policeAdvancements");
 
         console.log("ACTOR:", context.actor);
 
@@ -43,13 +47,40 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
         context.data.data.lifeblood.max = context.data.data.strength.value + 10;
 
-        context.data.armour  = [];
-        context.data.weapons = [];
+        context.data.armour    = [];
+        context.data.boons     = [];
+        context.data.flaws     = [];
+        context.data.languages = [];
+        context.data.shields   = [];
+        context.data.weapons   = [];
         context.actor.items.forEach((item) => {
-            if(item.type === "armour") {
-                context.data.armour.push(item);
-            } else if(item.type === "weapon") {
-                context.data.weapons.push(item);
+            switch(item.type) {
+                case "armour":
+                    context.data.armour.push(item);
+                    break;
+
+                case "language":
+                    context.data.languages.push(item);
+                    break;
+
+                case "shield":
+                    if(!context.data.hasShield) {
+                        context.data.hasShield = true;
+                    }
+                    context.data.shields.push(item);
+                    break;
+
+                case "trait":
+                    if(item.data.data.type === "boon") {
+                        context.data.boons.push(item);
+                    } else {
+                        context.data.flaws.push(item);
+                    }
+                    break;
+
+                case "weapon":
+                    context.data.weapons.push(item);
+                    break;
             }
         });
 
@@ -61,6 +92,11 @@ export default class BoLMECharacterSheet extends ActorSheet {
             context.data.data.arcanePoints = {max: 0, value: 0};
         }
         context.data.data.spentAdvancements = calculateSpentAdvancements(context.actor);
+        context.data.data.starting = (policed &&
+                                      (context.data.data.points.starting.attributes > 0 ||
+                                       context.data.data.points.starting.careers > 0 ||
+                                       context.data.data.points.starting.combat > 0 ||
+                                       context.data.data.points.starting.traits > 0));
 
         return(context);
     }
@@ -74,7 +110,11 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".career-decrementer").click((e) => decrementCareerRank(this.actor, e.currentTarget.dataset.id));
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id));
         html.find(".career-deleter").click((e) => deleteCareer(this.actor, e.currentTarget.dataset.id));
+        html.find(".language-deleter").click((e) => deleteCharacterLanguage(this.actor, e.currentTarget.dataset.id));
+        html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+        html.find(".trait-deleter").click((e) => traitRemovedFromCharacter(this.actor, e.currentTarget.dataset.id));
+        traitRemovedFromCharacter
     }
 
     _findArcaneCareer(careers) {

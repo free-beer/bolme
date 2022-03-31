@@ -6,6 +6,7 @@ import ShieldSheet from "./sheets/shield_sheet.js";
 import TraitSheet from "./sheets/trait_sheet.js";
 import WeaponSheet from "./sheets/weapon_sheet.js";
 import {careerAddedToCharacter} from "./careers.js"
+import {traitAddedToCharacter} from "./traits.js";
 
 async function preloadHandlebarsTemplates() {
     const paths = ["systems/bolme/templates/partials/a-partial.hbs"];
@@ -40,6 +41,12 @@ Hooks.once("init", () => {
                                                         name:    "Starting Career Points",
                                                         scope:   "world",
                                                         type:    Number});
+    game.settings.register("bolme", "startingTraits", {config:  true,
+                                                       default: 1,
+                                                       hint:    "The number of starting traits for characters.",
+                                                       name:    "Starting Trait Points",
+                                                       scope:   "world",
+                                                       type:    Number});
 
     // Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("bolme",
@@ -74,20 +81,31 @@ Hooks.once("init", () => {
                                      makeDefault: true,
                                      types: ["weapon"]});
 
+    Handlebars.registerHelper("localizeWeaponType", function(type) {
+        return(game.i18n.localize(`bolme.weapons.types.${type}.label`));
+    });
+
+    Handlebars.registerHelper("localizeShieldSize", function(size) {
+        return(game.i18n.localize(`bolme.shields.sizes.${size}.label`));
+    });
+
+    Handlebars.registerHelper("localizeTraitType", function(type) {
+        return(game.i18n.localize(`bolme.traits.types.${type}.label`));
+    });
+
     Handlebars.registerHelper("selectOption", function(chosen) {
         let selected = (chosen === this.key ? " selected" : " ");
         return(`<option${selected} value="${this.key}">${game.i18n.localize(this.value)}</option>`);
     });
 
-    Handlebars.registerHelper("localizeWeaponType", function(type) {
-        return(game.i18n.localize(`bolme.weapons.types.${type}.label`));
-    });
-
     Hooks.on("dropActorSheetData", (actor, sheet, data) => {
             setTimeout(() => {
                 let item = actor.items.contents[actor.items.contents.length - 1];
+
                 if(item.type === "career") {
                     careerAddedToCharacter(actor, item);
+                } else if(item.type === "trait") {
+                    traitAddedToCharacter(actor, item);
                 }
             }, 250);
         });
@@ -97,11 +115,13 @@ Hooks.once("init", () => {
             let attributes = game.settings.get("bolme", "startingAttributes");
             let combat     = game.settings.get("bolme", "startingCombatAbilities");
             let careers    = game.settings.get("bolme", "startingCareers");
+            let traits     = game.settings.get("bolme", "startingTraits");
 
-            console.log(`STARTING POINTS: attributes=${attributes}, careers=${careers}, combat=${combat}`);
+            console.log(`STARTING POINTS: attributes=${attributes}, careers=${careers}, combat=${combat}, traits: ${traits}`);
             actor.update({data: {points: {starting: {attributes: attributes,
                                                      careers:    careers,
-                                                     combat:     combat}}}})
+                                                     combat:     combat,
+                                                     traits:     traits}}}})
         }
     });
 });
