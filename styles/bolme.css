@@ -314,6 +314,26 @@ input:readonly {
 	color: #aaa !important;
 }
 
+.is-failure {
+	color: #a00;
+	font-weight: bold;
+}
+
+.is-legendary {
+	color: #b8860b;
+	font-weight: bold;
+}
+
+.is-mighty {
+	color: #0a0;
+	font-weight: bold;
+}
+
+.is-success {
+	color: #00a;
+	font-weight: bold;
+}
+
 .item-icon {
 	cursor: pointer;
 }
