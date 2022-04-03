@@ -105,6 +105,19 @@ function generateBaseSkillRollFormula(bonusDice, penaltyDice) {
 }
 
 /**
+ * Wrapper for integration with the DiceSoNice module. Prefer this route over
+ * evaluating dice rolls directly.
+ */
+function rollIt(roll) {
+    return(roll.evaluate().then((result) => {
+        if(game.dice3d) {
+            game.dice3d.showForRoll(result);
+        }
+        return(result);
+    }));
+}
+
+/**
  * Attempts to translate a dice formula containing expressions that BoL uses but
  * that Foundry won't understand.
  */
@@ -118,5 +131,6 @@ function translateDieFormula(source) {
 
 export {generateAttackRollFormula,
         getRollResultLevel,
+        rollIt,
         translateDieFormula};
 

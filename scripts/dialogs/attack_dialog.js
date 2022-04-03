@@ -2,6 +2,7 @@ import {showMessage} from "../chat.js";
 import constants from "../constants.js";
 import {getRollResultLevel,
         generateAttackRollFormula,
+        rollIt,
         translateDieFormula} from "../dice.js";
 
 export default class AttackDialog extends Dialog {
@@ -97,7 +98,7 @@ export default class AttackDialog extends Dialog {
                                                  data.rangeModifier);
         data.roll   = new Roll(data.formula);
 
-        data.roll.roll()
+        rollIt(data.roll)
             .then((roll) => {
                 getRollResultLevel(roll);
                 data.dice        = roll.dice;
