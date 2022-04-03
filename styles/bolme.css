@@ -4,6 +4,23 @@
 	grid-template-columns: 100px auto;
 }
 
+.attack-dialog-title {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 5px 0;
+	text-align: center;
+}
+
+.attack-dialog-form {
+/*	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 110px 110px 110px 110px;*/
+}
+
+.attack-dialog-form input[type=number] {
+	text-align: center !important;
+}
+
 .attribute-icon {
 	cursor: pointer;
 	font-size: 1.1em;
@@ -156,6 +173,44 @@
 	margin-bottom: 5px;
 }
 
+.chat-message-details {
+	font-size: 0.8em;
+}
+
+.chat-message-header {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.chat-message-roll-result {
+	font-size: 1.1em;
+	margin: 5px 0;
+	text-align: center;
+}
+
+.d6-result {
+	background-color: #fff;
+	border: solid 1px #555;
+	border-radius: 3px;
+	font-size: 0.9em;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+	margin:  3px;
+	text-align: center;
+	width: 25px;
+}
+
+.dice-row {
+	display: grid;
+	grid-gap: 3px 3px;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.discard-die {
+	background-color: #ffb3b3;
+}
+
 .editor {
 	height: 200px;
 }
@@ -166,6 +221,24 @@
 
 .expanded {
 	width:  100%;
+}
+
+.expander {
+	border: solid 1px #aaa;
+	margin:  3px 0;
+}
+
+.expander > div:nth-child(2) {
+	border-top: solid 1px #aaa;
+	padding: 3px 0;
+}
+
+.expander-header {
+	color:  #666;
+	cursor: pointer;
+	font-weight: bold;
+	padding:  3px 0;
+	text-align: center;
 }
 
 .field {
@@ -215,6 +288,10 @@ h4.section-header {
 	font-size: 1.1em;
 	font-weight: bold;
 	margin-top: 20px;
+}
+
+.hidden {
+	display: none;
 }
 
 .info-dialog-content {

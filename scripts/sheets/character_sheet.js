@@ -1,3 +1,4 @@
+import AttackDialog from "../dialogs/attack_dialog.js";
 import {calculateSpentAdvancements} from "../advancements.js";
 import {decrementAttribute,
         expandAttribute,
@@ -103,6 +104,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
     activateListeners(html) {
         super.activateListeners(html);
+        html.find(".attack-icon").click((e) => this._showAttackDialog(e));
         html.find(".attribute-decrementer").click((e) => decrementAttribute(this.actor, e.currentTarget.dataset.attribute));
         html.find(".attribute-incrementer").click((e) => incrementAttribute(this.actor, e.currentTarget.dataset.attribute));
         html.find(".combat-ability-decrementer").click((e) => decrementCombatAbility(this.actor, e.currentTarget.dataset.ability));
@@ -145,5 +147,24 @@ export default class BoLMECharacterSheet extends ActorSheet {
         console.log("options:", options);
         console.log("userId:", userId);
         super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
+    }
+
+    _showAttackDialog(event) {
+        let defence = 0;
+
+        if(game.user.targets.size === 1) {
+            let target = game.user.targets.first().actor;
+
+            if(game.user.targets.size === 1) {
+                let target = game.user.targets.first().actor;
+
+                if(target.type === "character") {
+                    defence = expandCombatAbility(target.data, "defence").value;
+                } else {
+                    defence = target.data.data.defence;
+                }
+            }
+        }
+        AttackDialog.build(event.currentTarget, {defence: defence}).then((dialog) => dialog.render(true));
     }
 }

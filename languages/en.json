@@ -80,7 +80,8 @@
 			}
 		},
 		"buttons": {
-			"close": "Close"
+			"close": "Close",
+			"roll": "Roll"
 		},
 		"character": {
 			"titles": {
@@ -93,7 +94,19 @@
 				"weapons": "Weapons"
 			}
 		},
+		"chat": {
+			"attackRoll": {
+				"actor": "Who",
+				"formula": "Roll Formula",
+				"header": "Attack Roll",
+				"total": "Roll Total",
+				"weapon": "Weapon"
+			}
+		},
 		"combat": {
+			"defence": {
+				"label": "Defence"
+			},
 			"initiative": {
 				"label": "Initiative"
 			},
@@ -102,13 +115,11 @@
 			},
 			"ranged": {
 				"label": "Ranged"
-			},
-			"defence": {
-				"label": "Defence"
 			}
 		},
 		"dialogs": {
 			"titles": {
+				"attack": "Attack Roll",
 				"info": "Information"
 			}
 		},
@@ -161,6 +172,29 @@
 				},
 				"type": {
 					"label": "Type"
+				}
+			},
+			"attack": {
+				"attribute": {
+					"label": "Attribute"
+				},
+				"bonusDice": {
+					"label": "Bonus Dice"
+				},
+				"career": {
+					"label": "Career"
+				},
+				"combatAbility": {
+					"label": "Combat Ability"
+				},
+				"defence": {
+					"label": "Targets Defence"
+				},
+				"penaltyDice": {
+					"label": "Penalty Dice"
+				},
+				"rangeModifier": {
+					"label": "Range Modifier"
 				}
 			},
 			"career": {
@@ -218,6 +252,9 @@
 				"label": "Name",
 				"placeholder": "Enter a name for this entity."
 			},
+			"none": {
+				"label": "None"
+			},
 			"shield": {
 				"description": {
 					"label": "Description",
@@ -258,6 +295,18 @@
 				"type": {
 					"label": "Type"
 				}
+			}
+		},
+		"rolls": {
+			"headers": {
+				"details": "Roll Details"
+			},
+			"results": {
+				"calamitous": "Calamitous Failure",
+				"failure": "Failure",
+				"legendary": "Legendary Success",
+				"mighty": "Mighty Success",
+				"success": "Success"
 			}
 		},
 		"sheets": {

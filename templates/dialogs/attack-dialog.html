@@ -1,0 +1,51 @@
+<div class="attack-dialog">
+	<hr>
+	<div class="attack-dialog-title">{{name}} - {{damage}}</div>
+	<hr>
+
+	<form class="attack-dialog-form" autocomplete="off" data-actor="{{actorId}}" data-weapon="{{weaponId}}">
+		<div class="grid-2-col">
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.attack.attribute.label"}}</label>
+				<select class="expanded" name="attribute">
+				{{#each constants.attributes}}
+				    {{{selectOption ../attribute}}}
+				{{/each}}
+				</select>
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.attack.combatAbility.label"}}</label>
+				<select class="expanded" name="combatAbility">
+				{{#each constants.combatAbilities}}
+				    {{{selectOption ../combat}}}
+				{{/each}}
+				</select>
+			</div>
+		</div>
+
+        <div class="grid-2-col">
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.attack.bonusDice.label"}}</label>
+				<input class="" name="bonusDice" type="number" value="{{bonusDice}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.attack.penaltyDice.label"}}</label>
+				<input class="" name="penaltyDice" type="number" value="{{penaltyDice}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.attack.defence.label"}}</label>
+				<input class="" name="defence" type="number" value="{{defence}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.attack.rangeModifier.label"}}</label>
+				<input class="" name="rangeModifier" type="number" value="{{rangeModifier}}">
+			</div>
+        </div>
+
+        <br>
+	</form>
+</div>

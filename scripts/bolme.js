@@ -6,15 +6,18 @@ import ShieldSheet from "./sheets/shield_sheet.js";
 import TraitSheet from "./sheets/trait_sheet.js";
 import WeaponSheet from "./sheets/weapon_sheet.js";
 import {careerAddedToCharacter} from "./careers.js"
+import {applyCommonChatEventHandlers} from "./chat.js";
 import {traitAddedToCharacter} from "./traits.js";
 
 async function preloadHandlebarsTemplates() {
-    const paths = ["systems/bolme/templates/partials/a-partial.hbs"];
-    return(loadTemplates([]))
+    const paths = ["systems/bolme/templates/partials/dice-result.html",
+                   "systems/bolme/templates/chat/attack-roll.html"];
+    return(loadTemplates(paths))
 }
 
 Hooks.once("init", () => {
     console.log("Initializing the Barbarian Of Lemuria (Mythic Edition) system.");
+    preloadHandlebarsTemplates();
 
     console.log("Registering module settings.");
     game.settings.register("bolme", "policeAdvancements", {config:  true,
@@ -93,6 +96,10 @@ Hooks.once("init", () => {
         return(game.i18n.localize(`bolme.traits.types.${type}.label`));
     });
 
+    Handlebars.registerHelper("rollResultLevel", function(level) {
+        return(game.i18n.localize(`bolme.rolls.results.${level}`));
+    });
+
     Handlebars.registerHelper("selectOption", function(chosen) {
         let selected = (chosen === this.key ? " selected" : " ");
         return(`<option${selected} value="${this.key}">${game.i18n.localize(this.value)}</option>`);
@@ -122,6 +129,21 @@ Hooks.once("init", () => {
                                                      careers:    careers,
                                                      combat:     combat,
                                                      traits:     traits}}}})
+        }
+    });
+
+    Hooks.on("renderChatMessage", (message, html, data) => {
+        let messageRoot = html[0].querySelector(".bolme-chat-message");
+
+        if(messageRoot) {
+            applyCommonChatEventHandlers(messageRoot);
+            if(messageRoot.classList.contains("attack-roll")) {
+                console.log("Attack roll chat message logged.");
+            } else {
+                console.log("Unrecognised chat message logged.");
+            }
+        } else {
+            console.log("Chat message logged and ignored.");
         }
     });
 });

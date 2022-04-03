@@ -132,8 +132,8 @@
 								<div><center>{{localizeWeaponType data.data.type}}</center></div>
 								<div><center>{{data.data.damage}}</center></div>
 								<div>
-									<i class="weapon-icon fas fa-dice" data-damage="{{data.data.damage}}" data-type="{{data.data.type}}"></i>
-									<i class="weapon-icon item-deleter fas fa-times-circle" data-id="{{id}}"></i>
+									<i class="attack-icon fas fa-dice weapon-icon" data-actor="{{actor.id}}" data-weapon="{{id}}"></i>
+									<i class="fas fa-times-circle item-deleter weapon-icon" data-id="{{id}}"></i>
 								</div>
 							</div>
 						{{/each}}

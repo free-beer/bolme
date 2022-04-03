@@ -1,4 +1,9 @@
 export default class InfoDialog extends Dialog {
+    static get defaultOptions() {
+        return(mergeObject(super.defaultOptions,
+                           {width: 450}));
+    }
+
 	constructor(settings) {
         let buttons = {close: {callback: () => {},
                                label: game.i18n.localize("bolme.buttons.close")}};
@@ -12,13 +17,9 @@ export default class InfoDialog extends Dialog {
 
         settings.title = game.i18n.localize(`bolme.dialogs.titles.info`);
 
-        console.log("DATA:", data);
-        console.log("ELEMENT:", element);
         return(renderTemplate("systems/bolme/templates/dialogs/info-dialog.html", data)
                    .then((content) => {
-                   	         console.log("CONTENT:", content);
                              settings.content = content;
-                             console.log("SETTINGS:", settings);
                              return(new InfoDialog(settings));
                          }));   
     }

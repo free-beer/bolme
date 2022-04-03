@@ -221,5 +221,6 @@ function incrementCareerRank(actor, careerId) {
 export {careerAddedToCharacter,
 	    decrementCareerRank,
 	    deleteCareer,
+	    expandCareer,
 	    generateCareerList,
 	    incrementCareerRank};
