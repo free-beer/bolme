@@ -1,6 +1,9 @@
 import ArmourSheet from "./sheets/armour_sheet.js";
 import BoLMECharacterSheet from "./sheets/character_sheet.js";
 import CareerSheet from "./sheets/career_sheet.js";
+import ConsumableSheet from "./sheets/consumable_sheet.js";
+import CraftingRecipeSheet from "./sheets/crafting_recipe_sheet.js";
+import DeviceSheet from "./sheets/device_sheet.js";
 import LanguageSheet from "./sheets/language_sheet.js";
 import ShieldSheet from "./sheets/shield_sheet.js";
 import TraitSheet from "./sheets/trait_sheet.js";
@@ -68,6 +71,18 @@ Hooks.once("init", () => {
                                       makeDefault: true,
                                       types: ["career"]});
     Items.registerSheet("bolme",
+                        ConsumableSheet, {label: "bolme.sheets.consumable.title",
+                                      makeDefault: true,
+                                      types: ["consumable"]});
+    Items.registerSheet("bolme",
+                        CraftingRecipeSheet, {label: "bolme.sheets.recipe.title",
+                                      makeDefault: true,
+                                      types: ["crafting recipe"]});
+    Items.registerSheet("bolme",
+                        DeviceSheet, {label: "bolme.sheets.device.title",
+                                      makeDefault: true,
+                                      types: ["device"]});
+    Items.registerSheet("bolme",
                         LanguageSheet, {label: "bolme.sheets.language.title",
                                         makeDefault: true,
                                         types: ["language"]});
@@ -131,7 +146,7 @@ Hooks.once("init", () => {
             let careers    = game.settings.get("bolme", "startingCareers");
             let traits     = game.settings.get("bolme", "startingTraits");
 
-            console.log(`STARTING POINTS: attributes=${attributes}, careers=${careers}, combat=${combat}, traits: ${traits}`);
+            //console.log(`STARTING POINTS: attributes=${attributes}, careers=${careers}, combat=${combat}, traits: ${traits}`);
             actor.update({data: {points: {starting: {attributes: attributes,
                                                      careers:    careers,
                                                      combat:     combat,

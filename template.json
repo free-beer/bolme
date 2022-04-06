@@ -65,7 +65,7 @@
 		}
 	},
 	"Item": {
-		"types": ["armour", "career", "equipment", "language", "shield", "trait", "weapon"],
+		"types": ["armour", "career", "consumable", "crafting recipe", "device", "equipment", "language", "shield", "trait", "weapon"],
 		"armour": {
 			"arcaneCost": "",
 			"description": "",
@@ -79,6 +79,25 @@
 			"description": "",
 			"grantsArcane": false,
 			"startingPoints": 0
+		},
+		"consumable": {
+			"description": "",
+			"uses": 1
+		},
+		"crafting recipe": {
+			"cost": 1,
+			"description": "",
+			"item": {
+				"id": "",
+				"name": "",
+				"quantity": 1
+			},
+			"subtype": "potion",
+			"type": "common",
+			"progress": 0
+		},
+		"device": {
+			"description": ""
 		},
 		"equipment": {},
 		"language": {

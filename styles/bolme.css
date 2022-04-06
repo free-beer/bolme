@@ -188,6 +188,24 @@
 	text-align: center;
 }
 
+.consumable-sheet-body {
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 100px auto;
+}
+
+.crafting-recipe-product-row {
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: auto 75px 30px;
+}
+
+.crafting-recipe-sheet-body {
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 100px auto;
+}
+
 .d6-result {
 	background-color: #fff;
 	border: solid 1px #555;
@@ -199,6 +217,12 @@
 	margin:  3px;
 	text-align: center;
 	width: 25px;
+}
+
+.device-sheet-body {
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 100px auto;
 }
 
 .dice-row {

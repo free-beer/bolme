@@ -33,6 +33,16 @@ let constants = {
                       {key: "initiative", value: "bolme.combat.initiative.label"},
                       {key: "melee", value: "bolme.combat.melee.label"},
                       {key: "ranged", value: "bolme.combat.ranged.label"}],
+    crafting: {
+    	recipes: {
+    		subtypes: [{key: "device", value: "bolme.crafting.recipes.subtypes.device.label"},
+    		           {key: "potion", value: "bolme.crafting.recipes.subtypes.potion.label"}],
+    		types: [{cost: 1, key: "common", value: "bolme.crafting.recipes.types.common.label"},
+    		        {cost: 8, key: "legendary", value: "bolme.crafting.recipes.types.legendary.label"},
+    		        {cost: 4, key: "mythic", value: "bolme.crafting.recipes.types.mythic.label"},
+    		        {cost: 2, key: "uncommon", value: "bolme.crafting.recipes.types.uncommon.label"}]
+    	}
+    },
     rolls: {
     	results: [{key: "calamitous", value: "rolls.results.calamitous"},
     	          {key: "failure", value: "rolls.results.failure"},

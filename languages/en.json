@@ -117,6 +117,40 @@
 				"label": "Ranged"
 			}
 		},
+		"crafting": {
+			"recipes": {
+				"item": {
+					"product": {
+						"title": "Crafted Product"
+					},
+					"unset": {
+						"blurb": "Drag and drop a item onto this window to assign it as the product that will be crafted."
+					}
+				},
+				"subtypes": {
+					"device": {
+						"label": "Device/Creation"
+					},
+					"potion": {
+						"label": "Potion"
+					}
+				},
+				"types": {
+					"common": {
+						"label": "Common"
+					},
+					"legendary": {
+						"label": "Legendary"
+					},
+					"mythic": {
+						"label": "Mythic"
+					},
+					"uncommon": {
+						"label": "Uncommon"
+					}
+				}
+			}
+		},
 		"dialogs": {
 			"titles": {
 				"attack": "Attack Roll",
@@ -156,7 +190,7 @@
 				"unaffordable": "You do not have sufficient starting or advancement points to pay for this trait."
 			}
 		},
-		"fields": {
+        "fields": {
 			"armour": {
 				"arcaneCost": {
 					"label": "Arcane Cost",
@@ -242,6 +276,18 @@
 					}
 				}
 			},
+			"consumable": {
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				}				
+			},
+			"device": {
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				}				
+			},
 			"language": {
 				"description": {
 					"label": "Description",
@@ -254,6 +300,24 @@
 			},
 			"none": {
 				"label": "None"
+			},
+			"recipe": {
+				"cost": {
+					"label": "Cost",
+					"placeholder": "Crafting cost."
+				},
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				},
+				"subtype": {
+					"label": "Product Type",
+					"placeholder": ""
+				},
+				"type": {
+					"label": "Preparation Type",
+					"placeholder": ""
+				}
 			},
 			"shield": {
 				"description": {
@@ -319,11 +383,20 @@
 			"character": {
 				"title": "Character"
 			},
+			"consumable": {
+				"title": "Consumable"
+			},
+			"device": {
+				"title": "Alchemical Device"
+			},
 			"language": {
 				"title": "Language"
 			},
 			"shield": {
 				"title": "Shield"
+			},
+			"recipe": {
+				"title": "Crafting Recipe"
 			},
 			"trait": {
 				"title": "Trait (Boon/Flaw)"
