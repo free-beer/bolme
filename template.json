@@ -17,7 +17,10 @@
 			"strength": 0
 		},
 		"character": {
-			"arcanePoints": {"value": 0},
+			"arcanePoints": {
+			    "max": 0,
+			    "value": 0
+			},
 			"attributes": {
 				"agility": {
 				    "advancementPoints": 0,
@@ -54,7 +57,14 @@
 				    "startingPoints": 0
 				}
 			},
-			"fate": 0,
+			"craftingPoints": {
+				"max": 0,
+				"value": 0
+			},
+			"fatePoints": {
+			    "max": 0,
+			    "value": 0
+			},
 			"heroPoints": 5,
 			"lifeblood": {"value": 10},
 			"origin": "",
@@ -77,7 +87,11 @@
 			"advancementPoints": 0,
 			"alternativeNames": "",
 			"description": "",
-			"grantsArcane": false,
+			"grants": {
+				"arcane": false,
+				"crafting": false,
+				"fate": false
+			},
 			"startingPoints": 0
 		},
 		"consumable": {
@@ -87,6 +101,7 @@
 		"crafting recipe": {
 			"cost": 1,
 			"description": "",
+			"difficulty": "moderate",
 			"item": {
 				"id": "",
 				"name": "",

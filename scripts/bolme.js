@@ -14,7 +14,8 @@ import {traitAddedToCharacter} from "./traits.js";
 
 async function preloadHandlebarsTemplates() {
     const paths = ["systems/bolme/templates/partials/dice-result.html",
-                   "systems/bolme/templates/chat/attack-roll.html"];
+                   "systems/bolme/templates/chat/attack-roll.html",
+                   "systems/bolme/templates/chat/craft-roll.html"];
     return(loadTemplates(paths))
 }
 
@@ -125,6 +126,11 @@ Hooks.once("init", () => {
     Handlebars.registerHelper("selectOption", function(chosen) {
         let selected = (chosen === this.key ? " selected" : " ");
         return(`<option${selected} value="${this.key}">${game.i18n.localize(this.value)}</option>`);
+    });
+
+    Handlebars.registerHelper("tabActiveCheck", function(tabName, activeClass, inactiveClass) {
+        let data = Object.assign({tabs: {selected: "front_page"}}, this.actor.data.data);
+        return(tabName === data.tabs.selected ? activeClass : inactiveClass);
     });
 
     Hooks.on("dropActorSheetData", (actor, sheet, data) => {

@@ -81,6 +81,7 @@
 		},
 		"buttons": {
 			"close": "Close",
+			"reset": "Reset",
 			"roll": "Roll"
 		},
 		"character": {
@@ -101,6 +102,9 @@
 				"header": "Attack Roll",
 				"total": "Roll Total",
 				"weapon": "Weapon"
+			},
+			"craftRoll": {
+				"header": "Craft Roll"
 			}
 		},
 		"combat": {
@@ -118,6 +122,14 @@
 			}
 		},
 		"crafting": {
+			"difficulties": {
+				"demanding": "Demanding (-4)",
+				"easy": "Easy (+1)",
+				"formidable": "Formidable (-6)",
+				"hard": "Hard (-1)",
+				"moderate": "Moderate (+0)",
+				"tough": "Tough (-2)"
+			},
 			"recipes": {
 				"item": {
 					"product": {
@@ -127,6 +139,7 @@
 						"blurb": "Drag and drop a item onto this window to assign it as the product that will be crafted."
 					}
 				},
+				"header": "Crafting Recipes",
 				"subtypes": {
 					"device": {
 						"label": "Device/Creation"
@@ -239,6 +252,18 @@
 				"description": {
 					"label": "Description",
 					"placeholder": ""
+				},
+				"grants": {
+					"arcane": {
+						"label": "Arcane Points"
+					},
+					"crafting": {
+						"label": "Crafting Points"
+					},
+					"fate": {
+						"label": "Fate Points"
+					},
+					"label": "Career Grants..."
 				}
 			},
 			"character": {
@@ -282,6 +307,14 @@
 					"placeholder": ""
 				}				
 			},
+			"crafting": {
+				"points": {
+					"label": "Crafting Points (Maximum: {maximum}):",
+					"reset": {
+						"title": "Reset Crafting Points"
+					}
+				}
+			},
 			"device": {
 				"description": {
 					"label": "Description",
@@ -308,6 +341,10 @@
 				},
 				"description": {
 					"label": "Description",
+					"placeholder": ""
+				},
+				"difficulty": {
+					"label": "Difficulty",
 					"placeholder": ""
 				},
 				"subtype": {
@@ -358,6 +395,13 @@
 				},
 				"type": {
 					"label": "Type"
+				}
+			}
+		},
+		"notices": {
+			"crafting": {
+				"item": {
+					"created": "You have successfully crafted '{name}'. The item has been added to your inventory."
 				}
 			}
 		},
@@ -429,6 +473,12 @@
 			    "label": "Traits"
 			}
 		},
+		"tabs": {
+			"crafting": "Crafting",
+			"equipment": "Equipment",
+			"frontPage": "Front Page",
+			"notes": "Notes"
+		},
 		"traits": {
 			"types": {
 				"boon": {
@@ -436,6 +486,17 @@
 				},
 				"flaw": {
 					"label": "Flaw"
+				}
+			}
+		},
+		"warnings": {
+			"crafting": {
+				"item": {
+					"missing": "Unable to locate the assigned crafting output item. You will have to manually add the create item instead.",
+					"unassigned": "Recipe has not been assigned a manufactured item. You must manually add the created item instead."
+				},
+				"points": {
+					"unavailable": "You have no crafting points to spend at this time."
 				}
 			}
 		},

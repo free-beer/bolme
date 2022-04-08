@@ -6,7 +6,7 @@ export default class CraftingRecipeSheet extends ItemSheet {
         return(mergeObject(super.defaultOptions,
                            {classes: ["bolme", "item-sheet", "crafting-recipe-sheet"],
                             height:  480,
-                            width:   570}));
+                            width:   680}));
     }
 
     /** @override */
@@ -18,7 +18,8 @@ export default class CraftingRecipeSheet extends ItemSheet {
     getData() {
         const context  = super.getData();
 
-        context.constants = {recipeSubtypes: constants.crafting.recipes.subtypes,
+        context.constants = {recipeDifficulties: constants.crafting.recipes.difficulties,
+                             recipeSubtypes: constants.crafting.recipes.subtypes,
                              recipeTypes: constants.crafting.recipes.types};
         context.data.hasProduct = (context.data.data.item.id !== "");
 

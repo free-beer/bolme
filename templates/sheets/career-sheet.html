@@ -15,6 +15,34 @@
 				<input name="data.alternativeNames" placeholder="{{localize 'bolme.fields.career.alternativeNames.placeholder'}}" type="text" value="{{data.data.alternativeNames}}">
 			</div>
 
+            <label class="label">{{localize "bolme.fields.career.grants.label"}}</label>
+			<div class="grid-3-col">
+				<div>
+				{{#if data.data.grants.arcane}}
+				    <input checked name="data.grants.arcane" type="checkbox">
+				{{else}}
+					<input name="data.grants.arcane" type="checkbox">
+				{{/if}}
+				    <span class="checkbox-label">{{localize "bolme.fields.career.grants.arcane.label"}}</span>
+				</div>
+				<div>
+				{{#if data.data.grants.crafting}}
+				    <input checked name="data.grants.crafting" type="checkbox">
+				{{else}}
+					<input name="data.grants.crafting" type="checkbox">
+				{{/if}}
+				    <span class="checkbox-label">{{localize "bolme.fields.career.grants.crafting.label"}}</span>
+				</div>
+				<div>
+				{{#if data.data.grants.fate}}
+				    <input checked name="data.grants.fate" type="checkbox">
+				{{else}}
+					<input name="data.grants.fate" type="checkbox">
+				{{/if}}
+					<span class="checkbox-label">{{localize "bolme.fields.career.grants.fate.label"}}</span>
+				</div>
+			</div>
+
             <div class="field">
                 <label class="label" for="data.description">{{localize "bolme.fields.career.description.label"}}</label>
                 {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}

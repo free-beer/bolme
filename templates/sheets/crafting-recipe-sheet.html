@@ -10,12 +10,26 @@
                 <input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}"/>
             </div>
 
-            <div class="grid-3-col">
+            <div class="grid-4-col">
 	            <div class="field">
 	                <label class="label" for="data.type">{{localize "bolme.fields.recipe.type.label"}}</label>
 					<select class="expanded type-selector" name="data.type" value="{{data.data.type}}">
 						{{#each constants.recipeTypes}}
 						    {{{selectOption ../data.data.type}}}
+						{{/each}}
+					</select>
+				</div>
+
+				<div class="field">
+					<label class="label" for="data.cost">{{localize "bolme.fields.recipe.cost.label"}}</label>
+					<input name="data.cost" placeholder="{{localize 'bolme.fields.recipe.cost.placeholder'}}" readonly type="number" value="{{data.data.cost}}">
+				</div>
+
+	            <div class="field">
+	                <label class="label" for="data.difficulty">{{localize "bolme.fields.recipe.difficulty.label"}}</label>
+					<select class="expanded" name="data.difficulty" value="{{data.data.difficulty}}">
+						{{#each constants.recipeDifficulties}}
+						    {{{selectOption ../data.data.difficulty}}}
 						{{/each}}
 					</select>
 				</div>
@@ -27,11 +41,6 @@
 						    {{{selectOption ../data.data.subtype}}}
 						{{/each}}
 					</select>
-				</div>
-
-				<div class="field">
-					<label class="label" for="data.cost">{{localize "bolme.fields.recipe.cost.label"}}</label>
-					<input name="data.cost" placeholder="{{localize 'bolme.fields.recipe.cost.placeholder'}}" readonly type="number" value="{{data.data.cost}}">
 				</div>
 			</div>
 

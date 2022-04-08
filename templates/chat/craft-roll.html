@@ -1,0 +1,23 @@
+<div class="craft-roll bolme-chat-message">
+	<div class=" chat-message-header text-center">
+		<span>{{localize "bolme.chat.craftRoll.header"}} ({{actorName}})</span>
+	</div>
+
+	<div class="chat-message-roll-result">
+			{{rollTotal}} - {{{rollResultLevel resultLevel}}}
+	</div>
+
+    <div class="expander">
+    	<div class="expander-header">{{localize "bolme.rolls.headers.details"}}</div>
+    	<div class="hidden">
+    		<div class="text-center">{{formula}}</div>
+		    <div class="dice-row">
+		{{#each dice}}
+		    {{#each results}}
+			    {{> "systems/bolme/templates/partials/dice-result.html" .}}
+		    {{/each}}
+		{{/each}}
+		    </div>
+    	</div>
+    </div>
+</div>

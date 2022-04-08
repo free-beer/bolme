@@ -35,6 +35,12 @@ let constants = {
                       {key: "ranged", value: "bolme.combat.ranged.label"}],
     crafting: {
     	recipes: {
+    		difficulties: [{key: "easy", modifier: 1, value: "bolme.crafting.difficulties.easy"},
+    		               {key: "moderate", modifier: 0, value: "bolme.crafting.difficulties.moderate"},
+    		               {key: "hard", modifier: -1, value: "bolme.crafting.difficulties.hard"},
+    		               {key: "tough", modifier: -2, value: "bolme.crafting.difficulties.tough"},
+    		               {key: "demanding", modifier: -4, value: "bolme.crafting.difficulties.demanding"},
+    		               {key: "formidable", modifier: -6, value: "bolme.crafting.difficulties.formidable"}],
     		subtypes: [{key: "device", value: "bolme.crafting.recipes.subtypes.device.label"},
     		           {key: "potion", value: "bolme.crafting.recipes.subtypes.potion.label"}],
     		types: [{cost: 1, key: "common", value: "bolme.crafting.recipes.types.common.label"},

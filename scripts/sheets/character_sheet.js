@@ -7,6 +7,11 @@ import {decrementCombatAbility,
         expandCombatAbility,
         incrementCombatAbility} from "../combat_abilities.js";
 import constants from "../constants.js";
+import {decrementCraftingProgressClicked,
+        deleteCraftingRecipe,
+        expandRecipe,
+        incrementCraftingProgressClicked,
+        rollForCraftedItem} from "../crafting.js";
 import {decrementCareerRank,
         deleteCareer,
         generateCareerList,
@@ -35,8 +40,6 @@ export default class BoLMECharacterSheet extends ActorSheet {
         let career;
         let policed = game.settings.get("bolme", "policeAdvancements");
 
-        console.log("ACTOR:", context.actor);
-
         context.constants = constants;
         Object.keys(context.data.data.attributes).forEach((attribute) => {
             context.data.data[attribute] = expandAttribute(context.data, attribute);
@@ -52,12 +55,17 @@ export default class BoLMECharacterSheet extends ActorSheet {
         context.data.boons     = [];
         context.data.flaws     = [];
         context.data.languages = [];
+        context.data.recipes   = [];
         context.data.shields   = [];
         context.data.weapons   = [];
         context.actor.items.forEach((item) => {
             switch(item.type) {
                 case "armour":
                     context.data.armour.push(item);
+                    break;
+
+                case "crafting recipe":
+                    context.data.recipes.push(this._generateRecipeDetails(item));
                     break;
 
                 case "language":
@@ -86,12 +94,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         });
 
         context.data.careers = generateCareerList(context.actor);
-        career = this._findArcaneCareer(context.data.careers);
-        if(career) {
-            context.data.data.arcanePoints.max = career.rank + 10;
-        } else {
-            context.data.data.arcanePoints = {max: 0, value: 0};
-        }
+
         context.data.data.spentAdvancements = calculateSpentAdvancements(context.actor);
         context.data.data.starting = (policed &&
                                       (context.data.data.points.starting.attributes > 0 ||
@@ -112,18 +115,51 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".career-decrementer").click((e) => decrementCareerRank(this.actor, e.currentTarget.dataset.id));
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id));
         html.find(".career-deleter").click((e) => deleteCareer(this.actor, e.currentTarget.dataset.id));
+        html.find(".crafting-point-reset").click((e) => this._resetCraftingPoints(this.actor));
+        html.find(".crafting-progress-decrementer").click((e) => decrementCraftingProgressClicked(e, this.actor));
+        html.find(".crafting-progress-incrementer").click((e) => incrementCraftingProgressClicked(e, this.actor));
         html.find(".language-deleter").click((e) => deleteCharacterLanguage(this.actor, e.currentTarget.dataset.id));
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+        html.find(".recipe-deleter").click((e) => deleteCraftingRecipe(e, this.actor));
+        html.find(".roll-crafting").click((e) => rollForCraftedItem(this.actor, e.currentTarget.dataset.id));
+        html.find(".tab-selector").click((e) => this._onTabSelected(e, html[0]));
         html.find(".trait-deleter").click((e) => traitRemovedFromCharacter(this.actor, e.currentTarget.dataset.id));
-        traitRemovedFromCharacter
     }
 
     _findArcaneCareer(careers) {
         let output;
 
         careers.forEach((career) => {
-            if(career.grantsArcane) {
+            if(career.grants.arcane) {
+                if(!output || output.rank < career.rank) {
+                    output = career;
+                }
+            }
+        });
+
+        return(output);
+    }
+
+    _findCraftingCareer(careers) {
+        let output;
+
+        careers.forEach((career) => {
+            if(career.grants.crafting) {
+                if(!output || output.rank < career.rank) {
+                    output = career;
+                }
+            }
+        });
+
+        return(output);
+    }
+
+    _findFateCareer(careers) {
+        let output;
+
+        careers.forEach((career) => {
+            if(career.grants.fate) {
                 if(!output || output.rank < career.rank) {
                     output = career;
                 }
@@ -149,6 +185,14 @@ export default class BoLMECharacterSheet extends ActorSheet {
         super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
     }
 
+    _generateRecipeDetails(recipe) {
+        return(expandRecipe(recipe, this.actor.id));
+    }
+
+    _resetCraftingPoints(actor) {
+        actor.update({data: {craftingPoints: {value: actor.data.data.craftingPoints.max}}});
+    }
+
     _showAttackDialog(event) {
         let defence = 0;
 
@@ -166,5 +210,30 @@ export default class BoLMECharacterSheet extends ActorSheet {
             }
         }
         AttackDialog.build(event.currentTarget, {defence: defence}).then((dialog) => dialog.render(true));
+    }
+
+    _onTabSelected(event, root) {
+        let tabId = event.currentTarget.dataset.id;
+
+        if(tabId) {
+            let tabElement = root.querySelector(`#${tabId}`);
+
+            if(tabElement) {
+                let allTabs   = root.querySelectorAll(".tab-selector");
+                let allBodies = root.querySelectorAll(".tab-body");
+
+                allTabs.forEach((t) => t.classList.remove("selected"));
+                allBodies.forEach((b) => b.classList.add("hidden"));
+
+                tabElement.classList.remove("hidden");
+                event.currentTarget.classList.add("selected");
+                console.log(`Updating tab selection to '${tabId}'.`);
+                this.actor.update({data: {tabs: {selected: tabId}}});
+            } else {
+                console.error(`Unable to locate a tab body element with the id '${tabId}'.`);
+            }
+        } else {
+            console.error(`Tab selected but selected element does not possess an id data attribute.`);
+        }
     }
 }

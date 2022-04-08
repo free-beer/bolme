@@ -132,6 +132,7 @@ function incrementAttribute(actor, attribute) {
 	}
 }
 
-export {decrementAttribute,
+export {calculateAttributeValue,
+	    decrementAttribute,
 	    expandAttribute,
         incrementAttribute};

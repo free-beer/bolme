@@ -133,6 +133,26 @@
 	margin: 0;
 }
 
+.character-sheet-tabs ul {
+	border-bottom: groove 3px;
+	font-size: 1.5em;
+	font-weight: bold;
+	list-style: none;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+}
+
+.character-sheet-tabs ul li {
+	color: #888;
+	cursor: pointer;
+	display: inline-block;
+	padding: 0 20px;
+}
+
+.character-sheet-tabs ul li.selected {
+	color: #000;
+}
+
 .character-sheet-traits-area {
 	display: grid;
 	grid-gap: 5px 15px;
@@ -188,6 +208,12 @@
 	text-align: center;
 }
 
+.checkbox-label {
+	font-size: 1.1em;
+	line-height: 30px;
+	vertical-align: top;
+}
+
 .consumable-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
@@ -198,6 +224,15 @@
 	display: grid;
 	grid-gap: 5px 10px;
 	grid-template-columns: auto 75px 30px;
+}
+
+.crafting-recipe-row {	
+	display: grid;
+	font-size: 1.1em;
+	grid-gap: 5px 10px;
+	grid-template-columns: auto 200px 75px 30px;
+	line-height: 30px;
+	margin: 15px 0 20px 0;
 }
 
 .crafting-recipe-sheet-body {
@@ -277,6 +312,10 @@
 	color: #ccc;
 }
 
+.float-right {
+	float: right;
+}
+
 .grid-2-col {
 	display: grid;
 	grid-gap: 5px 10px;
@@ -314,8 +353,37 @@ h4.section-header {
 	margin-top: 20px;
 }
 
+.header2 {
+	font-size: 1.4em;
+	font-weight: bold;
+	margin: 5px 0;
+}
+
+.header3 {
+	font-size: 1.3em;
+	font-weight: bold;
+	margin: 5px 0;
+}
+
 .hidden {
 	display: none;
+}
+
+.horizontal-field {
+}
+
+.horizontal-field label {
+	display: inline;
+}
+
+.horizontal-field input {
+	background-color: #fff;
+	max-width: 50px;
+	margin: 0 10px;
+}
+
+i {
+	cursor: pointer;
 }
 
 .info-dialog-content {
@@ -326,6 +394,10 @@ h4.section-header {
 	overflow: auto;
 	padding: 5px 10px;
 	text-align: justify;
+}
+
+input[type=number] {
+	text-align: center;
 }
 
 input.characteristic {
@@ -374,6 +446,11 @@ input:readonly {
 	grid-template-columns: 100px auto;
 }
 
+.small-button {
+	font-size: .7em;
+	height: 30px;
+}
+
 .starting-points-bar {
 	background-color: #00a;
 	color: yellow;
@@ -381,6 +458,11 @@ input:readonly {
 	grid-gap: 5px 10px;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 	padding: 3px;
+}
+
+.tab-separator {
+	color:  #000;
+	cursor: default;
 }
 
 .text-center {
