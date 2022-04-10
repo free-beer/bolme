@@ -75,7 +75,7 @@
 		}
 	},
 	"Item": {
-		"types": ["armour", "career", "consumable", "crafting recipe", "device", "equipment", "language", "shield", "trait", "weapon"],
+		"types": ["armour", "career", "consumable", "crafting recipe", "device", "equipment", "language", "shield", "spell", "trait", "weapon"],
 		"armour": {
 			"arcaneCost": "",
 			"description": "",
@@ -121,6 +121,25 @@
 		"shield": {
 			"description": "",
 			"size": "small"
+		},
+		"spell": {
+			"cost": 1,
+			"description": "",
+			"difficulty": "moderate",
+			"magnitude": "cantrip",
+			"modifier": 0,
+			"requirements": {
+				"first": "",
+				"second": "",
+				"third": "",
+				"fourth": "",
+				"fifth": "",
+				"sixth": "",
+				"seventh": "",
+				"eigth": "",
+				"ninth": "",
+				"tenth": ""
+			}
 		},
 		"trait": {
 			"advancementPoints": 0,

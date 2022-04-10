@@ -1,0 +1,53 @@
+<form class="{{cssClass}} spell-sheet-form" autocomplete="off">
+	<div class="spell-sheet-body">
+		<div>
+			<img data-edit="img" src="{{item.img}}" title="{{item.name}}"/>
+		</div>
+
+        <div>
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.name.label"}}</label>
+				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}">
+			</div>
+
+			<div class="grid-3-col">
+				<div class="field">
+					<label class="label">{{localize "bolme.fields.spells.magnitude.label"}}</label>
+					<select class="expanded" name="data.magnitude">
+					{{#each constants.magnitudes}}
+						{{{selectOption ../data.data.magnitude}}}
+					{{/each}}
+					</select>
+				</div>
+
+				<div class="field">
+					<label class="label">{{localize "bolme.fields.spells.cost.label"}}</label>
+					<input name="data.cost" type="number" value="{{data.data.cost}}">
+				</div>
+
+				<div class="field">
+					<label class="label">{{localize "bolme.fields.spells.difficulty.label"}}</label>
+					<select class="expanded" name="data.difficulty">
+					{{#each constants.difficulties}}
+						{{{selectOption ../data.data.difficulty}}}
+					{{/each}}
+					</select>
+				</div>
+			</div>
+
+			<div class="field">
+				{{log data}}
+				<label class="label">{{localize "bolme.fields.spells.requirements.label"}}</label>
+				<input class="stacked-input" name="data.requirements.first" type="text" value="{{data.data.requirements.first}}">
+				<input class="stacked-input" name="data.requirements.second" type="text" value="{{data.data.requirements.second}}">
+				<input class="stacked-input" name="data.requirements.third" type="text" value="{{data.data.requirements.third}}">
+				<input class="stacked-input" name="data.requirements.fourth" type="text" value="{{data.data.requirements.fourth}}">
+			</div>
+
+            <div class="field">
+                <label class="label" for="data.description">{{localize "bolme.fields.spells.description.label"}}</label>
+                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+        </div>
+	</div>
+</form>

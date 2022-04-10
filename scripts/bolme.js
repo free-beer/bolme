@@ -6,6 +6,7 @@ import CraftingRecipeSheet from "./sheets/crafting_recipe_sheet.js";
 import DeviceSheet from "./sheets/device_sheet.js";
 import LanguageSheet from "./sheets/language_sheet.js";
 import ShieldSheet from "./sheets/shield_sheet.js";
+import SpellSheet from "./sheets/spell_sheet.js";
 import TraitSheet from "./sheets/trait_sheet.js";
 import WeaponSheet from "./sheets/weapon_sheet.js";
 import {careerAddedToCharacter} from "./careers.js"
@@ -89,8 +90,12 @@ Hooks.once("init", () => {
                                         types: ["language"]});
     Items.registerSheet("bolme",
                         ShieldSheet, {label: "bolme.sheets.shield.title",
+                                      makeDefault: true,
+                                      types: ["shield"]});
+    Items.registerSheet("bolme",
+                        SpellSheet, {label: "bolme.sheets.spell.title",
                                      makeDefault: true,
-                                     types: ["shield"]});
+                                     types: ["spell"]});
     Items.registerSheet("bolme",
                         TraitSheet, {label: "bolme.sheets.trait.title",
                                      makeDefault: true,

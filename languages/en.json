@@ -122,14 +122,6 @@
 			}
 		},
 		"crafting": {
-			"difficulties": {
-				"demanding": "Demanding (-4)",
-				"easy": "Easy (+1)",
-				"formidable": "Formidable (-6)",
-				"hard": "Hard (-1)",
-				"moderate": "Moderate (+0)",
-				"tough": "Tough (-2)"
-			},
 			"recipes": {
 				"item": {
 					"product": {
@@ -169,6 +161,16 @@
 				"attack": "Attack Roll",
 				"info": "Information"
 			}
+		},
+		"difficulties": {
+			"very_easy": "Very Easy (+2)",
+			"easy": "Easy (+1)",
+			"moderate": "Moderate (+0)",
+			"hard": "Hard (-1)",
+			"tough": "Tough (-2)",
+			"demanding": "Demanding (-4)",
+			"formidable": "Formidable (-6)",
+			"heroic": "Heroic (-8)"
 		},
 		"errors": {
 			"attributes": {
@@ -365,6 +367,27 @@
 					"label": "Size"
 				}				
 			},
+			"spells": {
+				"cost": {
+					"label": "Cost",
+					"placeholder": "AP casting cost."
+				},
+				"description": {
+					"label": "Description"
+				},
+				"difficulty": {
+					"label": "Difficulty",
+					"placeholder": ""
+				},
+				"magnitude": {
+					"label": "Magnitude",
+					"placeholder": ""
+				},
+				"requirements": {
+					"label": "Requirements",
+					"placeholder": "Enter spell requirement."
+				}
+			},
 			"trait": {
 				"description": {
 					"label": "Description",
@@ -439,6 +462,9 @@
 			"shield": {
 				"title": "Shield"
 			},
+			"spell": {
+				"title": "Spell"
+			},
 			"recipe": {
 				"title": "Crafting Recipe"
 			},
@@ -456,6 +482,22 @@
 				},
 				"small": {
 				    "label": "Small"
+				}
+			}
+		},
+		"spells": {
+			"magnitudes": {
+				"cantrip": {
+					"label": "Cantrip"
+				},
+				"first": {
+					"label": "First"
+				},
+				"second": {
+					"label": "Second"
+				},
+				"third": {
+					"label": "Third"
 				}
 			}
 		},

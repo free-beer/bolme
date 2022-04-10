@@ -275,7 +275,7 @@
 }
 
 .editor-content {
-	height: 200px;
+	height: 190px;
 }
 
 .expanded {
@@ -449,6 +449,16 @@ input:readonly {
 .small-button {
 	font-size: .7em;
 	height: 30px;
+}
+
+.spell-sheet-body {
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 100px auto;
+}
+
+.stacked-input {
+	margin-bottom: 5px !important;
 }
 
 .starting-points-bar {

@@ -35,12 +35,12 @@ let constants = {
                       {key: "ranged", value: "bolme.combat.ranged.label"}],
     crafting: {
     	recipes: {
-    		difficulties: [{key: "easy", modifier: 1, value: "bolme.crafting.difficulties.easy"},
-    		               {key: "moderate", modifier: 0, value: "bolme.crafting.difficulties.moderate"},
-    		               {key: "hard", modifier: -1, value: "bolme.crafting.difficulties.hard"},
-    		               {key: "tough", modifier: -2, value: "bolme.crafting.difficulties.tough"},
-    		               {key: "demanding", modifier: -4, value: "bolme.crafting.difficulties.demanding"},
-    		               {key: "formidable", modifier: -6, value: "bolme.crafting.difficulties.formidable"}],
+    		difficulties: [{key: "easy", modifier: 1, value: "bolme.difficulties.easy"},
+    		               {key: "moderate", modifier: 0, value: "bolme.difficulties.moderate"},
+    		               {key: "hard", modifier: -1, value: "bolme.difficulties.hard"},
+    		               {key: "tough", modifier: -2, value: "bolme.difficulties.tough"},
+    		               {key: "demanding", modifier: -4, value: "bolme.difficulties.demanding"},
+    		               {key: "formidable", modifier: -6, value: "bolme.difficulties.formidable"}],
     		subtypes: [{key: "device", value: "bolme.crafting.recipes.subtypes.device.label"},
     		           {key: "potion", value: "bolme.crafting.recipes.subtypes.potion.label"}],
     		types: [{cost: 1, key: "common", value: "bolme.crafting.recipes.types.common.label"},
@@ -59,6 +59,20 @@ let constants = {
 	shields: {
 		sizes: [{key: "large", value: "bolme.shields.large.label"},
 		        {key: "small", value: "bolme.shields.small.label"}]
+	},
+	spells: {
+		difficulties: [{key: "very_easy", modifier: 2, value: "bolme.difficulties.very_easy"},
+		               {key: "easy", modifier: 1, value: "bolme.difficulties.easy"},
+		               {key: "moderate", modifier: 0, value: "bolme.difficulties.moderate"},
+		               {key: "hard", modifier: -1, value: "bolme.difficulties.hard"},
+		               {key: "tough", modifier: -2, value: "bolme.difficulties.tough"},
+		               {key: "demanding", modifier: -4, value: "bolme.difficulties.demanding"},
+		               {key: "formidable", modifier: -6, value: "bolme.difficulties.formidable"},
+		               {key: "heroic", modifier: -1, value: "bolme.difficulties.heroic"},],
+		magnitudes: [{cost: {base: 1, minimum: 1}, key: "cantrip", value: "bolme.spells.magnitudes.cantrip.label"},
+		             {cost: {base: 5, minimum: 2}, key: "first", value: "bolme.spells.magnitudes.first.label"},
+		             {cost: {base: 10, minimum: 6}, key: "second", value: "bolme.spells.magnitudes.second.label"},
+		             {cost: {base: 15, minimum: 11}, key: "third", value: "bolme.spells.magnitudes.third.label"}]
 	},
 	traits: {
 		types: [{key: "boon", value: "bolme.traits.boon.label"},
