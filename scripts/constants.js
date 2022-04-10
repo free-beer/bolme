@@ -57,8 +57,8 @@ let constants = {
     	          {key: "success", value: "rolls.results.success"}]
     },
 	shields: {
-		sizes: [{key: "large", value: "bolme.shields.large.label"},
-		        {key: "small", value: "bolme.shields.small.label"}]
+		sizes: [{key: "large", value: "bolme.shields.sizes.large.label"},
+		        {key: "small", value: "bolme.shields.sizes.small.label"}]
 	},
 	spells: {
 		difficulties: [{key: "very_easy", modifier: 2, value: "bolme.difficulties.very_easy"},
@@ -105,8 +105,8 @@ let constants = {
 		}
 	},
 	traits: {
-		types: [{key: "boon", value: "bolme.traits.boon.label"},
-			    {key: "flaw", value: "bolme.traits.flaw.label"}]
+		types: [{key: "boon", value: "bolme.traits.types.boon.label"},
+			    {key: "flaw", value: "bolme.traits.types.flaw.label"}]
 	},
 	weapons: {
 		hands: [{key: "one", value: "bolme.weapons.hands.one.label"},
