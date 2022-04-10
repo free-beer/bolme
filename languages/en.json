@@ -499,6 +499,35 @@
 				"third": {
 					"label": "Third"
 				}
+			},
+			"requirements": {
+				"auspicious_hour": "Auspicious Hour",
+				"casting_time_1": "Casting Time (1d6 x 30 minutes)",
+				"casting_time_2": "Casting Time (1d6 x 2 hours)",
+				"casting_time_3": "Casting Time (3d6 Hours)",
+				"demonic_transformation": "Demonic Transformation (Possibly Permanent)",
+				"group_ritual_1": "Group Ritual (d6 Assistants)",
+				"group_ritual_2": "Group Ritual (2d6 Assistants With Magician 0 Minimum)",
+				"group_ritual_3": "Group Ritual (3d6 Assistants With Magician 0 Minimum)",
+				"intimate_materials": "Intimate Materials",
+				"line_of_sight": "Line Of Sight",
+				"lunar": "Spell May Only Be Cast During Specific Moon Phase",
+				"obvious_technique": "Obvious Technique",
+				"permanent_focus": "Permanent Focus (Personal Tattooing Or Inscription)",
+				"personal_ordeal_2": "Personal Ordeal (Fast For 2d6 Days)",
+				"personal_ordeal_3": "Personal Ordeal (Scarring/Mutilation/Bloodletting)",
+				"place_of_power": "Place Of Power (Unique, Distant)",
+				"rare_ingredients": "Rare Ingredients (d6 Weeks To Track Down + Costs)",
+				"ritual_cleansing": "Ritual Cleansing",
+				"ritual_sacrifice_2": "Ritual Sacrifice (Lamb Or Larger)",
+				"ritual_sacrifice_3": "Ritual Sacrifice (Sentient Being)",
+				"special_item_1": "Special Item (Relatively Easy To Obtain)",
+				"special_item_2": "Special Item (Difficult To Obtain)",
+				"special_knowledge": "Special Knowledge",
+				"the_stars_are_right": "The Stars Are Right (Celestial Alignment Required)",
+				"wounds_1": "Wounds (d3 Lifeblood)",
+				"wounds_2": "Wounds (d6+1 Lifeblood)",
+				"wounds_3": "Wounds (2d6+1 Lifeblood)"
 			}
 		},
 		"startingPoints": {

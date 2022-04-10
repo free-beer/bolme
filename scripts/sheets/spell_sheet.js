@@ -20,6 +20,27 @@ export default class SpellSheet extends ItemSheet {
 
         context.constants = {difficulties: constants.spells.difficulties,
                              magnitudes: constants.spells.magnitudes};
+        switch(context.data.data.magnitude) {
+            case "first":
+                console.log("ASSIGNING: ", constants.spells.requirements.first);
+                context.requirementOptions = constants.spells.requirements.first;
+                break;
+
+            case "second":
+                console.log("ASSIGNING: ", constants.spells.requirements.second);
+                context.requirementOptions = constants.spells.requirements.second;
+                break;
+
+            case "third":
+                console.log("ASSIGNING: ", constants.spells.requirements.third);
+                context.requirementOptions = constants.spells.requirements.third;
+                break;
+
+            default:
+                console.log("ASSIGNING EMPTY LIST");
+                context.requirementOptions = [];
+        }
+        console.log("CONTEXT:", context);
 
         return(context);
     }
