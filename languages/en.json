@@ -302,6 +302,9 @@
 						"label": "Maximum"
 					}
 				},
+				"background": {
+					"label": "Background"
+				},
 				"fatePoints": {
 					"label": "Fate"
 				},
@@ -316,6 +319,9 @@
 					"maximum": {
 						"label": "Maximum"
 					}
+				},
+				"notes": {
+					"label": "Notes"
 				}
 			},
 			"consumable": {
