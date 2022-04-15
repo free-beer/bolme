@@ -4,6 +4,11 @@
 	grid-template-columns: 100px auto;
 }
 
+.arms-and-armour-list {
+	max-height: 400px;
+	overflow: auto;
+}
+
 .attack-dialog-title {
 	font-size: 1.1em;
 	font-weight: bold;
@@ -125,6 +130,12 @@
 	margin-bottom: 15px;
 }
 
+.character-sheet-equipment-body {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 5px 15px;
+}
+
 .character-sheet-form {
 	background: url("/systems/bolme/images/character_sheet_backdrop.png") no-repeat;
 	margin: 0 !important;
@@ -229,6 +240,11 @@
 	vertical-align: top;
 }
 
+.consumables-list {
+	max-height: 250px;
+	overflow: auto;
+}
+
 .consumable-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
@@ -297,6 +313,38 @@
 	height: 190px;
 }
 
+.equipment-list {
+	background-color: #fff;
+	min-height: 200px;
+	padding: 3px 5px;
+}
+
+.equipment-row {
+	display: grid;
+	grid-template-columns: auto 75px;
+	grid-gap: 5px 10px;
+	font-size: 1.1em;
+	padding:  5px 0;
+}
+
+.equipment-consumable-row {
+	display: grid;
+	grid-template-columns: auto 100px 100px;
+	grid-gap: 5px 10px;
+	font-size: 1.1em;
+	padding:  5px 0;
+}
+
+.equipment-sheet-body {
+	display: grid;
+	grid-gap: 5px 10px;
+	grid-template-columns: 100px auto;
+}
+
+div.equipment-row:nth-child(even) {
+	background-color: #eee;
+}
+
 .expanded {
 	width:  100%;
 }
@@ -333,6 +381,11 @@
 
 .float-right {
 	float: right;
+}
+
+.general-equipment-list {
+	max-height: 600px;
+	overflow: auto;
 }
 
 .grid-2-col {

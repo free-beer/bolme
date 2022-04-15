@@ -6,6 +6,8 @@ import {decrementAttribute,
 import {decrementCombatAbility,
         expandCombatAbility,
         incrementCombatAbility} from "../combat_abilities.js";
+import {decrementConsumableItem,
+        incrementConsumableItem} from "../consumables.js";
 import constants from "../constants.js";
 import {decrementCraftingProgressClicked,
         deleteCraftingRecipe,
@@ -52,18 +54,19 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
         context.data.data.lifeblood.max = context.data.data.strength.value + 10;
 
-        context.data.armour    = [];
-        context.data.boons     = [];
-        context.data.flaws     = [];
-        context.data.equipment = [];
-        context.data.languages = [];
-        context.data.recipes   = [];
-        context.data.shields   = [];
-        context.data.spells    = {cantrip: [],
-                                  first:   [],
-                                  second:  [],
-                                  third:   []};
-        context.data.weapons   = [];
+        context.data.armour      = [];
+        context.data.boons       = [];
+        context.data.consumables = [];
+        context.data.flaws       = [];
+        context.data.equipment   = [];
+        context.data.languages   = [];
+        context.data.recipes     = [];
+        context.data.shields     = [];
+        context.data.spells      = {cantrip: [],
+                                    first:   [],
+                                    second:  [],
+                                    third:   []};
+        context.data.weapons     = [];
         context.actor.items.forEach((item) => {
             switch(item.type) {
                 case "armour":
@@ -72,6 +75,14 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
                 case "crafting recipe":
                     context.data.recipes.push(this._generateRecipeDetails(item));
+                    break;
+
+                case "consumable":
+                    context.data.consumables.push(item);
+                    break;
+
+                case "equipment":
+                    context.data.equipment.push(item);
                     break;
 
                 case "language":
@@ -124,6 +135,8 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".attribute-incrementer").click((e) => incrementAttribute(this.actor, e.currentTarget.dataset.attribute));
         html.find(".combat-ability-decrementer").click((e) => decrementCombatAbility(this.actor, e.currentTarget.dataset.ability));
         html.find(".combat-ability-incrementer").click((e) => incrementCombatAbility(this.actor, e.currentTarget.dataset.ability));
+        html.find(".consumable-decrementer").click(decrementConsumableItem);
+        html.find(".consumable-incrementer").click(incrementConsumableItem);
         html.find(".career-decrementer").click((e) => decrementCareerRank(this.actor, e.currentTarget.dataset.id));
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id));
         html.find(".career-deleter").click((e) => deleteCareer(this.actor, e.currentTarget.dataset.id));

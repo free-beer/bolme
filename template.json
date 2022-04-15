@@ -99,7 +99,10 @@
 		"consumable": {
 			"description": "",
 			"rechargable": false,
-			"uses": 1
+			"uses": {
+				"max": 1,
+				"value": 1
+			}
 		},
 		"crafting recipe": {
 			"cost": 1,

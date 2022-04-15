@@ -90,6 +90,11 @@
 				"attributes": "Attributes",
 				"careers": "Careers",
 				"combat": "Combat Abilities",
+				"equipment": {
+					"armsAndArmour": "Arms & Armour",
+					"consumables": "Consumables",
+					"general": "General Items"
+				},
 				"languages": "Languages",
 				"traits": "Boons & Flaws",
 				"weapons": "Weapons"
@@ -206,6 +211,10 @@
 					"advancement": "Insuficient advancement points available to pay for this increment.",
 					"starting": "Starting combat abilities may not be raised higher than 3."
 				}
+			},
+			"consumables": {
+				"depleted": "Unable to reduce this items uses any further as all of its uses have been depleted.",
+				"maxedOut": "Unable to increase this items uses as they are already at maximum"
 			},
 			"spells": {
 				"casting": {
@@ -351,6 +360,12 @@
 					"placeholder": ""
 				}				
 			},
+			"equipment": {
+				"description": {
+					"label": "Description",
+					"placeholder": ""
+				}				
+			},
 			"language": {
 				"description": {
 					"label": "Description",
@@ -470,6 +485,9 @@
 			}
 		},
 		"notices": {
+			"consumables": {
+				"consumed": "The {name} item has been completely used up and removed from your inventory."
+			},
 			"crafting": {
 				"item": {
 					"created": "You have successfully crafted '{name}'. The item has been added to your inventory."
@@ -504,6 +522,9 @@
 			},
 			"device": {
 				"title": "Alchemical Device"
+			},
+			"equipment": {
+				"title": "Equipment"
 			},
 			"language": {
 				"title": "Language"

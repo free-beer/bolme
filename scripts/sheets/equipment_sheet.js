@@ -1,17 +1,17 @@
 import constants from '../../scripts/constants.js';
 
-export default class ConsumableSheet extends ItemSheet {
+export default class EquipmentSheet extends ItemSheet {
     /** @override */
     static get defaultOptions() {
         return(mergeObject(super.defaultOptions,
-                           {classes: ["bolme", "item-sheet", "consumable-sheet"],
+                           {classes: ["bolme", "item-sheet", "equipment-sheet"],
                             height:  430,
                             width:   700}));
     }
 
     /** @override */
     get template() {
-        return(`systems/bolme/templates/sheets/consumable-sheet.html`);
+        return(`systems/bolme/templates/sheets/equipment-sheet.html`);
     }
 
     /** @override */
@@ -27,12 +27,7 @@ export default class ConsumableSheet extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
         if(this.options.editable) {
-            let fields = [html[0].querySelector('input[name="data.uses.max"]'),
-                          html[0].querySelector('input[name="data.uses.value"]')];
-
-            fields[0].addEventListener("input", () => {
-                fields[1].value = fields[0].value;
-            });
+            // TBD: Activate listeners here!!!
         }
     }
 }

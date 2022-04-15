@@ -4,6 +4,7 @@ import CareerSheet from "./sheets/career_sheet.js";
 import ConsumableSheet from "./sheets/consumable_sheet.js";
 import CraftingRecipeSheet from "./sheets/crafting_recipe_sheet.js";
 import DeviceSheet from "./sheets/device_sheet.js";
+import EquipmentSheet from "./sheets/equipment_sheet.js";
 import LanguageSheet from "./sheets/language_sheet.js";
 import ShieldSheet from "./sheets/shield_sheet.js";
 import SpellSheet from "./sheets/spell_sheet.js";
@@ -84,6 +85,10 @@ Hooks.once("init", () => {
                         DeviceSheet, {label: "bolme.sheets.device.title",
                                       makeDefault: true,
                                       types: ["device"]});
+    Items.registerSheet("bolme",
+                        EquipmentSheet, {label: "bolme.sheets.equipment.title",
+                                         makeDefault: true,
+                                         types: ["equipment"]});
     Items.registerSheet("bolme",
                         LanguageSheet, {label: "bolme.sheets.language.title",
                                         makeDefault: true,
