@@ -15,6 +15,10 @@ export default class InfoDialog extends Dialog {
         let settings = Object.assign({}, options);
         let data     = {description: element.dataset.description};
 
+        if(data.description.trim() === "") {
+            data.description = game.i18n.localize("bolme.dialogs.info.empty")
+        }
+
         settings.title = game.i18n.localize(`bolme.dialogs.titles.info`);
 
         return(renderTemplate("systems/bolme/templates/dialogs/info-dialog.html", data)

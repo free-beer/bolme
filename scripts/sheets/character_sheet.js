@@ -18,6 +18,7 @@ import {decrementCareerRank,
         incrementCareerRank} from "../careers.js";
 import InfoDialog from "../dialogs/info_dialog.js";
 import {deleteCharacterLanguage} from "../languages.js";
+import SpellCastDialog from "../dialogs/spell_cast_dialog.js";
 import {traitRemovedFromCharacter} from "../traits.js";
 
 export default class BoLMECharacterSheet extends ActorSheet {
@@ -57,6 +58,10 @@ export default class BoLMECharacterSheet extends ActorSheet {
         context.data.languages = [];
         context.data.recipes   = [];
         context.data.shields   = [];
+        context.data.spells    = {cantrip: [],
+                                  first:   [],
+                                  second:  [],
+                                  third:   []};
         context.data.weapons   = [];
         context.actor.items.forEach((item) => {
             switch(item.type) {
@@ -77,6 +82,12 @@ export default class BoLMECharacterSheet extends ActorSheet {
                         context.data.hasShield = true;
                     }
                     context.data.shields.push(item);
+                    break;
+
+                case "spell":
+                    let magnitude = item.data.data.magnitude;
+                    context.data.spells[magnitude].push(item);
+                    context.data.spells[`has${magnitude.substr(0, 1).toUpperCase()}${magnitude.substr(1)}`] = true;
                     break;
 
                 case "trait":
@@ -123,6 +134,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
         html.find(".recipe-deleter").click((e) => deleteCraftingRecipe(e, this.actor));
         html.find(".roll-crafting").click((e) => rollForCraftedItem(this.actor, e.currentTarget.dataset.id));
+        html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
         html.find(".tab-selector").click((e) => this._onTabSelected(e, html[0]));
         html.find(".trait-deleter").click((e) => traitRemovedFromCharacter(this.actor, e.currentTarget.dataset.id));
     }
@@ -210,6 +222,25 @@ export default class BoLMECharacterSheet extends ActorSheet {
             }
         }
         AttackDialog.build(event.currentTarget, {defence: defence}).then((dialog) => dialog.render(true));
+    }
+
+    _showSpellCastDialog(event) {
+        let defence = 0;
+
+        if(game.user.targets.size === 1) {
+            let target = game.user.targets.first().actor;
+
+            if(game.user.targets.size === 1) {
+                let target = game.user.targets.first().actor;
+
+                if(target.type === "character") {
+                    defence = expandCombatAbility(target.data, "defence").value;
+                } else {
+                    defence = target.data.data.defence;
+                }
+            }
+        }
+        SpellCastDialog.build(event.currentTarget, {}).then((dialog) => dialog.render(true));
     }
 
     _onTabSelected(event, root) {

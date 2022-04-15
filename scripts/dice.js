@@ -105,6 +105,25 @@ function generateBaseSkillRollFormula(bonusDice, penaltyDice) {
 }
 
 /**
+ * Generates a dice roll formula for a spell casting based on factors such as
+ * attributes, spell difficulty, careers and bonus/penalty dice.
+ */
+function generateSpellCastRollFormula(attributeRating, careerRank, difficulty, bonusDice, penaltyDice) {
+    let formula  = generateBaseSkillRollFormula(bonusDice, penaltyDice);
+    let modifier = attributeRating + careerRank + difficulty;
+
+    if(modifier !== 0) {
+        if(modifier > 0) {
+            formula = `${formula} + ${modifier}`;
+        } else {
+            formula = `${formula} - ${Math.abs(modifier)}`;
+        }
+    }
+
+    return(formula);
+}
+
+/**
  * Wrapper for integration with the DiceSoNice module. Prefer this route over
  * evaluating dice rolls directly.
  */
@@ -130,6 +149,7 @@ function translateDieFormula(source) {
 }
 
 export {generateAttackRollFormula,
+        generateSpellCastRollFormula,
         getRollResultLevel,
         rollIt,
         translateDieFormula};

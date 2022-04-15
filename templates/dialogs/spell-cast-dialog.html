@@ -1,0 +1,43 @@
+<div class="spell-dialog bolme-dialog">
+	<hr>
+	<div class="spell-dialog-title">{{name}}</div>
+	<hr>
+
+	<form class="spell-dialog-form" autocomplete="off" data-actor="{{actorId}}" data-spell="{{spellId}}">
+		<div class="grid-2-col">
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.spell.mind.label"}}</label>
+				<input name="mind" readonly type="number" value="{{mind}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.spell.skill.label"}}</label>
+				<input name="careerRank" readonly type="number" value="{{careerRank}}">
+			</div>
+		</div>
+
+        <div class="grid-2-col">
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.spell.bonusDice.label"}}</label>
+				<input class="" name="bonusDice" type="number" value="{{bonusDice}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.spell.penaltyDice.label"}}</label>
+				<input class="" name="penaltyDice" type="number" value="{{penaltyDice}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.spell.armourPenalty.label"}}</label>
+				<input class="" name="armourPenalty" type="number" value="{{armourPenalty}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.spell.difficultyPenalty.label"}}</label>
+				<input class="" name="difficultyPenalty" type="number" value="{{difficultyPenalty}}">
+			</div>
+        </div>
+
+        <br>
+	</form>
+</div>

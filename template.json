@@ -68,6 +68,7 @@
 			"heroPoints": 5,
 			"lifeblood": {"value": 10},
 			"origin": "",
+			"notes": "",
 			"points": {"advancement": 0,
 			           "starting": {"attributes": 4,
 			                        "careers":    8,

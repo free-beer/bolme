@@ -100,7 +100,6 @@ export default class AttackDialog extends Dialog {
 
         rollIt(data.roll)
             .then((roll) => {
-                getRollResultLevel(roll);
                 data.dice        = roll.dice;
                 data.resultLevel = getRollResultLevel(roll);
                 data.rollTotal   = roll.total;

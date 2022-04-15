@@ -61,14 +61,15 @@ let constants = {
 		        {key: "small", value: "bolme.shields.sizes.small.label"}]
 	},
 	spells: {
-		difficulties: [{key: "very_easy", modifier: 2, value: "bolme.difficulties.very_easy"},
+		difficulties: [{key: "automatic", modifier: 0, value: "bolme.difficulties.automatic"},
+		               {key: "very_easy", modifier: 2, value: "bolme.difficulties.very_easy"},
 		               {key: "easy", modifier: 1, value: "bolme.difficulties.easy"},
 		               {key: "moderate", modifier: 0, value: "bolme.difficulties.moderate"},
 		               {key: "hard", modifier: -1, value: "bolme.difficulties.hard"},
 		               {key: "tough", modifier: -2, value: "bolme.difficulties.tough"},
 		               {key: "demanding", modifier: -4, value: "bolme.difficulties.demanding"},
 		               {key: "formidable", modifier: -6, value: "bolme.difficulties.formidable"},
-		               {key: "heroic", modifier: -1, value: "bolme.difficulties.heroic"},],
+		               {key: "heroic", modifier: -8, value: "bolme.difficulties.heroic"},],
 		magnitudes: [{cost: {base: 1, minimum: 1}, key: "cantrip", value: "bolme.spells.magnitudes.cantrip.label"},
 		             {cost: {base: 5, minimum: 2}, key: "first", value: "bolme.spells.magnitudes.first.label"},
 		             {cost: {base: 10, minimum: 6}, key: "second", value: "bolme.spells.magnitudes.second.label"},

@@ -24,7 +24,6 @@
 .attribute-icon {
 	cursor: pointer;
 	font-size: 1.1em;
-	margin: 0 2px;
 }
 
 .attribute-label {
@@ -51,7 +50,6 @@
 .career-icon {
 	cursor: pointer;
 	font-size: 1.1em;
-	margin: 0 2px;
 }
 
 .career-sheet-body {
@@ -121,13 +119,7 @@
 }
 
 .character-sheet-form {
-	/*background: rgb(238,238,238);
-	background: linear-gradient(0deg, rgba(238,238,238,1) 0%, rgba(231,100,35,0.6979166666666667) 100%);*/
-	/*background: rgb(252,252,252);
-	background: linear-gradient(0deg, rgba(252,252,252,1) 65%, rgba(154,112,92,0.6979166666666667) 100%);*/
-	/*background: rgb(252,252,252);
-	background: linear-gradient(0deg, rgba(252,252,252,1) 49%, rgba(108,74,58,0.6979166666666667) 100%);*/
-	background-image: url("/systems/bolme/images/character_sheet_backdrop.png");
+	background: url("/systems/bolme/images/character_sheet_backdrop.png") no-repeat;
 	margin: 0 !important;
     padding:  5px;
 }
@@ -385,6 +377,10 @@ h4.section-header {
 	margin: 5px 0;
 }
 
+.header-field {
+	font-size: 1.2em;
+}
+
 .hidden {
 	display: none;
 }
@@ -404,6 +400,7 @@ h4.section-header {
 
 i {
 	cursor: pointer;
+	margin:  0 3px;
 }
 
 .info-dialog-content {
@@ -452,6 +449,7 @@ input:readonly {
 
 .item-icon {
 	cursor: pointer;
+	font-size: 1.1em;
 }
 
 .label {
@@ -469,6 +467,28 @@ input:readonly {
 .small-button {
 	font-size: .7em;
 	height: 30px;
+}
+
+.spell-dialog-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+}
+
+.spell-list {
+	max-height: 120px;
+	overflow: auto;
+}
+
+.spell-row {
+	background-color: #eee;
+	border-bottom: dotted 1px #777;
+	display: grid;
+	font-size: 1.2em;
+	grid-gap: 5px 10px;
+	grid-template-columns: auto 100px 100px;
+	line-height: 30px;
+	margin: 5px;
 }
 
 .spell-sheet-body {
@@ -523,7 +543,6 @@ input:readonly {
 
 .weapon-icon {
 	cursor: pointer;
-	margin: 0 2px;
 }
 
 .weapon-sheet-body {

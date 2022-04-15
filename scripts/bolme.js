@@ -119,13 +119,19 @@ Hooks.once("init", () => {
 
     Handlebars.registerHelper("rollResultLevel", function(level) {
         let className = "is-success";
+        let message   = game.i18n.localize(`bolme.rolls.results.${level}`);
 
         if(level === "failure") {
             className = "is-failure"
         } else if(level === "mighty") {
             className = "is-mighty";
         }
-        return(`<span class="${className}">${game.i18n.localize(`bolme.rolls.results.${level}`)}</span>`);
+
+        if(level === "automatic") {
+            message = game.i18n.localize("bolme.rolls.results.automatic")
+        }
+
+        return(`<span class="${className}">${message}</span>`);
     });
 
     Handlebars.registerHelper("selectOption", function(chosen) {

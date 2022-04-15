@@ -362,7 +362,8 @@ function incrementCareerRank(actor, careerId) {
 	}
 }
 
-export {careerAddedToCharacter,
+export {calculateCareerRank,
+	    careerAddedToCharacter,
 	    decrementCareerRank,
 	    deleteCareer,
 	    expandCareer,

@@ -105,6 +105,10 @@
 			},
 			"craftRoll": {
 				"header": "Craft Roll"
+			},
+			"spellCastRoll": {
+				"header": "Spell Casting Roll",
+				"subheader": "{name} casts {spell}"
 			}
 		},
 		"combat": {
@@ -157,12 +161,17 @@
 			}
 		},
 		"dialogs": {
+			"info": {
+				"empty": "No information available."
+			},
 			"titles": {
 				"attack": "Attack Roll",
-				"info": "Information"
+				"info": "Information",
+				"spellCast": "Cast Spell"
 			}
 		},
 		"difficulties": {
+			"automatic": "Automatic (No Roll)",
 			"very_easy": "Very Easy (+2)",
 			"easy": "Easy (+1)",
 			"moderate": "Moderate (+0)",
@@ -196,6 +205,11 @@
 				"increment": {
 					"advancement": "Insuficient advancement points available to pay for this increment.",
 					"starting": "Starting combat abilities may not be raised higher than 3."
+				}
+			},
+			"spells": {
+				"casting": {
+					"tooExpensive": "You do not have sufficient Arcane Points to cast this spell."
 				}
 			},
 			"traits": {
@@ -282,6 +296,7 @@
 					"current": {
 						"label": "Current"
 					},
+					"header": "Arcane Points (Maximum: {maximum})",
 					"label": "Arcane Points",
 					"maximum": {
 						"label": "Maximum"
@@ -367,6 +382,26 @@
 					"label": "Size"
 				}				
 			},
+			"spell": {
+				"armourPenalty": {
+					"label": "Armour Penalty"
+				},
+				"bonusDice": {
+					"label": "Bonus Dice"
+				},
+				"difficultyPenalty": {
+					"label": "Difficulty Penalty"
+				},
+				"mind": {
+					"label": "Mind"
+				},
+				"penaltyDice": {
+					"label": "Penalty Dice"
+				},
+				"skill": {
+					"label": "Skill Rating"
+				}
+			},
 			"spells": {
 				"cost": {
 					"label": "Cost",
@@ -433,6 +468,7 @@
 				"details": "Roll Details"
 			},
 			"results": {
+				"automatic": "Automatic Success (No Roll)",
 				"calamitous": "Calamitous Failure",
 				"failure": "Failure",
 				"legendary": "Legendary Success",
@@ -498,6 +534,12 @@
 				},
 				"third": {
 					"label": "Third"
+				},
+				"titles": {
+					"cantrip": "Cantrips",
+					"first": "First Magnitude Spells",
+					"second": "Second Magnitude Spells",
+					"third": "Third Magnitude Spells"
 				}
 			},
 			"requirements": {

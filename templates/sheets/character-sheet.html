@@ -300,7 +300,84 @@
 
 		<section class="character-sheet-equipment-body tab-body {{tabActiveCheck 'equipment_page' '' 'hidden'}}" id="equipment_page"></section>
 
-		<section class="character-sheet-magic-body tab-body {{tabActiveCheck 'magic_page' '' 'hidden'}}" id="magic_page"></section>
+		<section class="character-sheet-magic-body tab-body {{tabActiveCheck 'magic_page' '' 'hidden'}}" id="magic_page">
+			<center class="header-field">
+				<div class="field horizontal-field">
+					<label class="label">{{localize "bolme.fields.character.arcane.header" maximum=data.data.arcanePoints.max}}</label>
+					<input name="data.arcanePoints.current" readonly type="number" value="{{data.data.arcanePoints.value}}">
+				</div>
+			</center>
+		{{#if data.spells.hasCantrip}}
+		    <h2>{{localize "bolme.spells.magnitudes.titles.cantrip"}}</h2>
+		    <div class="spell-list">
+		    {{#each data.spells.cantrip}}
+		        <div class="spell-row">
+		        	<div>{{name}}</div>
+		        	<div>{{data.data.cost}} AP</div>
+		        	<div>
+		        		<i class="fas fa-magic spell-cast-icon" data-actor="{{actor.id}}" data-spell="{{id}}"></i>
+		        		<i class="fas fa-info-circle info-icon" data-description="{{data.data.description}}"></i>
+		        		<i class="fas fa-times-circle item-deleter" data-id="{{id}}"></i>
+		        	</div>
+		        </div>
+		    {{/each}}
+		    </div>
+		    <br>
+		{{/if}}
+
+		{{#if data.spells.hasFirst}}
+		    <h2>{{localize "bolme.spells.magnitudes.titles.first"}}</h2>
+		    <div class="spell-list">
+		    {{#each data.spells.first}}
+		        <div class="spell-row">
+		        	<div>{{name}}</div>
+		        	<div>{{data.data.cost}} AP</div>
+		        	<div>
+		        		<i class="fas fa-magic spell-cast-icon" data-actor="{{actor.id}}" data-spell="{{id}}"></i>
+		        		<i class="fas fa-info-circle info-icon" data-description="{{data.data.description}}"></i>
+		        		<i class="fas fa-times-circle item-deleter" data-id="{{id}}"></i>
+		        	</div>
+		        </div>
+		    {{/each}}
+		    </div>
+		    <br>
+		{{/if}}
+
+		{{#if data.spells.hasSecond}}
+		    <h2>{{localize "bolme.spells.magnitudes.titles.second"}}</h2>
+		    <div class="spell-list">
+		    {{#each data.spells.second}}
+		        <div class="spell-row">
+		        	<div>{{name}}</div>
+		        	<div>{{data.data.cost}} AP</div>
+		        	<div>
+		        		<i class="fas fa-magic spell-cast-icon" data-actor="{{actor.id}}" data-spell="{{id}}"></i>
+		        		<i class="fas fa-info-circle info-icon" data-description="{{data.data.description}}"></i>
+		        		<i class="fas fa-times-circle item-deleter" data-id="{{id}}"></i>
+		        	</div>
+		        </div>
+		    {{/each}}
+		    </div>
+		    <br>
+		{{/if}}
+
+		{{#if data.spells.hasThird}}
+		    <h2>{{localize "bolme.spells.magnitudes.titles.third"}}</h2>
+		    <div class="spell-list">
+		    {{#each data.spells.third}}
+		        <div class="spell-row">
+		        	<div>{{name}}</div>
+		        	<div>{{data.data.cost}} AP</div>
+		        	<div>
+		        		<i class="fas fa-magic spell-cast-icon" data-actor="{{actor.id}}" data-spell="{{id}}"></i>
+		        		<i class="fas fa-info-circle info-icon" data-description="{{data.data.description}}"></i>
+		        		<i class="fas fa-times-circle item-deleter" data-id="{{id}}"></i>
+		        	</div>
+		        </div>
+		    {{/each}}
+		    </div>
+		{{/if}}
+		</section>
 
 		<section class="character-sheet-crafting-body tab-body {{tabActiveCheck 'crafting_page' '' 'hidden'}}" id="crafting_page">
 
@@ -335,7 +412,8 @@
 			</div>
 		</section>
 
-		<section class="character-sheet-notes-body tab-body {{tabActiveCheck 'notes_page' '' 'hidden'}}" id="notes_page"></section>
+		<section class="character-sheet-notes-body tab-body {{tabActiveCheck 'notes_page' '' 'hidden'}}" id="notes_page">
+		</section>
 	<section>
 
 {{#if data.data.starting}}

@@ -1,12 +1,21 @@
 <div class="attack-roll bolme-chat-message">
 	<div class=" chat-message-header text-center">
-		<span>{{localize "bolme.chat.attackRoll.header"}} ({{actorName}})</span>
+	{{#if requiresRoll}}
+		<span>{{localize "bolme.chat.spellCastRoll.header"}}</span>
+		<br>
+	{{/if}}
+		<span>{{localize "bolme.chat.spellCastRoll.subheader" name=actorName spell=spellName}}</span>
 	</div>
 
 	<div class="chat-message-roll-result">
+	{{#if automatic}}
+	    {{{rollResultLevel "automatic"}}}
+	{{else}}
 		{{rollTotal}} - {{{rollResultLevel resultLevel}}}
+	{{/if}}
 	</div>
 
+{{#if requiresRoll}}
     <div class="expander">
     	<div class="expander-header">{{localize "bolme.rolls.headers.details"}}</div>
     	<div class="hidden">
@@ -18,23 +27,7 @@
 		    {{/each}}
 		{{/each}}
 		    </div>
-
-        {{#if debug}}
-			<div class="chat-message-details">
-				<div>
-					<strong>{{localize "bolme.chat.attackRoll.actor"}}:</strong> {{actorName}}
-				</div>
-				<div>
-					<strong>{{localize "bolme.chat.attackRoll.weapon"}}:</strong> {{weaponName}}
-				</div>
-				<div>
-					<strong>{{localize "bolme.chat.attackRoll.formula"}}:</strong> {{formula}}
-				</div>
-				<div>
-					<strong>{{localize "bolme.chat.attackRoll.total"}}:</strong> {{rollTotal}}
-				</div>
-			</div>
-		{{/if}}
     	</div>
     </div>
+{{/if}}
 </div>
