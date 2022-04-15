@@ -98,6 +98,7 @@
 		},
 		"consumable": {
 			"description": "",
+			"rechargable": false,
 			"uses": 1
 		},
 		"crafting recipe": {

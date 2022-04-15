@@ -74,8 +74,8 @@ Hooks.once("init", () => {
                                       types: ["career"]});
     Items.registerSheet("bolme",
                         ConsumableSheet, {label: "bolme.sheets.consumable.title",
-                                      makeDefault: true,
-                                      types: ["consumable"]});
+                                          makeDefault: true,
+                                          types: ["consumable"]});
     Items.registerSheet("bolme",
                         CraftingRecipeSheet, {label: "bolme.sheets.recipe.title",
                                       makeDefault: true,

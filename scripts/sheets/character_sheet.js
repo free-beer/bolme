@@ -55,6 +55,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         context.data.armour    = [];
         context.data.boons     = [];
         context.data.flaws     = [];
+        context.data.equipment = [];
         context.data.languages = [];
         context.data.recipes   = [];
         context.data.shields   = [];

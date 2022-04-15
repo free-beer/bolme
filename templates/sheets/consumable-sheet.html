@@ -10,11 +10,26 @@
                 <input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}"/>
             </div>
 
+            <div class="grid-2-col">
+	            <div class="field horizontal-field">
+	            	<label class="label">{{localize "bolme.fields.consumable.uses.label"}}</label>
+	            	<input name="data.uses" type="number" value="{{data.data.uses}}">
+	            </div>
+
+				<div>
+				{{#if data.data.rechargable}}
+				    <input checked name="data.rechargable" type="checkbox">
+				{{else}}
+					<input name="data.rechargable" type="checkbox">
+				{{/if}}
+				    <span class="checkbox-label">{{localize "bolme.fields.consumable.rechargable.label"}}</span>
+				</div>
+            </div>
+
             <div class="field">
                 <label class="label" for="data.description">{{localize "bolme.fields.consumable.description.label"}}</label>
                 {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
             </div>
-
 		</div>
 	</div>
 </form>

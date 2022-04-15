@@ -328,7 +328,14 @@
 				"description": {
 					"label": "Description",
 					"placeholder": ""
-				}				
+				},
+				"rechargable": {
+					"label": "Rechargable"
+				},
+				"uses": {
+					"label": "Uses/Charges/Quantity:",
+					"placeholder": "Uses/charges/quantity."
+				}		
 			},
 			"crafting": {
 				"points": {
