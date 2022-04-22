@@ -585,6 +585,13 @@ input:readonly {
 	cursor: default;
 }
 
+.task-roll-dialog-title {
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 5px 0;
+	text-align: center;
+}
+
 .text-center {
 	text-align: center;
 }

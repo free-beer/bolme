@@ -21,6 +21,7 @@ import {decrementCareerRank,
 import InfoDialog from "../dialogs/info_dialog.js";
 import {deleteCharacterLanguage} from "../languages.js";
 import SpellCastDialog from "../dialogs/spell_cast_dialog.js";
+import TaskRollDialog from "../dialogs/task_roll_dialog.js";
 import {traitRemovedFromCharacter} from "../traits.js";
 
 export default class BoLMECharacterSheet extends ActorSheet {
@@ -150,6 +151,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".roll-crafting").click((e) => rollForCraftedItem(this.actor, e.currentTarget.dataset.id));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
         html.find(".tab-selector").click((e) => this._onTabSelected(e, html[0]));
+        html.find(".task-roll").click((e) => this._showTaskRollDialog(e));
         html.find(".trait-deleter").click((e) => traitRemovedFromCharacter(this.actor, e.currentTarget.dataset.id));
     }
 
@@ -236,6 +238,10 @@ export default class BoLMECharacterSheet extends ActorSheet {
             }
         }
         AttackDialog.build(event.currentTarget, {defence: defence}).then((dialog) => dialog.render(true));
+    }
+
+    _showTaskRollDialog(event) {
+        TaskRollDialog.build(event.currentTarget, {}).then((dialog) => dialog.render(true));
     }
 
     _showSpellCastDialog(event) {

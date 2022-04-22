@@ -110,6 +110,14 @@ Hooks.once("init", () => {
                                      makeDefault: true,
                                      types: ["weapon"]});
 
+    Handlebars.registerHelper("localizeAttribute", function(attribute) {
+        return(game.i18n.localize(`bolme.attributes.${attribute}.label`));
+    });
+
+    Handlebars.registerHelper("localizeCombatAbility", function(ability) {
+        return(game.i18n.localize(`bolme.combat.${ability}.label`));
+    });
+
     Handlebars.registerHelper("localizeWeaponType", function(type) {
         return(game.i18n.localize(`bolme.weapons.types.${type}.label`));
     });

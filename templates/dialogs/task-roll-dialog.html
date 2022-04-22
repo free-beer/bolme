@@ -1,0 +1,53 @@
+<div class="task-roll-dialog bolme-dialog">
+	<hr>
+	<div class="task-roll-dialog-title">{{name}}</div>
+	<hr>
+
+	<form class="task-roll-dialog-form" autocomplete="off" data-actor="{{actorId}}" data-attribute="{{attribute}}" data-career="{{careerId}}">
+		<div class="grid-2-col">
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.taskRoll.attribute.label"}}</label>
+			{{#if attributeLocked}}
+				<select class="expanded" name="attribute" disabled>
+			{{else}}
+				<select class="expanded" name="attribute">
+			{{/if}}
+				{{#each constants.attributes}}
+				    {{{selectOption ../attribute}}}
+				{{/each}}
+				</select>
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.taskRoll.career.label"}}</label>
+			{{#if careerLocked}}
+				<select class="expanded" name="career" disabled>
+			{{else}}
+				<select class="expanded" name="career">
+			{{/if}}
+			        <option value=""></option>
+				{{#each careers}}
+				    {{#if selected}}
+				    <option selected value="{{id}}">{{name}}</option>
+				    {{else}}
+				    <option value="{{id}}">{{name}}</option>
+				    {{/if}}
+				{{/each}}
+				</select>
+			</div>
+		</div>
+
+        <div class="grid-2-col">
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.taskRoll.bonusDice.label"}}</label>
+				<input class="" name="bonusDice" type="number" value="{{bonusDice}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.taskRoll.penaltyDice.label"}}</label>
+				<input class="" name="penaltyDice" type="number" value="{{penaltyDice}}">
+			</div>
+        </div>
+        <br>
+	</form>
+</div>

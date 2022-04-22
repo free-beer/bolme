@@ -114,6 +114,9 @@
 			"spellCastRoll": {
 				"header": "Spell Casting Roll",
 				"subheader": "{name} casts {spell}"
+			},
+			"taskRoll": {
+				"header": "Task Roll"
 			}
 		},
 		"combat": {
@@ -166,13 +169,20 @@
 			}
 		},
 		"dialogs": {
+			"headers": {
+				"taskRoll": {
+					"attributeBased": "For Attribute",
+					"careerBased": "For Career"
+				}
+			},
 			"info": {
 				"empty": "No information available."
 			},
 			"titles": {
 				"attack": "Attack Roll",
 				"info": "Information",
-				"spellCast": "Cast Spell"
+				"spellCast": "Cast Spell",
+				"taskRoll": "Task Roll"
 			}
 		},
 		"difficulties": {
@@ -449,6 +459,20 @@
 				"requirements": {
 					"label": "Requirements",
 					"placeholder": "Enter spell requirement."
+				}
+			},
+			"taskRoll": {
+				"attribute": {
+					"label": "Attribute"
+				},
+				"bonusDice": {
+					"label": "Bonus Dice"
+				},
+				"career": {
+					"label": "Career"
+				},
+				"penaltyDice": {
+					"label": "Penalty Dice"
 				}
 			},
 			"trait": {

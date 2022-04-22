@@ -1,0 +1,29 @@
+<div class="task-roll-roll bolme-chat-message">
+	<div class=" chat-message-header text-center">
+		<span>{{localize "bolme.chat.taskRoll.header"}} ({{actorName}})</span>
+		<br>
+	{{#if careerUsed}}
+	    <span>{{localizeAttribute attribute}} + {{careerName}}</span>
+	{{else}}
+		<span>{{localizeAttribute attribute}}</span>
+	{{/if}}
+	</div>
+
+	<div class="chat-message-roll-result">
+		{{rollTotal}} - {{{rollResultLevel resultLevel}}}
+	</div>
+
+    <div class="expander">
+    	<div class="expander-header">{{localize "bolme.rolls.headers.details"}}</div>
+    	<div class="hidden">
+    		<div class="text-center">{{formula}}</div>
+		    <div class="dice-row">
+		{{#each dice}}
+		    {{#each results}}
+			    {{> "systems/bolme/templates/partials/dice-result.html" .}}
+		    {{/each}}
+		{{/each}}
+		    </div>
+    	</div>
+    </div>
+</div>

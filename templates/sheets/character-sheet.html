@@ -31,7 +31,7 @@
 				    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="strength"></i>
 				    	<input class="characteristic" readonly type="number" value="{{data.data.strength.value}}">
 				    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="strength"></i>
-				    	<i class="attribute-icon fas fa-dice"></i>
+				    	<i class="attribute-icon fas fa-dice task-roll" data-actor="{{actor.id}}" data-attribute="strength"></i>
 				    </div>
 
 					<!-- Agility -->
@@ -40,7 +40,7 @@
 				    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="agility"></i>
 				    	<input class="characteristic" readonly type="number" value="{{data.data.agility.value}}">
 				    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="agility"></i>
-				    	<i class="attribute-icon fas fa-dice"></i>
+				    	<i class="attribute-icon fas fa-dice task-roll" data-actor="{{actor.id}}" data-attribute="agility"></i>
 				    </div>
 
 					<!-- Mind -->
@@ -49,7 +49,7 @@
 				    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="mind"></i>
 				    	<input class="characteristic" readonly type="number" value="{{data.data.mind.value}}">
 				    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="mind"></i>
-				    	<i class="attribute-icon fas fa-dice"></i>
+				    	<i class="attribute-icon fas fa-dice task-roll" data-actor="{{actor.id}}" data-attribute="mind"></i>
 				    </div>
 
 					<!-- Appeal -->
@@ -58,7 +58,7 @@
 				    	<i class="attribute-icon attribute-decrementer fas fa-minus" data-attribute="appeal"></i>
 				    	<input class="characteristic" readonly type="number" value="{{data.data.appeal.value}}">
 				    	<i class="attribute-icon attribute-incrementer fas fa-plus" data-attribute="appeal"></i>
-				    	<i class="attribute-icon fas fa-dice"></i>
+				    	<i class="attribute-icon fas fa-dice task-roll" data-actor="{{actor.id}}" data-attribute="appeal"></i>
 				    </div>
 
 				</div>
@@ -112,7 +112,7 @@
 					    	<i class="career-icon career-decrementer fas fa-minus" data-id="{{id}}"></i>
 					    	<input class="characteristic" name="rank" readonly type="number" value="{{rank}}">
 					    	<i class="career-icon career-incrementer fas fa-plus" data-id="{{id}}"></i>	
-					    	<i class="career-icon fas fa-dice" data-career="{{name}}"></i>
+					    	<i class="career-icon fas fa-dice task-roll" data-actor="{{../actor.id}}" data-career="{{id}}"></i>
 					    	<i class="career-deleter career-icon fas fa-times-circle" data-id="{{id}}"></i>
 					    </div>
 				    </div>

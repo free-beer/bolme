@@ -124,6 +124,34 @@ function generateSpellCastRollFormula(attributeRating, careerRank, difficulty, b
 }
 
 /**
+ * Generates a dice roll formula for a task based on factors such as attribute,
+ * career rank and bonus/penalty dice.
+ */
+function generateTaskRollFormula(actorId, attribute, careerRank, bonusDice, penaltyDice) {
+    let actor   = game.actors.find((a) => a.id === actorId);
+    let formula = generateBaseSkillRollFormula(bonusDice, penaltyDice);
+
+    if(actor) {
+        let expandedAttribute = expandAttribute(actor.data, attribute);
+
+        // Apply attribute, combat ability, career and range modifications.
+        let modifier = expandedAttribute.value + careerRank;
+
+        if(modifier !== 0) {
+            if(modifier > 0) {
+                formula = `${formula} + ${modifier}`;
+            } else {
+                formula = `${formula} - ${Math.abs(modifier)}`;
+            }
+        }
+    } else {
+        console.error(`Failed to find an actor with the id '${actorId}'.`);
+    }
+
+    return(formula);
+}
+
+/**
  * Wrapper for integration with the DiceSoNice module. Prefer this route over
  * evaluating dice rolls directly.
  */
@@ -150,6 +178,7 @@ function translateDieFormula(source) {
 
 export {generateAttackRollFormula,
         generateSpellCastRollFormula,
+        generateTaskRollFormula,
         getRollResultLevel,
         rollIt,
         translateDieFormula};
