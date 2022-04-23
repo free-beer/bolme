@@ -1,6 +1,12 @@
 <div class="attack-dialog bolme-dialog">
 	<hr>
-	<div class="attack-dialog-title">{{name}} - {{damage}}</div>
+	<div class="attack-dialog-title">
+    {{#if weaponUsed}}		
+	    {{name}} - {{damage}}
+	{{else}}
+	    {{localize "bolme.dialogs.titles.noWeapon"}}
+	{{/if}}
+	</div>
 	<hr>
 
 	<form class="attack-dialog-form" autocomplete="off" data-actor="{{actorId}}" data-weapon="{{weaponId}}">
@@ -15,8 +21,13 @@
 			</div>
 
 			<div class="field">
-				<label class="label">{{localize "bolme.fields.attack.combatAbility.label"}}</label>
-				<select class="expanded" name="combatAbility">
+			{{log .}}
+			<label class="label">{{localize "bolme.fields.attack.combatAbility.label"}}</label>
+			{{#if abilityLocked}}
+				<select class="expanded" disabled name="combatAbility">
+			{{else}}
+			    <select class="expanded" name="combatAbility">
+			{{/if}}
 				{{#each constants.combatAbilities}}
 				    {{{selectOption ../combat}}}
 				{{/each}}

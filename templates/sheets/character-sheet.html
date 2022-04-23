@@ -80,7 +80,7 @@
 				    	<i class="attribute-icon combat-ability-decrementer fas fa-minus" data-ability="melee"></i>
 				    	<input class="characteristic" readonly type="number" value="{{data.data.melee.value}}">
 				    	<i class="attribute-icon combat-ability-incrementer fas fa-plus" data-ability="melee"></i>
-				    	<i class="attribute-icon fas fa-dice"></i>
+				    	<i class="attack-icon attribute-icon fas fa-dice" data-actor="{{actor.id}}" data-ability="melee"></i>
 				    </div>
 
 					<!-- Ranged -->
@@ -89,7 +89,7 @@
 				    	<i class="attribute-icon combat-ability-decrementer fas fa-minus" data-ability="ranged"></i>
 				    	<input class="characteristic" readonly type="number" value="{{data.data.ranged.value}}">
 				    	<i class="attribute-icon combat-ability-incrementer fas fa-plus" data-ability="ranged"></i>
-				    	<i class="attribute-icon fas fa-dice"></i>
+				    	<i class="attack-icon attribute-icon fas fa-dice" data-actor="{{actor.id}}" data-ability="ranged"></i>
 				    </div>
 
 					<!-- Defence -->

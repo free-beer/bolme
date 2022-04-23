@@ -181,6 +181,7 @@
 			"titles": {
 				"attack": "Attack Roll",
 				"info": "Information",
+				"noWeapon": "No Weapon Specified",
 				"spellCast": "Cast Spell",
 				"taskRoll": "Task Roll"
 			}

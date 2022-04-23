@@ -75,7 +75,6 @@ export default class AttackDialog extends Dialog {
 
     _rollAttack() {
         let actor  = this.actor;
-        let weapon = this.weapon;
         let data   = {actorId:       actor.id,
                       actorName:     actor.name,
                       attribute:     this.attribute,
@@ -84,9 +83,8 @@ export default class AttackDialog extends Dialog {
                       defence:       this.defence,
                       penaltyDice:   this.penaltyDice,
                       rangeModifier: this.rangeModifier,
-                      weaponId:      weapon.id,
-                      weaponName:    weapon.name,
-                      weaponType:    weapon.data.data.type};
+                      weaponType:    this.combatAbility,
+                      weaponUsed:    false};
         let dice;
 
         data.formula = generateAttackRollFormula(actor.id,
@@ -97,6 +95,14 @@ export default class AttackDialog extends Dialog {
                                                  data.defence,
                                                  data.rangeModifier);
         data.roll   = new Roll(data.formula);
+
+        if(this.weaponId) {
+            let weapon = this.weapon;
+
+            data.weaponId   = weapon.id;
+            data.weaponName = weapon.name;
+            data.weaponUsed = true;
+        }
 
         rollIt(data.roll)
             .then((roll) => {
@@ -114,35 +120,43 @@ export default class AttackDialog extends Dialog {
 
         settings.title = game.i18n.localize(`bolme.dialogs.titles.attack`);
         if(actor) {
-            let weapon  = actor.items.find((i) => i.id === element.dataset.weapon);
+            let weapon   = null;
+            let settings = Object.assign({}, options);
+            let data     = {actorId:       actor.id,
+                            attribute:     "agility",
+                            abilityLocked: (element.dataset.ability && element.dataset.ability !== ""),
+                            bonusDice:     0,
+                            combat:        (element.dataset.ability || "melee"),
+                            constants:     {attributes: constants.attributes,
+                                            combatAbilities: constants.combatAbilities},
+                            damage:        null,
+                            defence:       (options.defence || 0),
+                            name:          null,
+                            penaltyDice:   0,
+                            rangeModifier: 0,
+                            weaponId:      null,
+                            weaponUsed:    false};
 
-            if(weapon) {
-                let settings = Object.assign({}, options);
-                let data     = {actorId:       actor.id,
-                                attribute:     "agility",
-                                bonusDice:     0,
-                                combat:        weapon.data.data.type,
-                                constants:     {attributes: constants.attributes,
-                                                combatAbilities: constants.combatAbilities},
-                                damage:        weapon.data.data.damage,
-                                defence:       (options.defence || 0),
-                                name:          weapon.name,
-                                penaltyDice:   0,
-                                rangeModifier: 0,
-                                weaponId:      weapon.id};
-
-                settings.actorId  = actor.id;
-                settings.defence  = data.defence;
-                settings.title    = game.i18n.localize(`bolme.dialogs.titles.attack`);
-                settings.weaponId = weapon.id;
-                return(renderTemplate("systems/bolme/templates/dialogs/attack-dialog.html", data)
-                           .then((content) => {
-                                     settings.content = content;
-                                     return(new AttackDialog(settings));
-                                 }));   
-            } else {
-                console.error(`Unable to locate weapon id '${element.dataset.weapon}' on actor id '${actor.id}' (${actor.name}).`);
+            if(element.dataset.weapon && element.dataset.weapon !== "") {
+                weapon = actor.items.find((i) => i.id === element.dataset.weapon);
+                if(weapon) {
+                    data.combat     = weapon.data.data.type;
+                    data.damage     = weapon.data.data.damage;
+                    data.name       = weapon.name;
+                    data.weaponId   = weapon.id;
+                    data.weaponUsed = true;
+                }
             }
+
+            settings.actorId  = actor.id;
+            settings.defence  = data.defence;
+            settings.title    = game.i18n.localize(`bolme.dialogs.titles.attack`);
+            settings.weaponId = data.weaponId;
+            return(renderTemplate("systems/bolme/templates/dialogs/attack-dialog.html", data)
+                       .then((content) => {
+                                 settings.content = content;
+                                 return(new AttackDialog(settings));
+                             }));   
         } else {
             console.error(`Unable to locate actor id '${actor.id}'.`);
         }
