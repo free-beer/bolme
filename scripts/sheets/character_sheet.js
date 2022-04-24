@@ -230,7 +230,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
             if(game.user.targets.size === 1) {
                 let target = game.user.targets.first().actor;
 
-                if(target.type === "character") {
+                if(target.type === "Character") {
                     defence = expandCombatAbility(target.data, "defence").value;
                 } else {
                     defence = target.data.data.defence;
@@ -253,7 +253,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
             if(game.user.targets.size === 1) {
                 let target = game.user.targets.first().actor;
 
-                if(target.type === "character") {
+                if(target.type === "Character") {
                     defence = expandCombatAbility(target.data, "defence").value;
                 } else {
                     defence = target.data.data.defence;

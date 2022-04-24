@@ -29,12 +29,18 @@
 			}
 		},
 		"beasts": {
+			"headers": {
+				"abilities": "Combat Abilities",
+				"attributes": "Attributes",
+				"miscellaneous": "Miscellaneous",
+				"traits": "Traits"
+			},
 			"priorities": {
 				"rabble": {
 					"label": "Rabble"
 				},
 				"tough": {
-					"label": "tough"
+					"label": "Tough"
 				},
 				"villain": {
 					"label": "Villain"
@@ -278,6 +284,41 @@
 				},
 				"rangeModifier": {
 					"label": "Range Modifier"
+				}
+			},
+			"beast": {
+				"attack": {
+					"label": "Attack"
+				},
+				"damage": {
+					"label": "Damage"
+				},
+				"defence": {
+					"label": "Defence"
+				},
+				"description": {
+					"label": "Description"
+				},
+				"found": {
+					"label": "Normally Found"
+				},
+				"lifeblood": {
+					"label": "Lifeblood"
+				},
+				"priority": {
+					"label": "Priority"
+				},
+				"protection": {
+					"fixed": {
+						"label": "Fixed Value"
+					},
+					"label": "Protection",
+					"roll": {
+						"label": "Roll"
+					}
+				},
+				"size": {
+					"label": "Size"
 				}
 			},
 			"career": {
@@ -535,6 +576,9 @@
 		"sheets": {
 			"armour": {
 				"title": "Armour"
+			},
+			"beast": {
+				"title": "Beast"
 			},
 			"career": {
 				"title": "Career"

@@ -39,6 +39,24 @@
 	vertical-align: middle;
 }
 
+.attribute-list-row {
+	display: grid;
+	grid-template-columns: 75% auto;
+	grid-gap: 5px 10px;
+}
+
+.attribute-list-row-select {
+	display: grid;
+	grid-template-columns: 40% auto;
+	grid-gap: 5px 10px;
+}
+
+.attribute-list-row-text {
+	display: grid;
+	grid-template-columns: 60% auto;
+	grid-gap: 5px 10px;
+}
+
 .background-image {
 	border: none;
 	margin:  0;
@@ -50,6 +68,12 @@
 	resize: none;
 }
 
+.beast-sheet-body {
+	display: grid;
+	grid-template-columns: 200px auto;
+	grid-gap: 5px 10px;
+	padding: 5px;
+}
 
 .bolme-form {
 	margin: 10px !important;
@@ -590,6 +614,10 @@ input:readonly {
 	font-weight: bold;
 	margin: 5px 0;
 	text-align: center;
+}
+
+.text-bold {
+	font-weight: bold;
 }
 
 .text-center {

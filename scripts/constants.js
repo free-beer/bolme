@@ -49,6 +49,11 @@ let constants = {
     		        {cost: 2, key: "uncommon", value: "bolme.crafting.recipes.types.uncommon.label"}]
     	}
     },
+    npcs: {
+    	types: [{key: "rabble", value: "bolme.npcs.type.rabble"},
+    	        {key: "tough", value: "bolme.npcs.type.tough"},
+    	        {key: "villain", value: "bolme.npcs.type.villain"}]
+    },
     rolls: {
     	results: [{key: "calamitous", value: "rolls.results.calamitous"},
     	          {key: "failure", value: "rolls.results.failure"},

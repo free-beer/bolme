@@ -1,4 +1,5 @@
 import ArmourSheet from "./sheets/armour_sheet.js";
+import BoLMEBeastSheet from "./sheets/beast_sheet.js";
 import BoLMECharacterSheet from "./sheets/character_sheet.js";
 import CareerSheet from "./sheets/career_sheet.js";
 import ConsumableSheet from "./sheets/consumable_sheet.js";
@@ -61,7 +62,11 @@ Hooks.once("init", () => {
     Actors.registerSheet("bolme",
                          BoLMECharacterSheet, {label: "bolme.sheets.character.title",
                                                makeDefault: true,
-                                               types: ["character"]});
+                                               types: ["Character"]});
+    Actors.registerSheet("bolme",
+                         BoLMEBeastSheet, {label: "bolme.sheets.beast.title",
+                                           makeDefault: true,
+                                           types: ["Beast"]});
 
     //Items.unregisterSheet("core", ItemSheet);
 

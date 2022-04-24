@@ -1,22 +1,28 @@
 {
 	"Actor": {
-		"types": ["beast", "character"],
-		"beast": {
+		"types": ["Beast", "Character", "NPC"],
+		"Beast": {
 			"agility": 0,
 			"attack": 0,
 			"damage": "",
 			"defence": 0,
 			"description": "",
 			"found": "",
-			"lifeblood": 0,
+			"lifeblood": {
+				"max": 1,
+				"value": 1
+			},
 			"mind": 0,
 			"move": "",
 			"priority": "",
-			"protection": "",
+			"protection": {
+				"fixed": 1,
+				"roll": "d6-3"
+			},
 			"size": "medium",
 			"strength": 0
 		},
-		"character": {
+		"Character": {
 			"arcanePoints": {
 			    "max": 0,
 			    "value": 0
@@ -74,6 +80,24 @@
 			           "starting": {"attributes": 4,
 			                        "careers":    8,
 			                        "combat":     4}}
+		},
+		"NPC": {
+			"agility": 0,
+			"appeal": 0,
+			"damageRating": "d3",
+			"defence": 0,
+			"description": "",
+			"initiative": 0,
+			"lifeblood": {
+				"max": 1,
+				"value": 1
+			},
+			"melee": 0,
+			"mind": 0,
+			"ranged": 0,
+			"strength": 0,
+			"type": "rabble",
+			"villainPoints": 0
 		}
 	},
 	"Item": {

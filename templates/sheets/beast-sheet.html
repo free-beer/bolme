@@ -1,0 +1,145 @@
+<form class="{{cssClass}} beast-sheet-form" autocomplete="off">
+	<div class="beast-sheet-body">
+		<section>
+			<img data-edit="img" height="190" src="{{actor.img}}" title="{{actor.name}}" width="190"/>
+			<br><br>
+
+            <section>
+            	<h3 class="text-bold">{{localize "bolme.beasts.headers.attributes"}}</h3>
+            	<hr>
+            	<div class="attribute-list">
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.attributes.strength.label"}}</label>
+            			<div class="field">
+            				<input name="data.strength" type="number" value="{{data.data.strength}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.attributes.agility.label"}}</label>
+            			<div class="field">
+            				<input name="data.agility" type="number" value="{{data.data.agility}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.attributes.mind.label"}}</label>
+            			<div class="field">
+            				<input name="data.mind" type="number" value="{{data.data.mind}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.beast.lifeblood.label"}}</label>
+            			<div class="field">
+            				<input name="data.lifeblood.max" type="number" value="{{data.data.lifeblood.max}}">
+            				<input name="data.lifeblood.value" type="hidden" value="{{data.data.lifeblood.value}}">
+            			</div>
+            		</div>
+            	</div>
+            </section>
+
+            <section>
+            	<h3 class="text-bold">{{localize "bolme.beasts.headers.abilities"}}</h3>
+            	<hr>
+            	<div class="abilities-list">
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.beast.attack.label"}}</label>
+            			<div class="field">
+            				<input name="data.attack" type="number" value="{{data.data.attack}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.beast.defence.label"}}</label>
+            			<div class="field">
+            				<input name="data.defence" type="number" value="{{data.data.defence}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row-text field">
+        				<label>{{localize "bolme.fields.beast.damage.label"}}</label>
+            			<div class="field">
+            				<input name="data.damage" type="text" value="{{data.data.damage}}">
+            			</div>
+            		</div>
+            	</div>
+            </section>
+
+            <section>
+            	<h3 class="text-bold">{{localize "bolme.fields.beast.protection.label"}}</h3>
+            	<hr>
+
+            	<div class="protection-list">
+	        		<div class="attribute-list-row-text field">
+	    				<label>{{localize "bolme.fields.beast.protection.roll.label"}}</label>
+	        			<div class="field">
+	        				<input name="data.protection.roll" type="text" value="{{data.data.protection.roll}}">
+	        			</div>
+	        		</div>
+
+	        		<div class="attribute-list-row field">
+	    				<label>{{localize "bolme.fields.beast.protection.fixed.label"}}</label>
+	        			<div class="field">
+	        				<input name="data.protection.fixed" type="number" value="{{data.data.protection.fixed}}">
+	        			</div>
+	        		</div>
+            	</div>
+            </section>
+		</section>
+
+		<section>
+			<div class="field">
+				<label>{{localize "bolme.fields.name.label"}}</label>
+				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{actor.name}}">
+			</div>
+
+			<div class="grid-2-col">
+				<div class="field">
+					<label>{{localize "bolme.fields.beast.size.label"}}</label>
+					<select class="expanded" name="data.size" value="{{data.data.size}}">
+						{{#each constants.sizes}}
+						    {{{selectOption ../data.data.size}}}
+						{{/each}}
+					</select>
+				</div>
+
+                <div class="field">
+                	<label>{{localize "bolme.fields.beast.priority.label"}}</label>
+					<select class="expanded" name="data.priority" value="{{data.data.priority}}">
+						{{#each constants.priorities}}
+						    {{{selectOption ../data.data.priority}}}
+						{{/each}}
+					</select>
+                </div>
+			</div>
+
+			<div class="field">
+				<label>{{localize "bolme.fields.beast.found.label"}}</label>
+				<input name="data.found" type="text" value="{{data.data.found}}">
+			</div>
+			<br>
+
+            <div class="field">
+                <label class="label" for="data.description">{{localize "bolme.fields.beast.description.label"}}</label>
+                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+            </div>
+			<br>
+
+            <h3 class="text-bold">{{localize "bolme.beasts.headers.traits"}}</h3>
+            <hr>
+            <div class="trait-list">
+	        	{{#each data.traits}}
+	        	    <div class="character-trait-row">
+	        	    	<div>{{name}}</div>
+	        	    	<div>{{localizeTraitType data.data.type}}</div>
+	        	    	<div>
+	        	    		<i class="fas fa-info-circle info-icon trait-icon" data-description="{{data.data.description}}"></i>
+							<i class="fas fa-times-circle trait-icon item-deleter" data-id="{{id}}"></i>	        	    		
+	        	    	</div>
+	        	    </div>
+	        	{{/each}}
+            </div>
+		</section>
+	</div>
+</form>
