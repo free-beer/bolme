@@ -1,0 +1,24 @@
+<h3 class="section-header">{{localize "bolme.character.titles.traits"}}</h3>
+<div class="traits-list">
+{{#each boons}}
+    <div class="trait-row">
+    	<div>{{name}}</div>
+    	<div>{{localizeTraitType data.data.type}}</div>
+    	<div>
+    		<i class="fas fa-info-circle info-icon trait-icon" data-description="{{data.data.description}}"></i>
+			<i class="fas fa-times-circle trait-icon trait-deleter" data-id="{{id}}"></i>	        	    		
+    	</div>
+    </div>
+{{/each}}
+
+{{#each flaws}}
+    <div class="trait-row">
+    	<div>{{name}}</div>
+    	<div>{{localizeTraitType data.data.type}}</div>
+    	<div>
+    		<i class="fas fa-info-circle info-icon trait-icon" data-description="{{data.data.description}}"></i>
+			<i class="trait-icon trait-deleter fas fa-times-circle" data-id="{{id}}"></i>	        	    		
+    	</div>
+    </div>
+{{/each}}
+</div>

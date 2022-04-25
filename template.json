@@ -79,14 +79,25 @@
 			"points": {"advancement": 0,
 			           "starting": {"attributes": 4,
 			                        "careers":    8,
-			                        "combat":     4}}
+			                        "combat":     4}},
+			"tabs": {
+				"selected": "front_page"
+			}
 		},
 		"NPC": {
 			"agility": 0,
 			"appeal": 0,
+			"arcanePoints": {
+				"max": 0,
+				"value": 0
+			},
 			"damageRating": "d3",
 			"defence": 0,
 			"description": "",
+			"fatePoints":  {
+				"max": 0,
+				"value": 0
+			},
 			"initiative": 0,
 			"lifeblood": {
 				"max": 1,
@@ -96,8 +107,14 @@
 			"mind": 0,
 			"ranged": 0,
 			"strength": 0,
+			"tabs": {
+				"selected": "front_page"
+			},
 			"type": "rabble",
-			"villainPoints": 0
+			"villainPoints": {
+				"max": 0,
+				"value": 0
+			}
 		}
 	},
 	"Item": {

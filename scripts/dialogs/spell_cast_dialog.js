@@ -176,7 +176,11 @@ export default class SpellCastDialog extends Dialog {
     }
 
     static mindRating(actor) {
-        return(calculateAttributeValue("mind", actor.data.data.attributes.mind));
+        if(actor.data.data.attributes) {
+            return(calculateAttributeValue("mind", actor.data.data.attributes.mind));
+        } else {
+            return(actor.data.data.mind);
+        }
     }
 
     static careerRank(actor) {
@@ -185,7 +189,8 @@ export default class SpellCastDialog extends Dialog {
         if(career) {
             return(career.rank);
         } else {
-            throw(`Unable to locate a career for actor id '${actor.id}' (${actor.name}) that grants them arcane points.`);
+            ui.notifications.error(game.i18n.localize("bolme.errors.spells.casting.untrained"));
+            throw(`Actor id '${actor.id}' (${actor.name}) does not possess a career that grants them the spell casting ability.`);
         }
     }
 }

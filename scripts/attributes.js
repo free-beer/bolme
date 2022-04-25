@@ -77,8 +77,6 @@ function expandAttribute(character, attribute) {
     output.decreaseRegain = Math.abs(((output.value - 1) * 2) + 1);
     output.increaseCost   = Math.abs((output.value * 2) + 1);
 
-    console.log(attribute, "Expanded:", output);
-
 	return(output);
 }
 

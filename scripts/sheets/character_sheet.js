@@ -21,6 +21,7 @@ import {decrementCareerRank,
 import InfoDialog from "../dialogs/info_dialog.js";
 import {deleteCharacterLanguage} from "../languages.js";
 import SpellCastDialog from "../dialogs/spell_cast_dialog.js";
+import {onTabSelected} from "../tabs.js";
 import TaskRollDialog from "../dialogs/task_roll_dialog.js";
 import {traitRemovedFromCharacter} from "../traits.js";
 
@@ -150,7 +151,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".recipe-deleter").click((e) => deleteCraftingRecipe(e, this.actor));
         html.find(".roll-crafting").click((e) => rollForCraftedItem(this.actor, e.currentTarget.dataset.id));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
-        html.find(".tab-selector").click((e) => this._onTabSelected(e, html[0]));
+        html.find(".tab-selector").click((e) => onTabSelected(e, html[0], this.actor));
         html.find(".task-roll").click((e) => this._showTaskRollDialog(e));
         html.find(".trait-deleter").click((e) => traitRemovedFromCharacter(this.actor, e.currentTarget.dataset.id));
     }
@@ -245,46 +246,6 @@ export default class BoLMECharacterSheet extends ActorSheet {
     }
 
     _showSpellCastDialog(event) {
-        let defence = 0;
-
-        if(game.user.targets.size === 1) {
-            let target = game.user.targets.first().actor;
-
-            if(game.user.targets.size === 1) {
-                let target = game.user.targets.first().actor;
-
-                if(target.type === "Character") {
-                    defence = expandCombatAbility(target.data, "defence").value;
-                } else {
-                    defence = target.data.data.defence;
-                }
-            }
-        }
         SpellCastDialog.build(event.currentTarget, {}).then((dialog) => dialog.render(true));
-    }
-
-    _onTabSelected(event, root) {
-        let tabId = event.currentTarget.dataset.id;
-
-        if(tabId) {
-            let tabElement = root.querySelector(`#${tabId}`);
-
-            if(tabElement) {
-                let allTabs   = root.querySelectorAll(".tab-selector");
-                let allBodies = root.querySelectorAll(".tab-body");
-
-                allTabs.forEach((t) => t.classList.remove("selected"));
-                allBodies.forEach((b) => b.classList.add("hidden"));
-
-                tabElement.classList.remove("hidden");
-                event.currentTarget.classList.add("selected");
-                console.log(`Updating tab selection to '${tabId}'.`);
-                this.actor.update({data: {tabs: {selected: tabId}}});
-            } else {
-                console.error(`Unable to locate a tab body element with the id '${tabId}'.`);
-            }
-        } else {
-            console.error(`Tab selected but selected element does not possess an id data attribute.`);
-        }
     }
 }

@@ -32,7 +32,6 @@
 			"headers": {
 				"abilities": "Combat Abilities",
 				"attributes": "Attributes",
-				"miscellaneous": "Miscellaneous",
 				"traits": "Traits"
 			},
 			"priorities": {
@@ -235,7 +234,8 @@
 			},
 			"spells": {
 				"casting": {
-					"tooExpensive": "You do not have sufficient Arcane Points to cast this spell."
+					"tooExpensive": "You do not have sufficient Arcane Points to cast this spell.",
+					"untrained": "You do not possess a career that grants you access to the spell casting."
 				}
 			},
 			"traits": {
@@ -431,6 +431,50 @@
 			"none": {
 				"label": "None"
 			},
+			"npc": {
+				"arcanePoints": {
+					"label": "Arcane Points"
+				},
+				"defence": {
+					"label": "Defence"
+				},
+				"description": {
+					"label": "Description"
+				},
+				"fatePoints": {
+					"label": "Fate Points"
+				},
+				"initiative": {
+					"label": "Initiative"
+				},
+				"lifeblood": {
+					"label": "Lifeblood"
+				},
+				"melee": {
+					"label": "Melee"
+				},
+				"priority": {
+					"label": "Type"
+				},
+				"protection": {
+					"fixed": {
+						"label": "Fixed Value"
+					},
+					"label": "Protection",
+					"roll": {
+						"label": "Roll"
+					}
+				},
+				"ranged": {
+					"label": "Ranged"
+				},
+				"size": {
+					"label": "Size"
+				},
+				"villainPoints": {
+					"label": "Villain Points"
+				}
+			},
 			"recipe": {
 				"cost": {
 					"label": "Cost",
@@ -560,6 +604,26 @@
 				}
 			}
 		},
+		"npcs": {
+			"headers": {
+				"abilities": "Combat Abilities",
+				"attributes": "Attributes",
+				"magic": "Magic",
+				"other": "Other",
+				"traits": "Traits"
+			},
+			"priorities": {
+				"rabble": {
+					"label": "Rabble"
+				},
+				"tough": {
+					"label": "Tough"
+				},
+				"villain": {
+					"label": "Villain"
+				}
+			}
+		},
 		"rolls": {
 			"headers": {
 				"details": "Roll Details"
@@ -597,6 +661,9 @@
 			},
 			"language": {
 				"title": "Language"
+			},
+			"npc": {
+				"title": "Non-player Character (NPC)"
 			},
 			"shield": {
 				"title": "Shield"

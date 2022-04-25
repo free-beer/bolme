@@ -50,6 +50,9 @@ let constants = {
     	}
     },
     npcs: {
+		priorities: [{key: "rabble", value: "bolme.beasts.priorities.rabble.label"},
+		             {key: "tough", value: "bolme.beasts.priorities.tough.label"},
+		             {key: "villain", value: "bolme.beasts.priorities.villain.label"}],
     	types: [{key: "rabble", value: "bolme.npcs.type.rabble"},
     	        {key: "tough", value: "bolme.npcs.type.tough"},
     	        {key: "villain", value: "bolme.npcs.type.villain"}]

@@ -1,0 +1,18 @@
+<h3 class="section-header">{{localize "bolme.character.titles.weapons"}}</h3>
+<div class="weapons-area">
+	<div>
+		<div class="weapons-list">
+		{{#each weapons}}
+			<div class="weapon-row">
+				<div>{{name}}</div>
+				<div><center>{{localizeWeaponType data.data.type}}</center></div>
+				<div><center>{{data.data.damage}}</center></div>
+				<div>
+					<i class="attack-icon fas fa-dice weapon-icon" data-actor="{{actor.id}}" data-weapon="{{id}}"></i>
+					<i class="fas fa-times-circle item-deleter weapon-icon" data-id="{{id}}"></i>
+				</div>
+			</div>
+		{{/each}}
+		</div>
+	</div>
+</div>

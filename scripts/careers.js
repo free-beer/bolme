@@ -2,11 +2,11 @@
  * Calculates the career rank given the number of starting and advancement
  * points that have been spent on it.
  */
-function calculateCareerRank(name, settings) {
+function calculateCareerRank(name, settings, ignorePolicing=false) {
 	let value   = settings.startingPoints - 1;
 	let policed = game.settings.get("bolme", "policeAdvancements");
 
-	if(policed) {
+	if(!ignorePolicing && policed) {
 		let advances = settings.advancementPoints;
 
         console.log("Advancment policing is on.");
@@ -89,11 +89,11 @@ function careerAddedToCharacter(actor, career) {
  * it is, reduces the rank by 1, restoring any points spent in acquiring the
  * rank.
  */
-function decrementCareerRank(actor, careerId) {
+function decrementCareerRank(actor, careerId, ignorePolicing=false) {
 	let career = actor.items.find((e) => e.id === careerId);
 
 	if(career) {
-		let expanded = expandCareer(career);
+		let expanded = expandCareer(career, ignorePolicing);
 
 		if(expanded.rank > 0) {
 			let actorChanges = {data: {}};
@@ -101,24 +101,24 @@ function decrementCareerRank(actor, careerId) {
 			let policed      = game.settings.get("bolme", "policeAdvancements");
 
             // Check for arcane points affecting changes.
-			if(expanded.grants.arcane) {
+			if(expanded.grants.arcane && actor.type === "Character") {
 				let role = findHighestRankeCareerWithGrant(actor, "arcane");
 				actorChanges.arcanePoints = {max: 10 + role.rank};
 			}
 
             // Check for crafting points affecting changes.
-			if(expanded.grants.crafting) {
+			if(expanded.grants.crafting && actor.type === "Character") {
 				let role = findHighestRankeCareerWithGrant(actor, "crafting");
 				actorChanges.craftingPoints = {max: role.rank};
 			}
 
             // Check for fate points affecting changes.
-			if(expanded.grants.fate) {
+			if(expanded.grants.fate && actor.type === "Character") {
 				let role = findHighestRankeCareerWithGrant(actor, "fate");
 				actorChanges.fatePoints = {max: role.rank};
 			}
 
-			if(policed) {
+			if(!ignorePolicing && policed) {
 				let careerChanges = {data: {}};
 
                 console.log("Advancment policing is on.");
@@ -212,10 +212,10 @@ function deleteCareer(actor, careerId) {
  * Generates an 'expanded' career object containing the base career details plus
  * things like rank and name.
  */
-function expandCareer(career) {
+function expandCareer(career, ignorePolicing=false) {
 	let output = Object.assign({}, career);
 
-	output.rank           = calculateCareerRank(career.name, career.data.data);
+	output.rank           = calculateCareerRank(career.name, career.data.data, ignorePolicing);
     output.decreaseRegain = (output.rank > 0 ? output.rank : 0);
     output.grants         = career.data.data.grants;
     output.id             = career.id;
@@ -257,12 +257,12 @@ function findHighestRankeCareerWithGrant(actor, grant) {
  * Creates an array of 'expanded' career objects based on the items possessed by
  * an actor.
  */
-function generateCareerList(actor) {
+function generateCareerList(actor, ignorePolicing=false) {
 	let list = [];
 
 	actor.items.forEach((item) => {
 		if(item.type === "career") {
-			list.push(expandCareer(item));
+			list.push(expandCareer(item, ignorePolicing));
 		}
 	});
 
@@ -275,11 +275,11 @@ function generateCareerList(actor) {
  * available the career is increased and the record of the points spent is
  * made.
  */
-function incrementCareerRank(actor, careerId) {
+function incrementCareerRank(actor, careerId, ignorePolicing=false) {
 	let career = actor.items.find((e) => e.id === careerId);
 
 	if(career) {
-		let expanded = expandCareer(career);
+		let expanded = expandCareer(career, ignorePolicing);
 
 		if(expanded.rank < 5) {
 			let actorChanges  = {data: {points: {}}};
@@ -287,7 +287,7 @@ function incrementCareerRank(actor, careerId) {
 			let policed       = game.settings.get("bolme", "policeAdvancements");
 
             // Check for arcane point affecting changes.
-			if(expanded.grants.arcane) {
+			if(expanded.grants.arcane && actor.type === "Character") {
 				let role    = findHighestRankeCareerWithGrant(actor, "arcane");
 				let newRank = expanded.rank + 1;
 
@@ -298,7 +298,7 @@ function incrementCareerRank(actor, careerId) {
 			}
 
             // Check for crafting point affecting changes.
-			if(expanded.grants.crafting) {
+			if(expanded.grants.crafting && actor.type === "Character") {
 				let role    = findHighestRankeCareerWithGrant(actor, "crafting");
 				let newRank = expanded.rank + 1;
 
@@ -309,7 +309,7 @@ function incrementCareerRank(actor, careerId) {
 			}
 
             // Check for arcane point affecting changes.
-			if(expanded.grants.fate) {
+			if(expanded.grants.fate && actor.type === "Character") {
 				let role    = findHighestRankeCareerWithGrant(actor, "fate");
 				let newRank = expanded.rank + 1;
 
@@ -319,7 +319,7 @@ function incrementCareerRank(actor, careerId) {
 				actorChanges.data.fatePoints = {max: newRank};
 			}
 
-            if(policed) {
+            if(!ignorePolicing && policed) {
 				let changed       = false;
 				let careerChanges = {data: {}};
  

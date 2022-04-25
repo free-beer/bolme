@@ -1,6 +1,7 @@
 import ArmourSheet from "./sheets/armour_sheet.js";
 import BoLMEBeastSheet from "./sheets/beast_sheet.js";
 import BoLMECharacterSheet from "./sheets/character_sheet.js";
+import BoLMENPCSheet from "./sheets/npc_sheet.js";
 import CareerSheet from "./sheets/career_sheet.js";
 import ConsumableSheet from "./sheets/consumable_sheet.js";
 import CraftingRecipeSheet from "./sheets/crafting_recipe_sheet.js";
@@ -16,9 +17,14 @@ import {applyCommonChatEventHandlers} from "./chat.js";
 import {traitAddedToCharacter} from "./traits.js";
 
 async function preloadHandlebarsTemplates() {
-    const paths = ["systems/bolme/templates/partials/dice-result.html",
-                   "systems/bolme/templates/chat/attack-roll.html",
-                   "systems/bolme/templates/chat/craft-roll.html"];
+    const paths = ["systems/bolme/templates/chat/attack-roll.html",
+                   "systems/bolme/templates/chat/craft-roll.html",
+                   "systems/bolme/templates/partials/armour-list.html",
+                   "systems/bolme/templates/partials/careers-list.html",
+                   "systems/bolme/templates/partials/dice-result.html",
+                   "systems/bolme/templates/partials/spell-list.html",
+                   "systems/bolme/templates/partials/traits-list.html",
+                   "systems/bolme/templates/partials/weapons-list.html"];
     return(loadTemplates(paths))
 }
 
@@ -67,6 +73,10 @@ Hooks.once("init", () => {
                          BoLMEBeastSheet, {label: "bolme.sheets.beast.title",
                                            makeDefault: true,
                                            types: ["Beast"]});
+    Actors.registerSheet("bolme",
+                         BoLMENPCSheet, {label: "bolme.sheets.npc.title",
+                                         makeDefault: true,
+                                         types: ["NPC"]});
 
     //Items.unregisterSheet("core", ItemSheet);
 
@@ -163,16 +173,26 @@ Hooks.once("init", () => {
     });
 
     Hooks.on("dropActorSheetData", (actor, sheet, data) => {
+        if(sheet.actor.type === "Character") {
+                setTimeout(() => {
+                    let item = actor.items.contents[actor.items.contents.length - 1];
+
+                    if(item.type === "career") {
+                        careerAddedToCharacter(actor, item);
+                    } else if(item.type === "trait") {
+                        traitAddedToCharacter(actor, item);
+                    }
+                }, 250);
+        } else if(sheet.actor.type === "NPC") {
             setTimeout(() => {
                 let item = actor.items.contents[actor.items.contents.length - 1];
 
                 if(item.type === "career") {
-                    careerAddedToCharacter(actor, item);
-                } else if(item.type === "trait") {
-                    traitAddedToCharacter(actor, item);
+                    item.update({data: {startingPoints: 1}});
                 }
             }, 250);
-        });
+        }
+    });
 
     Hooks.on("createActor", (actor, options, userId) => {
         if(actor.type === "character") {

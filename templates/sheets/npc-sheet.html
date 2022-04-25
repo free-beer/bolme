@@ -1,0 +1,201 @@
+<form class="{{cssClass}} npc-sheet-form" autocomplete="off">
+	<div class="npc-sheet-body">
+		<section>
+			<img data-edit="img" height="190" src="{{actor.img}}" title="{{actor.name}}" width="190"/>
+			<br><br>
+
+            <section>
+                <div class="attribute-list-row-select field">
+                	<label>{{localize "bolme.fields.npc.priority.label"}}</label>
+					<select class="expanded" name="data.priority" value="{{data.data.priority}}">
+						{{#each constants.priorities}}
+						    {{{selectOption ../data.data.priority}}}
+						{{/each}}
+					</select>
+                </div>
+            </section>
+            <br>
+
+            <section>
+            	<h3 class="text-bold">{{localize "bolme.npcs.headers.attributes"}}</h3>
+            	<hr>
+            	<div class="attribute-list">
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.attributes.strength.label"}}</label>
+            			<div class="field">
+            				<input name="data.strength" type="number" value="{{data.data.strength}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.attributes.agility.label"}}</label>
+            			<div class="field">
+            				<input name="data.agility" type="number" value="{{data.data.agility}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.attributes.mind.label"}}</label>
+            			<div class="field">
+            				<input name="data.mind" type="number" value="{{data.data.mind}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.attributes.appeal.label"}}</label>
+            			<div class="field">
+            				<input name="data.appeal" type="number" value="{{data.data.appeal}}">
+            			</div>
+            		</div>
+            	</div>
+            </section>
+
+            <section>
+            	<h3 class="text-bold">{{localize "bolme.npcs.headers.abilities"}}</h3>
+            	<hr>
+            	<div class="abilities-list">
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.npc.initiative.label"}}</label>
+            			<div class="field">
+            				<input name="data.initiative" type="number" value="{{data.data.initiative}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.npc.melee.label"}}</label>
+            			<div class="field">
+            				<input name="data.melee" type="number" value="{{data.data.melee}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.npc.ranged.label"}}</label>
+            			<div class="field">
+            				<input name="data.ranged" type="number" value="{{data.data.ranged}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.npc.defence.label"}}</label>
+            			<div class="field">
+            				<input name="data.defence" type="number" value="{{data.data.defence}}">
+            			</div>
+            		</div>
+
+            		<div class="attribute-list-row field">
+        				<label>{{localize "bolme.fields.npc.lifeblood.label"}}</label>
+            			<div class="field">
+            				<input name="data.lifeblood.max" type="number" value="{{data.data.lifeblood.max}}">
+            				<input name="data.lifeblood.value" type="hidden" value="{{data.data.lifeblood.value}}">
+            			</div>
+            		</div>
+            	</div>
+            </section>
+
+            <section>
+            	<h3 class="text-bold">{{localize "bolme.npcs.headers.other"}}</h3>
+            	<hr>
+
+        		<div class="attribute-list-row field">
+    				<label>{{localize "bolme.fields.npc.arcanePoints.label"}}</label>
+        			<div class="field">
+        				<input name="data.arcanePoints.max" type="number" value="{{data.data.arcanePoints.max}}">
+        				<input name="data.arcanePoints.value" type="hidden" value="{{data.data.arcanePoints.value}}">
+        			</div>
+        		</div>
+
+        		<div class="attribute-list-row field">
+    				<label>{{localize "bolme.fields.npc.fatePoints.label"}}</label>
+        			<div class="field">
+        				<input name="data.fatePoints.max" type="number" value="{{data.data.fatePoints.max}}">
+        				<input name="data.fatePoints.value" type="hidden" value="{{data.data.fatePoints.value}}">
+        			</div>
+        		</div>
+
+        		<div class="attribute-list-row field">
+    				<label>{{localize "bolme.fields.npc.villainPoints.label"}}</label>
+        			<div class="field">
+        				<input name="data.villainPoints.max" type="number" value="{{data.data.villainPoints.max}}">
+        				<input name="data.villainPoints.value" type="hidden" value="{{data.data.villainPoints.value}}">
+        			</div>
+        		</div>
+            </section>
+		</section>
+
+		<section>
+			<div class="field">
+				<label>{{localize "bolme.fields.name.label"}}</label>
+				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{actor.name}}">
+			</div>
+
+			<section class="sheet-tabs">
+				<center>
+					<ul>
+						<li class="tab-selector {{tabActiveCheck 'front_page' 'selected' ''}}" data-id="front_page">{{localize "bolme.tabs.frontPage"}}</li>
+						<li><i class="fas fa-grip-lines-vertical tab-separator"></i></li>
+						<li class="tab-selector {{tabActiveCheck 'magic_page' 'selected' ''}}" data-id="magic_page">{{localize "bolme.tabs.magic"}}</li>
+					</ul>
+				</center>
+			</section>
+
+            <section class="tab-body {{tabActiveCheck 'front_page' '' 'hidden'}}" id="front_page">
+				<div class="npc-weapons">
+					{{> "systems/bolme/templates/partials/weapons-list.html" data}}
+				</div>
+				<br>
+
+				<div class="npc-armour">
+					{{> "systems/bolme/templates/partials/armour-list.html" data}}
+				</div>
+				<br>
+
+				<div class="npc-careers">
+					{{> "systems/bolme/templates/partials/careers-list.html" data}}
+				</div>
+				<br>
+
+				<div class="npc-traits">
+					{{> "systems/bolme/templates/partials/traits-list.html" data}}
+				</div>
+				<br>
+
+	            <div class="field">
+	                <label class="label" for="data.description">{{localize "bolme.fields.beast.description.label"}}</label>
+	                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+	            </div>
+            </section>
+
+	        <section class="tab-body {{tabActiveCheck 'magic_page' '' 'hidden'}}" id="magic_page">
+				<center class="header-field">
+					<div class="field horizontal-field">
+						<label class="label">{{localize "bolme.fields.character.arcane.header" maximum=data.data.arcanePoints.max}}</label>
+						<input name="data.arcanePoints.current" readonly type="number" value="{{data.data.arcanePoints.value}}">
+					</div>
+				</center>
+			{{#if data.spells.hasCantrip}}
+			    <h2>{{localize "bolme.spells.magnitudes.titles.cantrip"}}</h2>
+			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.cantrip}}
+			    <br>
+			{{/if}}
+
+			{{#if data.spells.hasFirst}}
+			    <h2>{{localize "bolme.spells.magnitudes.titles.first"}}</h2>
+			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.first}}
+			    <br>
+			{{/if}}
+
+			{{#if data.spells.hasSecond}}
+			    <h2>{{localize "bolme.spells.magnitudes.titles.second"}}</h2>
+			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.second}}
+			    <br>
+			{{/if}}
+
+			{{#if data.spells.hasThird}}
+			    <h2>{{localize "bolme.spells.magnitudes.titles.third"}}</h2>
+			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.third}}
+			{{/if}}
+
+	        </section>
+		</section>
+	</div>
+</form>
