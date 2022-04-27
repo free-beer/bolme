@@ -1,6 +1,8 @@
 import ArmourSheet from "./sheets/armour_sheet.js";
 import BoLMEBeastSheet from "./sheets/beast_sheet.js";
 import BoLMECharacterSheet from "./sheets/character_sheet.js";
+import {BoLMECombat} from "./combat.js";
+import BoLMECombatant from "./combatant.js";
 import BoLMENPCSheet from "./sheets/npc_sheet.js";
 import CareerSheet from "./sheets/career_sheet.js";
 import ConsumableSheet from "./sheets/consumable_sheet.js";
@@ -19,6 +21,7 @@ import {traitAddedToCharacter} from "./traits.js";
 async function preloadHandlebarsTemplates() {
     const paths = ["systems/bolme/templates/chat/attack-roll.html",
                    "systems/bolme/templates/chat/craft-roll.html",
+                   "systems/bolme/templates/chat/initiative-roll.html",
                    "systems/bolme/templates/partials/armour-list.html",
                    "systems/bolme/templates/partials/careers-list.html",
                    "systems/bolme/templates/partials/dice-result.html",
@@ -31,6 +34,9 @@ async function preloadHandlebarsTemplates() {
 Hooks.once("init", () => {
     console.log("Initializing the Barbarian Of Lemuria (Mythic Edition) system.");
     preloadHandlebarsTemplates();
+
+    CONFIG.Combat.documentClass    = BoLMECombat;
+    CONFIG.Combatant.documentClass = BoLMECombatant;
 
     console.log("Registering module settings.");
     game.settings.register("bolme", "policeAdvancements", {config:  true,

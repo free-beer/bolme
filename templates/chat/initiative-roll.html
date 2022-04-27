@@ -1,0 +1,42 @@
+<div class="initiative-roll-roll bolme-chat-message">
+	<div class=" chat-message-header text-center">
+		<span>{{localize "bolme.chat.initiativeRoll.header"}} ({{actorName}})</span>
+		<br>
+		<span>2d6 + {{localizeAttribute "mind"}} + {{localizeCombatAbility "initiative"}}</span>
+	</div>
+
+	<div class="chat-message-roll-result">
+		{{rollTotal}} - {{{rollResultLevel resultLevel}}}
+	</div>
+
+    <div class="initiative-options">
+	{{#if isSnakeEyes}}
+	    <button class="initiative--buton" type="button">{{localize "bolme.chat.initiativeRoll.buttons.downgrade"}}</button>
+        <br>
+	{{/if}}
+
+	{{#if isFailure}}
+	    <button class="initiative--buton" type="button">{{localize "bolme.chat.initiativeRoll.buttons.reroll"}}</button>
+        <br>
+	{{/if}}
+
+	{{#if isSuccessOrMighty}}
+	    <button class="initiative--buton" type="button">{{localize "bolme.chat.initiativeRoll.buttons.upgrade"}}</button>
+        <br>
+	{{/if}}
+    </div>
+
+    <div class="expander">
+    	<div class="expander-header">{{localize "bolme.rolls.headers.details"}}</div>
+    	<div class="hidden">
+    		<div class="text-center">{{formula}}</div>
+		    <div class="dice-row">
+		{{#each dice}}
+		    {{#each results}}
+			    {{> "systems/bolme/templates/partials/dice-result.html" .}}
+		    {{/each}}
+		{{/each}}
+		    </div>
+    	</div>
+    </div>
+</div>

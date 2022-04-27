@@ -14,7 +14,7 @@
 			},
 			"mind": 0,
 			"move": "",
-			"priority": "",
+			"priority": "rabble",
 			"protection": {
 				"fixed": 1,
 				"roll": "d6-3"
@@ -105,12 +105,12 @@
 			},
 			"melee": 0,
 			"mind": 0,
+			"priority": "rabble",
 			"ranged": 0,
 			"strength": 0,
 			"tabs": {
 				"selected": "front_page"
 			},
-			"type": "rabble",
 			"villainPoints": {
 				"max": 0,
 				"value": 0

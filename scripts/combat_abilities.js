@@ -128,6 +128,7 @@ function incrementCombatAbility(actor, ability) {
 	}
 }
 
-export {decrementCombatAbility,
+export {calculateCombatAbilityValue,
+	    decrementCombatAbility,
 	    expandCombatAbility,
 	    incrementCombatAbility};

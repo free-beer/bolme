@@ -156,7 +156,7 @@ function generateTaskRollFormula(actorId, attribute, careerRank, bonusDice, pena
  * evaluating dice rolls directly.
  */
 function rollIt(roll) {
-    return(roll.evaluate().then((result) => {
+    return(roll.evaluate({async: true}).then((result) => {
         if(game.dice3d) {
             game.dice3d.showForRoll(result);
         }

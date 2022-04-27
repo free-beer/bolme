@@ -116,6 +116,14 @@
 			"craftRoll": {
 				"header": "Craft Roll"
 			},
+			"initiativeRoll": {
+				"buttons": {
+					"downgrade": "Downgrade (+1 Hero Point)",
+					"reroll": "Reroll (-1 Hero Point)",
+					"upgrade": "Upgrade (-1 Hero Point)"
+				},
+				"header": "Initiative Roll"
+			},
 			"spellCastRoll": {
 				"header": "Spell Casting Roll",
 				"subheader": "{name} casts {spell}"
@@ -218,6 +226,18 @@
 				"minedOut": "This career is already at it's lowest possible rank.",
 				"maxStart": "Starting careers may not have a rank higher than 3.",
 				"unaffordable": "You do not have sufficient starting or advancement points to pay for this career."
+			},
+			"combat": {
+				"actor": {
+					"noHeroPoints": "You do not possess a hero point to pay for this upgrade.",
+					"notCombatant": "This character is not part of the combat an cannot have their initiative upgraded.",
+				    "notFound": "Failed to locate the actor associated with the request."
+				},
+				"alreadyStarted": "The combat has already been started, your initiative cannot be changed.",
+				"notFound": "There does not appear to be an active combat that the change can be made to.",
+				"upgrade": {
+					"impossible": "Change to initiative result not possible. Please report this as an error as it should not happen."
+				}
 			},
 			"combatAbilities": {
 				"decrement": {
