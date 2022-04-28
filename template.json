@@ -79,7 +79,8 @@
 			"points": {"advancement": 0,
 			           "starting": {"attributes": 4,
 			                        "careers":    8,
-			                        "combat":     4}},
+			                        "combat":     4,
+			                        "traits":     1}},
 			"tabs": {
 				"selected": "front_page"
 			}
