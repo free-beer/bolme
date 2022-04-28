@@ -672,6 +672,6 @@ input:readonly {
 	overflow: auto;
 }
 
-.window-content {
-	padding:  0 !important;
+.bolme-character-sheet {
+	margin:  -8px !important;
 }

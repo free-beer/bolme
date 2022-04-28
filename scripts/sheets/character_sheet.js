@@ -28,7 +28,7 @@ import {traitRemovedFromCharacter} from "../traits.js";
 export default class BoLMECharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return(mergeObject(super.defaultOptions,
-                           {classes:  ["bolme", "sheet", "character-sheet"],
+                           {classes:  ["bolme", "bolme-sheet", "bolme-character-sheet", "sheet"],
                             height:   900,
                             template: "systems/bolme/templates/sheets/character-sheet.html",
                             width:    1100}));
