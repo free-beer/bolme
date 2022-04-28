@@ -1,6 +1,7 @@
 import ArmourSheet from "./sheets/armour_sheet.js";
 import BoLMEBeastSheet from "./sheets/beast_sheet.js";
 import BoLMECharacterSheet from "./sheets/character_sheet.js";
+import {applyInitiativeRollEventHandlers} from "./chat.js";
 import {BoLMECombat} from "./combat.js";
 import BoLMECombatant from "./combatant.js";
 import BoLMENPCSheet from "./sheets/npc_sheet.js";
@@ -220,8 +221,9 @@ Hooks.once("init", () => {
 
         if(messageRoot) {
             applyCommonChatEventHandlers(messageRoot);
-            if(messageRoot.classList.contains("attack-roll")) {
-                console.log("Attack roll chat message logged.");
+            if(messageRoot.classList.contains("initiative-roll")) {
+                console.log("Initiative roll chat message logged.");
+                applyInitiativeRollEventHandlers(messageRoot);
             } else {
                 console.log("Unrecognised chat message logged.");
             }
@@ -230,3 +232,4 @@ Hooks.once("init", () => {
         }
     });
 });
+

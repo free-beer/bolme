@@ -229,11 +229,17 @@
 			},
 			"combat": {
 				"actor": {
-					"noHeroPoints": "You do not possess a hero point to pay for this upgrade.",
+					"noHeroPoints": "You do not possess a hero point to pay for this feature.",
 					"notCombatant": "This character is not part of the combat an cannot have their initiative upgraded.",
 				    "notFound": "Failed to locate the actor associated with the request."
 				},
 				"alreadyStarted": "The combat has already been started, your initiative cannot be changed.",
+				"combat": {
+					"notFound": "Unable to locate the combat that this relates to."
+				},
+				"initiative": {
+					"notPermitted": "The initiative settings for this combat cannot be changed at this time."
+				},
 				"notFound": "There does not appear to be an active combat that the change can be made to.",
 				"upgrade": {
 					"impossible": "Change to initiative result not possible. Please report this as an error as it should not happen."

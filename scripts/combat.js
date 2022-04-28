@@ -48,7 +48,7 @@ function isInitiativeChangeAllowed(actor, result, type) {
 
 		if(combat) {
 			if(!combat.started) {
-				if(actor.data.data.heroPoints > 0) {
+				if(type === "downgrade" || actor.data.data.heroPoints > 0) {
 					let combatant = combat.getCombatantByActor(actor.id);
 
 					if(combatant) {
@@ -59,7 +59,8 @@ function isInitiativeChangeAllowed(actor, result, type) {
 								ui.notifications.error(game.i18n.localize("bolme.errors.combat.update.impossible"));
 							}
 						} else if(type === "downgrade") {
-							if(result === failure) {
+							console.log("RESULT:", result);
+							if(result === "failure") {
 								allowed = true;
 							} else {
 								ui.notifications.error(game.i18n.localize("bolme.errors.combat.update.impossible"));
@@ -208,17 +209,22 @@ class BoLMECombat extends Combat {
 		}
 	}
 
+	async rollNPC(options) {
+		let ids = Array.from(this.combatants).filter((c) => c.actor.type !== "Character").map((c) => c.id);
+		this.rollInitiative(ids, options);
+	}
+
 	setupTurns() {
         return(this.turns = this._orderedCombatants);
 	}
 
 	get _orderedCombatants() {
         return(Array.from(this.combatants).sort((lhs, rhs) => {
-                	if(lhs.initiative && rhs.initiative) {
+                	if(lhs.initiative >= 0 && rhs.initiative >= 0) {
                 		return(lhs.initiative - rhs.initiative);
-                	} else if(lhs.initiative) {
+                	} else if(lhs.initiative >= 0) {
                 		return(-1);
-                	} else if(rhs.initiative) {
+                	} else if(rhs.initiative >= 0) {
                 		return(1);
                 	} else {
                 		return(lhs.name.localeCompare(rhs.name) * -1);
@@ -238,6 +244,7 @@ class BoLMECombat extends Combat {
 
 export {BoLMECombat,
 	    generateCharacterInitiativeRoll,
+	    isInitiativeChangeAllowed,
 	    onRerollInitiativeClicked,
 	    onDowngradeInitiativeClicked,
         onUpgradeInitiativeClicked,

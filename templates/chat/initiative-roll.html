@@ -1,4 +1,4 @@
-<div class="initiative-roll-roll bolme-chat-message">
+<div class="initiative-roll bolme-chat-message" data-actor="{{actorId}}" data-combat="{{combatId}}" data-combatant="{{combatantId}}">
 	<div class=" chat-message-header text-center">
 		<span>{{localize "bolme.chat.initiativeRoll.header"}} ({{actorName}})</span>
 		<br>
@@ -9,22 +9,24 @@
 		{{rollTotal}} - {{{rollResultLevel resultLevel}}}
 	</div>
 
+{{#if showOptions}}
     <div class="initiative-options">
 	{{#if isSnakeEyes}}
-	    <button class="initiative--buton" type="button">{{localize "bolme.chat.initiativeRoll.buttons.downgrade"}}</button>
+	    <button class="initiative-button downgrade-button" data-result="{{resultLevel}}" type="button">{{localize "bolme.chat.initiativeRoll.buttons.downgrade"}}</button>
         <br>
 	{{/if}}
 
 	{{#if isFailure}}
-	    <button class="initiative--buton" type="button">{{localize "bolme.chat.initiativeRoll.buttons.reroll"}}</button>
+	    <button class="initiative-button reroll-button" data-combat="{{combatId}}" data-combatant="{{combatantId}}" data-result="{{resultLevel}}" type="button">{{localize "bolme.chat.initiativeRoll.buttons.reroll"}}</button>
         <br>
 	{{/if}}
 
 	{{#if isSuccessOrMighty}}
-	    <button class="initiative--buton" type="button">{{localize "bolme.chat.initiativeRoll.buttons.upgrade"}}</button>
+	    <button class="initiative-button upgrade-button" data-result="{{resultLevel}}" type="button">{{localize "bolme.chat.initiativeRoll.buttons.upgrade"}}</button>
         <br>
 	{{/if}}
     </div>
+{{/if}}
 
     <div class="expander">
     	<div class="expander-header">{{localize "bolme.rolls.headers.details"}}</div>
