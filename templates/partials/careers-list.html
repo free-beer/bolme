@@ -1,13 +1,14 @@
 <h3 class="section-header">{{localize "bolme.character.titles.careers"}}</h3>
 <div class="career-list">
 {{#each careers}}
+{{log ../.}}
     <div class="career-row">
     	<div class="career-name">{{name}}</div>
 	    <div>
 	    	<i class="career-icon career-decrementer fas fa-minus" data-id="{{id}}"></i>
 	    	<input class="characteristic" name="rank" readonly type="number" value="{{rank}}">
 	    	<i class="career-icon career-incrementer fas fa-plus" data-id="{{id}}"></i>	
-	    	<i class="career-icon fas fa-dice task-roll" data-actor="{{../actor.id}}" data-career="{{id}}"></i>
+	    	<i class="career-icon fas fa-dice task-roll" data-actor="{{../_id}}" data-career="{{id}}"></i>
 	    	<i class="career-deleter career-icon fas fa-times-circle" data-id="{{id}}"></i>
 	    </div>
     </div>
