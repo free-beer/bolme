@@ -95,6 +95,24 @@
 	padding: 5px;
 }
 
+.bolme-character-sheet {
+	margin:  -8px !important;
+}
+
+.bolme-character-sheet .career-row .career-name {
+	max-width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.bolme-character-sheet .language-row .language-name {
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .bolme-form {
 	margin: 10px !important;
 }
@@ -131,12 +149,12 @@
 	grid-template-columns: 100px auto;
 }
 
-.character-language-name {
+.language-name {
 	cursor: pointer;
 	font-size: 1.2em;
 }
 
-.character-language-row {
+.language-row {
 	display: grid;
 	grid-gap: 5px 15px;
 	grid-template-columns: auto 60px;
@@ -670,8 +688,4 @@ input:readonly {
 	min-height: 50px;
 	max-height: 150px;
 	overflow: auto;
-}
-
-.bolme-character-sheet {
-	margin:  -8px !important;
 }

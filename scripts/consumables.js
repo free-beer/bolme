@@ -5,31 +5,31 @@
  * notification message.
  */
 function decrementConsumableItem(event) {
-	let node  = event.currentTarget;
-	let actor = game.actors.find((a) => a.id === node.dataset.actor);
+    let node  = event.currentTarget;
+    let actor = game.actors.find((a) => a.id === node.dataset.actor);
 
-	if(actor) {
-		let consumable = actor.items.find((i) => i.id === node.dataset.item);
+    if(actor) {
+        let consumable = actor.items.find((i) => i.id === node.dataset.item);
 
-		if(consumable) {
-			if(consumable.data.data.uses.value > 0) {
-				let uses = consumable.data.data.uses.value - 1;
+        if(consumable) {
+            if(consumable.data.data.uses.value > 0) {
+                let uses = consumable.data.data.uses.value - 1;
 
-				if(uses > 0 || consumable.data.data.rechargable) {
-				    consumable.update({data: {uses: {value: uses}}});
-				} else {
-					ui.notifications.info(game.i18n.format("bolme.notices.consumables.consumed", {name: consumable.name}));
-					actor.deleteEmbeddedDocuments("Item", [consumable.id]);
-				}
-			} else {
-				ui.notifications.error(game.i18n.localize("bolme.errors.consumables.depleted"));
-			}
-		} else {
-			console.error(`Unable to locate item id '${node.dataset.item}' on actor id '${actor.id}' (${actor.name}).`);
-		}
-	} else {
-		console.error(`Unable to locate an actor with the id '${node.dataset.actor}'.`);
-	}
+                if(uses > 0 || consumable.data.data.rechargable) {
+                    consumable.update({data: {uses: {value: uses}}});
+                } else {
+                    ui.notifications.info(game.i18n.format("bolme.notices.consumables.consumed", {name: consumable.name}));
+                    actor.deleteEmbeddedDocuments("Item", [consumable.id]);
+                }
+            } else {
+                    ui.notifications.error(game.i18n.localize("bolme.errors.consumables.depleted"));
+            }
+        } else {
+            console.error(`Unable to locate item id '${node.dataset.item}' on actor id '${actor.id}' (${actor.name}).`);
+        }
+    } else {
+        console.error(`Unable to locate an actor with the id '${node.dataset.actor}'.`);
+    }
 }
 
 /**
@@ -39,24 +39,24 @@ function decrementConsumableItem(event) {
  * notification message.
  */
 function incrementConsumableItem(event) {
-	let node  = event.currentTarget;
-	let actor = game.actors.find((a) => a.id === node.dataset.actor);
+    let node  = event.currentTarget;
+    let actor = game.actors.find((a) => a.id === node.dataset.actor);
 
-	if(actor) {
-		let consumable = actor.items.find((i) => i.id === node.dataset.item);
+    if(actor) {
+        let consumable = actor.items.find((i) => i.id === node.dataset.item);
 
-		if(consumable) {
-			if(consumable.data.data.uses.value < consumable.data.data.uses.max) {
-				consumable.update({data: {uses: {value: consumable.data.data.uses.value + 1}}});
-			} else {
-				ui.notifications.error(game.i18n.localize("bolme.errors.consumables.maxedOut"));
-			}
-		} else {
-			console.error(`Unable to locate item id '${node.dataset.item}' on actor id '${actor.id}' (${actor.name}).`);
-		}
-	} else {
-		console.error(`Unable to locate an actor with the id '${node.dataset.actor}'.`);
-	}
+        if(consumable) {
+            if(consumable.data.data.uses.value < consumable.data.data.uses.max) {
+                    consumable.update({data: {uses: {value: consumable.data.data.uses.value + 1}}});
+            } else {
+                    ui.notifications.error(game.i18n.localize("bolme.errors.consumables.maxedOut"));
+            }
+        } else {
+            console.error(`Unable to locate item id '${node.dataset.item}' on actor id '${actor.id}' (${actor.name}).`);
+        }
+    } else {
+        console.error(`Unable to locate an actor with the id '${node.dataset.actor}'.`);
+    }
 }
 
 export {decrementConsumableItem,

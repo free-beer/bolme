@@ -73,7 +73,7 @@ function expandCombatAbility(character, ability) {
     output.decreaseRegain = Math.abs(output.value);
     output.increaseCost   = Math.abs(output.value + 2);
 
-    console.log(ability, "Expanded:", output);
+    // console.log(ability, "Expanded:", output);
 
 	return(output);
 }

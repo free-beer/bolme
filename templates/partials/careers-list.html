@@ -1,9 +1,8 @@
 <h3 class="section-header">{{localize "bolme.character.titles.careers"}}</h3>
 <div class="career-list">
 {{#each careers}}
-{{log ../.}}
     <div class="career-row">
-    	<div class="career-name">{{name}}</div>
+    	<div class="career-name" title="{{name}}">{{name}}</div>
 	    <div>
 	    	<i class="career-icon career-decrementer fas fa-minus" data-id="{{id}}"></i>
 	    	<input class="characteristic" name="rank" readonly type="number" value="{{rank}}">
