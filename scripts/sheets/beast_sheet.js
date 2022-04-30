@@ -22,6 +22,8 @@ export default class BoLMEBeastSheet extends ActorSheet {
         context.constants = {priorities: constants.beasts.priorities,
                              sizes: constants.beasts.sizes};
         context.data.traits = this.actor.items.filter((i) => i.type === "trait");
+        context.data.boons  = context.data.traits.filter((t) => t.data.data.type === "boon");
+        context.data.flaws  = context.data.traits.filter((t) => t.data.data.type === "flaw");
 
         return(context);
     }
@@ -34,5 +36,6 @@ export default class BoLMEBeastSheet extends ActorSheet {
         lifebloodFields[0].addEventListener("input", () => lifebloodFields[1].value = lifebloodFields[0].value);
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+        html.find(".trait-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
     }
 }
