@@ -20,7 +20,8 @@ import {applyCommonChatEventHandlers} from "./chat.js";
 import {traitAddedToCharacter} from "./traits.js";
 
 async function preloadHandlebarsTemplates() {
-    const paths = ["systems/bolme/templates/chat/attack-roll.html",
+    const paths = ["systems/bolme/templates/chat/armour-roll.html",
+                   "systems/bolme/templates/chat/attack-roll.html",
                    "systems/bolme/templates/chat/craft-roll.html",
                    "systems/bolme/templates/chat/initiative-roll.html",
                    "systems/bolme/templates/partials/armour-list.html",

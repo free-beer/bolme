@@ -1,16 +1,11 @@
-<div class="task-roll bolme-chat-message">
+<div class="armour-roll bolme-chat-message">
 	<div class=" chat-message-header text-center">
-		<span>{{localize "bolme.chat.taskRoll.header"}} ({{actorName}})</span>
+		<span>{{actorName}} - {{localize "bolme.chat.armourRoll.header"}}</span>
 		<br>
-	{{#if careerUsed}}
-	    <span>{{localizeAttribute attribute}} + {{careerName}}</span>
-	{{else}}
-		<span>{{localizeAttribute attribute}}</span>
-	{{/if}}
 	</div>
 
 	<div class="chat-message-roll-result">
-		{{rollTotal}} - {{{rollResultLevel resultLevel}}}
+		{{rollTotal}}
 	</div>
 
     <div class="expander">

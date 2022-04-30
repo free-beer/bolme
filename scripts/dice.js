@@ -12,7 +12,7 @@ const BONUS_DIE_PATTERN = /(?<!\d)[dD]6[hH]/g;
  * A regular expression that is used to pick out dice expressions that do not
  * explicitly set a quantity of dice (e.g. 'd6').
  */
-const DIE_WITH_NO_QUANTITY_PATTERN = /(?<!\d)[dD]/g;
+const DIE_WITH_NO_QUANTITY_PATTERN = /(?<!\d)[dD]6/g;
 
 /**
  * A regular expression that is used to pick out the BoL penalty die pattern

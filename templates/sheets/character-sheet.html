@@ -123,7 +123,9 @@
 			<div>
 				<div class="character-sheet-combat-equipment">
 					{{> "systems/bolme/templates/partials/weapons-list.html" data}}
+					<br>
 		        	{{> "systems/bolme/templates/partials/armour-list.html" data}}
+					<br>
 				</div>
 
 				<div class="character-sheet-traits">
@@ -134,7 +136,7 @@
 			<div class="character-sheet-body-col-3">
 	            <center>
 					<div>
-						<img data-edit="img" src="{{actor.img}}" title="{{actor.name}}"/>
+						<img class="actor-portrait" data-edit="img" src="{{actor.img}}" title="{{actor.name}}"/>
 					</div>
 					<hr><hr>
 				</center>

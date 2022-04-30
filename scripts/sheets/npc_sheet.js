@@ -1,3 +1,4 @@
+import ArmourRollDialog from "../dialogs/armour_roll_dialog.js";
 import {decrementCareerRank,
         deleteCareer,
         generateCareerList,
@@ -28,6 +29,7 @@ export default class BoLMENPCSheet extends ActorSheet {
         context.constants = {priorities: constants.npcs.priorities};
         context.data.traits = this.actor.items.filter((i) => i.type === "trait");
 
+        context.data.actorId = this.actor.id;
         context.data.armour  = [];
         context.data.boons   = [];
         context.data.careers = generateCareerList(context.actor, true);
@@ -99,6 +101,7 @@ export default class BoLMENPCSheet extends ActorSheet {
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id, true));
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+        html.find(".roll-armour-icon").click((e) => ArmourRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
         html.find(".tab-selector").click((e) => onTabSelected(e, html[0], this.actor));
         html.find(".trait-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));

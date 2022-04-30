@@ -1,0 +1,19 @@
+<div class="armour-roll-dialog bolme-dialog">
+    <hr>
+    <div class="armour-roll-dialog-title">{{name}}</div>
+    <hr>
+
+    <form class="armour-roll-dialog-form" autocomplete="off">
+        <label class="label">{{localize "bolme.dialogs.armourRoll.titles.items"}}</label>
+        <div class="armour-item-list">
+        {{#each armour}}
+            <div class="armour-item-row">
+                <div>
+                    <input checked class="armour-item-checkbox" data-protection="{{data.data.protection}}" type="checkbox">
+                </div>
+                <div class="armour-item-name">{{name}}</div>
+            </div>
+        {{/each}}
+        </div>
+    </form>
+</div>

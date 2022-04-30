@@ -12,6 +12,12 @@
 			},
 			"medium": {
 			    "label": "Medium Armour"
+			},
+			"shield": {
+				"label": "Shield"
+			},
+			"titles": {
+				"penalties": "Penalties"
 			}
 		},
 		"attributes": {
@@ -106,6 +112,9 @@
 			}
 		},
 		"chat": {
+			"armourRoll": {
+				"header": "Armour Roll"
+			},
 			"attackRoll": {
 				"actor": "Who",
 				"formula": "Roll Formula",
@@ -182,6 +191,11 @@
 			}
 		},
 		"dialogs": {
+			"armourRoll": {
+				"titles": {
+					"items": "Available Items"
+				}
+			},
 			"headers": {
 				"taskRoll": {
 					"attributeBased": "For Attribute",
@@ -193,6 +207,7 @@
 			},
 			"titles": {
 				"attack": "Attack Roll",
+				"armourRoll": "Armour Protection Roll",
 				"info": "Information",
 				"noWeapon": "No Weapon Specified",
 				"spellCast": "Cast Spell",
@@ -211,6 +226,9 @@
 			"heroic": "Heroic (-8)"
 		},
 		"errors": {
+			"armourRoll": {
+				"noArmour": "You have no armour items to make a roll for."
+			},
 			"attributes": {
 				"decrement": {
 					"forbidden": "Attributes may not be reduced below {minimum}."
@@ -708,6 +726,10 @@
 			}
 		},
 		"shields": {
+			"descriptions": {
+				"small": "Grants a -1 to a single <em>Attack Roll</em> from an attacker you are aware of.",
+				"large": "Grants a -1 to all <em>Attack Rolls</em> from attackers you are aware of."
+			},
 			"sizes": {
 				"large": {
 				    "label": "Large"

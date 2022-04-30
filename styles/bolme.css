@@ -1,14 +1,41 @@
+.actor-portrait {
+	background-color: #dedede;
+}
+
+.armour-item-list {
+	max-height: 300px;
+	overflow: auto;
+}
+
+.armour-item-name {
+	line-height: 30px;
+	vertical-align: middle;
+}
+
+.armour-item-row {
+	display: grid;
+	font-size: 1.1em;
+	grid-gap: 5px;
+	grid-template-columns: 30px auto;
+}
+
 .armour-list {
 	min-height: 50px;
 	max-height: 150px;
 	overflow: auto;
 }
 
+.armour-roll-dialog-title {
+	font-size: 1.2em;
+	font-weight: bold;
+	text-align: center;
+}
+
 .armour-row {
 	display: grid;
 	font-size: 1.1em;
 	grid-gap: 5px 15px;
-	grid-template-columns: auto 50px 50px 150px 60px;
+	grid-template-columns: auto 125px 75px 60px;
 }
 
 .armour-sheet-body {
@@ -93,10 +120,6 @@
 	grid-template-columns: 200px auto;
 	grid-gap: 5px 10px;
 	padding: 5px;
-}
-
-.bolme-character-sheet {
-	margin:  -8px !important;
 }
 
 .bolme-character-sheet .career-row .career-name {
@@ -538,6 +561,12 @@ input:readonly {
 	padding: 5px;
 }
 
+.section-header-with-icons {
+	display: grid;
+	grid-template-columns: auto 50px;
+	grid-gap: 5px 10px;
+}
+
 .sheet-tabs ul {
 	border-bottom: groove 3px;
 	font-size: 1.5em;
@@ -688,4 +717,8 @@ input:readonly {
 	min-height: 50px;
 	max-height: 150px;
 	overflow: auto;
+}
+
+.bolme-character-sheet {
+	margin:  -8px !important;
 }

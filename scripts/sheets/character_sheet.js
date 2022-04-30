@@ -1,3 +1,4 @@
+import ArmourRollDialog from "../dialogs/armour_roll_dialog.js";
 import AttackDialog from "../dialogs/attack_dialog.js";
 import {calculateSpentAdvancements} from "../advancements.js";
 import {decrementAttribute,
@@ -56,6 +57,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
         context.data.data.lifeblood.max = context.data.data.strength.value + 10;
 
+        context.data.actorId     = this.actor.id;
         context.data.armour      = [];
         context.data.boons       = [];
         context.data.consumables = [];
@@ -72,7 +74,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         context.actor.items.forEach((item) => {
             switch(item.type) {
                 case "armour":
-                    context.data.armour.push(item);
+                    context.data.armour.push(this._generateArmourData(item));
                     break;
 
                 case "crafting recipe":
@@ -96,6 +98,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
                         context.data.hasShield = true;
                     }
                     context.data.shields.push(item);
+                    context.data.armour.push(this._generateArmourData(item));
                     break;
 
                 case "spell":
@@ -149,6 +152,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
         html.find(".recipe-deleter").click((e) => deleteCraftingRecipe(e, this.actor));
+        html.find(".roll-armour-icon").click((e) => ArmourRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".roll-crafting").click((e) => rollForCraftedItem(this.actor, e.currentTarget.dataset.id));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
         html.find(".tab-selector").click((e) => onTabSelected(e, html[0], this.actor));
@@ -198,6 +202,50 @@ export default class BoLMECharacterSheet extends ActorSheet {
         return(output);
     }
 
+    _generateArmourData(armour) {
+        return({description: (armour.type === "armour" ? this._generateArmourDescription(armour) : this._generateShieldDescription(armour)),
+                id:          armour.id,
+                kind:        this._generateArmourKind(armour),
+                name:        armour.name,
+                protection:  armour.data.data.protection,
+                type:        armour.type});
+    }
+
+    _generateArmourDescription(armour) {
+        let data        = armour.data.data;
+        let description = data.description.trim();
+        let penalties   = (data.penalties || "").trim();
+        let text        = "";
+
+        if(description !== "") {
+            text = `${data.description}`;
+        }
+
+        if(penalties !== "") {
+            if(description !== "") {
+                text = `${text}<br>`;
+            }
+            text = `${text}<strong>${game.i18n.localize("bolme.armour.titles.penalties")}</strong><br>${data.penalties}`;
+        }
+
+        return(text);
+    }
+
+    _generateArmourKind(armour) {
+        let data = armour.data.data;
+
+        if(armour.type === "armour") {
+            return(game.i18n.localize(`bolme.armour.${data.type}.label`));
+        } else {
+            let size = game.i18n.localize(`bolme.shields.sizes.${data.size}.label`);
+            return(`${game.i18n.localize("bolme.armour.shield.label")} (${size})`);
+        }
+    }
+
+    _generateShieldDescription(shield) {
+        return(game.i18n.localize(`bolme.shields.descriptions.${shield.data.data.size}`));
+    }
+
     /**@override */
     _onCreate() {
         super._onCreate();
@@ -206,11 +254,6 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
     /** @override */
     _onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId) {
-        console.log("embeddedName:", embeddedName);
-        console.log("documents:", documents);
-        console.log("result:", result);
-        console.log("options:", options);
-        console.log("userId:", userId);
         super._onUpdateEmbeddedDocuments(embeddedName, documents, result, options, userId);
     }
 

@@ -1,28 +1,21 @@
-<h3 class="section-header">{{localize "bolme.character.titles.armour"}}</h3>
+<h3 class="section-header">
+	<div class="section-header-with-icons">
+		<div>{{localize "bolme.character.titles.armour"}}</div>
+		<div>
+			<i class="item-icon fas fa-dice roll-armour-icon" data-actor="{{actorId}}"></i>
+		</div>
+	</div>
+</h3>
 <div class="armour-list">
 {{#each armour}}
     <div class="armour-row">
     	<div>{{name}}</div>
-    	<div><center>{{data.data.protection}}</center></div>
-    	<div><center>{{data.data.arcaneCost}}</center></div>
-    	<div><center>{{data.data.penalties}}</center></div>
+    	<div>{{kind}}</div>
+    	<div><center>{{protection}}</center></div>
 		<div>
-			<i class="item-icon fas fa-dice" data-damage="{{data.data.damage}}" data-type="{{data.data.type}}"></i>
+			<i class="info-icon fas fa-info-circle" data-description="{{description}}"></i>
 			<i class="item-icon item-deleter fas fa-times-circle" data-id="{{id}}"></i>
 		</div>
     </div>
 {{/each}}
-
-{{#if hasShield}}
-<h4 class="section-header">Shields</h4>
-{{#each shields}}
-    <div class="armour-shield-row">
-    	<div>{{name}}</div>
-    	<div>{{localizeShieldSize data.data.size}}</div>
-    	<div>
-			<i class="item-icon item-deleter fas fa-times-circle" data-id="{{id}}"></i>	        	    		
-    	</div>
-    </div>
-{{/each}}
-{{/if}}
 </div>
