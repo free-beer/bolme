@@ -61,15 +61,19 @@ function generateAttackRollFormula(actorId, attribute, ability, bonusDice, penal
     let formula = generateBaseSkillRollFormula(bonusDice, penaltyDice);
 
     if(actor) {
-        let expandedAbility   = expandCombatAbility(actor.data, ability);
-        let expandedAttribute = expandAttribute(actor.data, attribute);
+        let modifier = 0;
 
-        // Apply attribute, combat ability, career and range modifications.
-        let modifier = (expandedAttribute.value +
-                        expandedAbility.value +
-                        parseInt(`${rangeModifier}`)) -
-                        parseInt(`${defence}`);
+        if(actor.type === "Character") {
+            let expandedAbility   = expandCombatAbility(actor.data, ability);
+            let expandedAttribute = expandAttribute(actor.data, attribute);
 
+            // Apply attribute, combat ability, career and range modifications.
+            modifier = expandedAttribute.value + expandedAbility.value;
+        } else {
+            modifier = actor.data.data[attribute] + actor.data.data[ability]
+        }
+
+        modifier = (modifier + parseInt(`${rangeModifier}`)) - parseInt(`${defence}`)
         if(modifier !== 0) {
             if(modifier > 0) {
                 formula = `${formula} + ${modifier}`;
@@ -132,10 +136,16 @@ function generateTaskRollFormula(actorId, attribute, careerRank, bonusDice, pena
     let formula = generateBaseSkillRollFormula(bonusDice, penaltyDice);
 
     if(actor) {
-        let expandedAttribute = expandAttribute(actor.data, attribute);
+        let modifier = 0;
 
-        // Apply attribute, combat ability, career and range modifications.
-        let modifier = expandedAttribute.value + careerRank;
+        if(actor.type === "Character") {
+            let expandedAttribute = expandAttribute(actor.data, attribute);
+
+            // Apply attribute, combat ability, career and range modifications.
+            modifier = expandedAttribute.value + careerRank;
+        } else {
+            modifier = actor.data.data[attribute] + careerRank;
+        }
 
         if(modifier !== 0) {
             if(modifier > 0) {

@@ -1,4 +1,5 @@
 import ArmourRollDialog from "../dialogs/armour_roll_dialog.js";
+import AttackDialog from "../dialogs/attack_dialog.js";
 import {decrementCareerRank,
         deleteCareer,
         generateCareerList,
@@ -6,6 +7,7 @@ import {decrementCareerRank,
 import constants from "../constants.js";
 import InfoDialog from "../dialogs/info_dialog.js";
 import SpellCastDialog from "../dialogs/spell_cast_dialog.js";
+import TaskRollDialog from "../dialogs/task_roll_dialog.js";
 import {onTabSelected} from "../tabs.js";
 
 export default class BoLMENPCSheet extends ActorSheet {
@@ -96,6 +98,7 @@ export default class BoLMENPCSheet extends ActorSheet {
         lifebloodFields[0].addEventListener("input", () => lifebloodFields[1].value = lifebloodFields[0].value);
         villainFields[0].addEventListener("input", () => villainFields[1].value = villainFields[0].value);
 
+        html.find(".attack-icon").click((e) => this._showAttackDialog(e));
         html.find(".career-decrementer").click((e) => decrementCareerRank(this.actor, e.currentTarget.dataset.id, true));
         html.find(".career-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id, true));
@@ -103,8 +106,28 @@ export default class BoLMENPCSheet extends ActorSheet {
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
         html.find(".roll-armour-icon").click((e) => ArmourRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
+        html.find(".task-roll").click((e) => TaskRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".tab-selector").click((e) => onTabSelected(e, html[0], this.actor));
         html.find(".trait-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+    }
+
+    _showAttackDialog(event) {
+        let defence = 0;
+
+        if(game.user.targets.size === 1) {
+            let target = game.user.targets.first().actor;
+
+            if(game.user.targets.size === 1) {
+                let target = game.user.targets.first().actor;
+
+                if(target.type === "Character") {
+                    defence = expandCombatAbility(target.data, "defence").value;
+                } else {
+                    defence = target.data.data.defence;
+                }
+            }
+        }
+        AttackDialog.build(event.currentTarget, {defence: defence}).then((dialog) => dialog.render(true));
     }
 
     _showSpellCastDialog(event) {

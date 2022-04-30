@@ -88,7 +88,7 @@ export default class TaskRollDialog extends Dialog {
             });
     }
 
-    static build(element, options) {
+    static build(element, options={}) {
         let settings = Object.assign({}, options);
         let data     = {};
         let actor    = game.actors.find((a) => a.id === element.dataset.actor);
