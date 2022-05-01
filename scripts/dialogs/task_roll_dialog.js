@@ -95,26 +95,32 @@ export default class TaskRollDialog extends Dialog {
 
         settings.title = game.i18n.localize(`bolme.dialogs.titles.taskRoll`);
         if(actor) {
-            let settings = Object.assign({}, options);
-            let careers  = actor.items.filter((i) => i.type === "career").map((i) => expandCareer(i));
-            let data     = {actorId:       actor.id,
-                            attribute:     element.dataset.attribute,
-                            careers:       careers,
-                            careerId:      element.dataset.career,
-                            bonusDice:     0,
-                            constants:     {attributes: constants.attributes},
-                            penaltyDice:   0,
-                            type:          (element.dataset.attribute ? "attribute" : "career")};
+            let settings   = Object.assign({}, options);
+            let careerId   = element.dataset.career;
+            let careers    = actor.items.filter((i) => i.type === "career").map((i) => expandCareer(i));
+            let data       = {actorId:       actor.id,
+                              attribute:     element.dataset.attribute,
+                              careers:       careers,
+                              careerId:      careerId,
+                              bonusDice:     0,
+                              constants:     {attributes: constants.attributes},
+                              penaltyDice:   0,
+                              type:          (element.dataset.attribute ? "attribute" : "career")};
 
             careers.forEach((c) => {
                 c.selected = (c.id === data.careerId);
             });
             if(data.type === "career") {
-                data.name            = game.i18n.localize("bolme.dialogs.headers.taskRoll.careerBased");
+                let career     = careers.find((c) => c.id === careerId);
+                let careerName = (career ? career.name : null);
+
+                data.name            = game.i18n.format("bolme.dialogs.headers.taskRoll.careerBased", {career: careerName});
                 data.attributeLocked = false;
                 data.careerLocked    = true;
             } else {
-                data.name            = game.i18n.localize("bolme.dialogs.headers.taskRoll.attributeBased");
+                let attributeName = game.i18n.localize(`bolme.attributes.${data.attribute}.label`);
+
+                data.name            = game.i18n.format("bolme.dialogs.headers.taskRoll.attributeBased", {attribute: attributeName});
                 data.attributeLocked = true;
                 data.careerLocked    = false;
             }

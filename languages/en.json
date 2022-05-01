@@ -198,8 +198,8 @@
 			},
 			"headers": {
 				"taskRoll": {
-					"attributeBased": "For Attribute",
-					"careerBased": "For Career"
+					"attributeBased": "For Attribute: {attribute}",
+					"careerBased": "For Career: {career}"
 				}
 			},
 			"info": {
