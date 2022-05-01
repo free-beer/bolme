@@ -21,6 +21,7 @@ import {decrementCareerRank,
         incrementCareerRank} from "../careers.js";
 import InfoDialog from "../dialogs/info_dialog.js";
 import {deleteCharacterLanguage} from "../languages.js";
+import {resetArcanePoints} from "../magic.js";
 import SpellCastDialog from "../dialogs/spell_cast_dialog.js";
 import {onTabSelected} from "../tabs.js";
 import TaskRollDialog from "../dialogs/task_roll_dialog.js";
@@ -152,6 +153,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
         html.find(".recipe-deleter").click((e) => deleteCraftingRecipe(e, this.actor));
+        html.find(".reset-arcane-icon").click((e) => resetArcanePoints(e.currentTarget.dataset.actor));
         html.find(".roll-armour-icon").click((e) => ArmourRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".roll-crafting").click((e) => rollForCraftedItem(this.actor, e.currentTarget.dataset.id));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));

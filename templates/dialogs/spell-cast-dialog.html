@@ -1,3 +1,5 @@
+{{log .}}
+
 <div class="spell-dialog bolme-dialog">
 	<hr>
 	<div class="spell-dialog-title">{{name}}</div>
@@ -6,8 +8,12 @@
 	<form class="spell-dialog-form" autocomplete="off" data-actor="{{actorId}}" data-spell="{{spellId}}">
 		<div class="grid-2-col">
 			<div class="field">
-				<label class="label">{{localize "bolme.fields.spell.mind.label"}}</label>
-				<input name="mind" readonly type="number" value="{{mind}}">
+				<label class="label">{{localize "bolme.fields.attack.attribute.label"}}</label>
+				<select class="expanded" name="attribute">
+				{{#each constants.attributes}}
+				    {{{selectOption ../attribute}}}
+				{{/each}}
+				</select>
 			</div>
 
 			<div class="field">

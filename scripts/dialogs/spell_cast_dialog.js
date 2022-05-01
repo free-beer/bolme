@@ -40,6 +40,14 @@ export default class SpellCastDialog extends Dialog {
         return(Math.abs(parseInt(this.element[0].querySelector('input[name="armourPenalty"]').value)));
     }
 
+    get attribute() {
+        return(this.element[0].querySelector('select[name="attribute"]').value);
+    }
+
+    attributeRating(attribute) {
+        return(calculateAttributeValue(this.attribute, this.actor.data.data.attributes[this.attribute]));
+    }
+
     get bonusDice() {
         return(Math.abs(parseInt(this.element[0].querySelector('input[name="bonusDice"]').value)));
     }
@@ -133,11 +141,8 @@ export default class SpellCastDialog extends Dialog {
     }
 
     static build(element, options) {
-        let settings = Object.assign({}, options);
-        let data     = {};
-        let actor    = game.actors.find((a) => a.id === element.dataset.actor);
+        let actor = game.actors.find((a) => a.id === element.dataset.actor);
 
-        settings.title = game.i18n.localize(`bolme.dialogs.titles.spellCast`);
         if(actor) {
             let spell  = actor.items.find((i) => i.id === element.dataset.spell);
 
@@ -145,7 +150,9 @@ export default class SpellCastDialog extends Dialog {
                 let settings = Object.assign({}, options);
                 let data     = {actorId:           actor.id,
                                 armourPenalty:     0,
+                                attribute:         "mind",
                                 bonusDice:         0,
+                                constants:         {attributes: constants.attributes},
                                 difficultyPenalty: SpellCastDialog.difficultyPenalty(spell),
                                 mind:              SpellCastDialog.mindRating(actor),
                                 name:              spell.name,

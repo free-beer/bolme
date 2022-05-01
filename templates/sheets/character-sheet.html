@@ -294,6 +294,7 @@
 				<div class="field horizontal-field">
 					<label class="label">{{localize "bolme.fields.character.arcane.header" maximum=data.data.arcanePoints.max}}</label>
 					<input name="data.arcanePoints.current" readonly type="number" value="{{data.data.arcanePoints.value}}">
+					<i class="fas fa-undo-alt reset-arcane-icon" data-actor="{{actor.id}}" title="{{localize 'bolme.icons.arcane.reset.titles'}}"></i>
 				</div>
 			</center>
 		{{#if data.spells.hasCantrip}}

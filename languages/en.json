@@ -638,6 +638,13 @@
 				}
 			}
 		},
+		"icons": {
+			"arcane": {
+				"reset": {
+					"title": "Reset arcane points."
+				}
+			}
+		},
 		"notices": {
 			"consumables": {
 				"consumed": "The {name} item has been completely used up and removed from your inventory."

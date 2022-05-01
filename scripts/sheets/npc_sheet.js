@@ -8,6 +8,7 @@ import constants from "../constants.js";
 import InfoDialog from "../dialogs/info_dialog.js";
 import SpellCastDialog from "../dialogs/spell_cast_dialog.js";
 import TaskRollDialog from "../dialogs/task_roll_dialog.js";
+import {resetArcanePoints} from "../magic.js";
 import {onTabSelected} from "../tabs.js";
 
 export default class BoLMENPCSheet extends ActorSheet {
@@ -104,6 +105,7 @@ export default class BoLMENPCSheet extends ActorSheet {
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id, true));
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+        html.find(".reset-arcane-icon").click((e) => resetArcanePoints(e.currentTarget.dataset.actor));
         html.find(".roll-armour-icon").click((e) => ArmourRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
         html.find(".task-roll").click((e) => TaskRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
