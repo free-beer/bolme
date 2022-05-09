@@ -27,6 +27,8 @@ import {onTabSelected} from "../tabs.js";
 import TaskRollDialog from "../dialogs/task_roll_dialog.js";
 import {traitRemovedFromCharacter} from "../traits.js";
 
+import WeaponSheet from "./weapon_sheet.js";
+
 export default class BoLMECharacterSheet extends ActorSheet {
     static get defaultOptions() {
         return(mergeObject(super.defaultOptions,
@@ -152,6 +154,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
         html.find(".language-deleter").click((e) => deleteCharacterLanguage(this.actor, e.currentTarget.dataset.id));
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+        html.find(".item-name").click((e) => this._itemNameClicked(e));
         html.find(".recipe-deleter").click((e) => deleteCraftingRecipe(e, this.actor));
         html.find(".reset-arcane-icon").click((e) => resetArcanePoints(e.currentTarget.dataset.actor));
         html.find(".roll-armour-icon").click((e) => ArmourRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
@@ -246,6 +249,19 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
     _generateShieldDescription(shield) {
         return(game.i18n.localize(`bolme.shields.descriptions.${shield.data.data.size}`));
+    }
+
+    _itemNameClicked(event) {
+        let element = event.currentTarget;
+        let actor   = game.actors.find((a) => a.id === element.dataset.actor);
+
+        if(actor) {
+            let item = actor.items.find((i) => i.id === element.dataset.id);
+
+            if(item) {
+                item.sheet.render(true);
+            }
+        }
     }
 
     /**@override */

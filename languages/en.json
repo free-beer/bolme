@@ -301,7 +301,7 @@
 				},
 				"protection": {
 					"label": "Protection",
-					"placeholder": "Armour protection rating."
+					"placeholder": "Protection rating."
 				},
 				"type": {
 					"label": "Type"
@@ -616,7 +616,7 @@
 			},
 			"weapon": {
 				"damage": {
-					"label": "damage",
+					"label": "Damage",
 					"placeholder": "Damage dealt by the weapon."
 				},
 				"description": {

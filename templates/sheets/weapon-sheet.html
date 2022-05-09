@@ -2,6 +2,36 @@
 	<div class="weapon-sheet-body">
 		<div>
 			<img data-edit="img" src="{{item.img}}" title="{{item.name}}"/>
+
+			<br><hr>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.weapon.type.label"}}</label>
+				<select class="expanded" name="data.type" value="{{data.data.type}}">
+					{{#each constants.weaponTypes}}
+					    {{{selectOption ../data.data.type}}}
+					{{/each}}
+				</select>
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.weapon.hands.label"}}</label>
+				<select class="expanded" name="data.hands" value="{{data.data.hands}}">
+					{{#each constants.weaponHands}}
+					    {{{selectOption ../data.data.hands}}}
+					{{/each}}
+				</select>
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.weapon.damage.label"}}</label>
+				<input name="data.damage" placeholder="{{localize 'bolme.fields.weapon.damage.placeholder'}}" type="text" value="{{data.data.damage}}">
+			</div>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.weapon.rangeIncrement.label"}}</label>
+				<input name="data.rangeIncrement" placeholder="{{localize 'bolme.fields.weapon.rangeIncrement.placeholder'}}" type="text" value="{{data.data.rangeIncrement}}">
+			</div>
 		</div>
 
         <div>
@@ -10,7 +40,7 @@
 				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}">
 			</div>
 
-            <div class="grid-4-col">
+<!--             <div class="grid-4-col">
 				<div class="field">
 					<label class="label">{{localize "bolme.fields.weapon.damage.label"}}</label>
 					<input name="data.damage" placeholder="{{localize 'bolme.fields.weapon.damage.placeholder'}}" type="text" value="{{data.data.damage}}">
@@ -38,7 +68,7 @@
 					<label class="label">{{localize "bolme.fields.weapon.rangeIncrement.label"}}</label>
 					<input name="data.rangeIncrement" placeholder="{{localize 'bolme.fields.weapon.rangeIncrement.placeholder'}}" type="text" value="{{data.data.rangeIncrement}}">
 				</div>
-			</div>
+			</div> -->
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.weapon.notes.label"}}</label>

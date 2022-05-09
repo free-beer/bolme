@@ -6,7 +6,7 @@ export default class ShieldSheet extends ItemSheet {
         return(mergeObject(super.defaultOptions,
                            {classes: ["bolme", "item-sheet", "shield-sheet"],
                             height:  400,
-                            width:   600}));
+                            width:   650}));
     }
 
     /** @override */

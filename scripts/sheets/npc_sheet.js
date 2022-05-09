@@ -105,12 +105,26 @@ export default class BoLMENPCSheet extends ActorSheet {
         html.find(".career-incrementer").click((e) => incrementCareerRank(this.actor, e.currentTarget.dataset.id, true));
         html.find(".info-icon").click((e) => InfoDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".item-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+        html.find(".item-name").click((e) => this._itemNameClicked(e));
         html.find(".reset-arcane-icon").click((e) => resetArcanePoints(e.currentTarget.dataset.actor));
         html.find(".roll-armour-icon").click((e) => ArmourRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".spell-cast-icon").click((e) => this._showSpellCastDialog(e));
         html.find(".task-roll").click((e) => TaskRollDialog.build(e.currentTarget).then((dialog) => dialog.render(true)));
         html.find(".tab-selector").click((e) => onTabSelected(e, html[0], this.actor));
         html.find(".trait-deleter").click((e) => this.actor.deleteEmbeddedDocuments("Item", [e.currentTarget.dataset.id]));
+    }
+
+    _itemNameClicked(event) {
+        let element = event.currentTarget;
+        let actor   = game.actors.find((a) => a.id === element.dataset.actor);
+
+        if(actor) {
+            let item = actor.items.find((i) => i.id === element.dataset.id);
+
+            if(item) {
+                item.sheet.render(true);
+            }
+        }
     }
 
     _showAttackDialog(event) {

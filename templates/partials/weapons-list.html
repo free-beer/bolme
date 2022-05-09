@@ -4,11 +4,12 @@
 		<div class="weapons-list">
 		{{#each weapons}}
 			<div class="weapon-row">
-				<div>{{name}}</div>
+				<div><span class="item-name" data-actor="{{actor.id}}" data-id="{{id}}">{{name}}</span></div>
 				<div><center>{{localizeWeaponType data.data.type}}</center></div>
 				<div><center>{{data.data.damage}}</center></div>
 				<div>
 					<i class="attack-icon fas fa-dice weapon-icon" data-actor="{{actor.id}}" data-weapon="{{id}}"></i>
+					<i class="info-icon fas fa-info-circle" data-description="{{data.data.description}}"></i>
 					<i class="fas fa-times-circle item-deleter weapon-icon" data-id="{{id}}"></i>
 				</div>
 			</div>

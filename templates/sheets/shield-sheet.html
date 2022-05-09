@@ -2,21 +2,23 @@
 	<div class="shield-sheet-body">
 		<div>
 			<img data-edit="img" src="{{item.img}}" title="{{item.name}}"/>
+
+			<br><hr>
+
+			<div class="field">
+				<label class="label">{{localize "bolme.fields.shield.size.label"}}</label>
+				<select class="expanded" name="data.size">
+					{{#each constants.shieldSizes}}
+					    {{{selectOption ../data.data.size}}}
+					{{/each}}
+				</select>
+			</div>
 		</div>
 
         <div>
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.name.label"}}</label>
 				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}">
-			</div>
-
-			<div class="field">
-				<label class="label">{{localize "bolme.fields.shield.size.label"}}</label>
-				<select name="data.size">
-					{{#each constants.shieldSizes}}
-					    {{{selectOption ../data.data.size}}}
-					{{/each}}
-				</select>
 			</div>
 
             <div class="field">

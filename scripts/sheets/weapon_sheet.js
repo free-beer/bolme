@@ -6,7 +6,7 @@ export default class WeaponSheet extends ItemSheet {
         return(mergeObject(super.defaultOptions,
                            {classes: ["bolme", "item-sheet", "weapon-sheet"],
                             height:  500,
-                            width:   600}));
+                            width:   630}));
     }
 
     /** @override */

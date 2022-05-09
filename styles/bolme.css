@@ -36,12 +36,13 @@
 	font-size: 1.1em;
 	grid-gap: 5px 15px;
 	grid-template-columns: auto 125px 75px 60px;
+	margin-bottom: 5px;
 }
 
 .armour-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
-	grid-template-columns: 100px auto;
+	grid-template-columns: 150px auto;
 }
 
 .armour-shield-row {
@@ -274,7 +275,7 @@
 .consumable-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
-	grid-template-columns: 100px auto;
+	grid-template-columns: 125px auto;
 }
 
 .crafting-recipe-product-row {
@@ -538,6 +539,14 @@ input:readonly {
 	font-size: 1.1em;
 }
 
+.item-name {
+	cursor: pointer;
+}
+
+.item-name:hover {
+	font-weight: bold;
+}
+
 .label {
 	display: block;
 	font-weight: bold;
@@ -590,7 +599,7 @@ input:readonly {
 .shield-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
-	grid-template-columns: 100px auto;
+	grid-template-columns: 150px auto;
 }
 
 .small-button {
@@ -703,14 +712,14 @@ input:readonly {
 	display: grid;
 	font-size: 1.1em;
 	grid-gap: 5px 15px;
-	grid-template-columns: 3fr 100px 75px 60px;
+	grid-template-columns: 3fr 100px 75px 80px;
 	margin-bottom: 5px;
 }
 
 .weapon-sheet-body {
 	display: grid;
 	grid-gap: 5px 10px;
-	grid-template-columns: 100px auto;
+	grid-template-columns: 140px auto;
 }
 
 .weapons-list {
