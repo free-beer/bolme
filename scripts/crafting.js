@@ -18,7 +18,7 @@ function decrementCraftingProgressClicked(event, actor) {
 
 		if(expandedRecipe.progress > 0) {
 			actor.updateEmbeddedDocuments("Item", [{_id: recipeId, data: {progress: expandedRecipe.progress - 1}}], {render: true});
-			actor.update({data: {craftingPoints: {value: actor.data.data.craftingPoints.value + 1}}});
+			actor.update({data: {craftingPoints: {value: actor.system.craftingPoints.value + 1}}});
 		}
 	} else {
 		console.error(`Unable to find recipe id '${recipeId}' on actor id '${actorId}' (${actor.name}).`);
@@ -37,7 +37,7 @@ function deleteCraftingRecipe(event, actor) {
  * Generates an 'expanded' object based on a crafting recipe.
  */
 function expandRecipe(recipe, actorId) {
-    let data    = recipe.data.data;
+    let data    = recipe.system;
     let type    = constants.crafting.recipes.types.find((t) => t.key === data.type);
     let details = {actorId:    actorId,
                    complete:   (data.progress >= type.cost),
@@ -63,9 +63,9 @@ function incrementCraftingProgressClicked(event, actor) {
 		let expandedRecipe = expandRecipe(recipe, actor.id);
 
 		if(!expandedRecipe.complete) {
-			if(actor.data.data.craftingPoints.value > 0) {
+			if(actor.system.craftingPoints.value > 0) {
 				actor.updateEmbeddedDocuments("Item", [{_id: recipeId, data: {progress: expandedRecipe.progress + 1}}], {render: true});
-				actor.update({data: {craftingPoints: {value: actor.data.data.craftingPoints.value - 1}}});
+				actor.update({data: {craftingPoints: {value: actor.system.craftingPoints.value - 1}}});
 			} else {
 				ui.notifications.warn(game.i18n.localize("bolme.warnings.crafting.points.unavailable"));
 			}
@@ -87,7 +87,7 @@ function rollForCraftedItem(actor, recipeId) {
 		let expanded = expandRecipe(recipe);
 
 		if(expanded.complete) {
-			let attribute  = calculateAttributeValue("mind", actor.data.data.attributes.mind);
+			let attribute  = calculateAttributeValue("mind", actor.system.attributes.mind);
 			let career     = findHighestRankeCareerWithGrant(actor, "crafting");
 			let difficulty = constants.crafting.recipes.difficulties.find((d) => d.key === expanded.difficulty);
 			let modifier   = difficulty.modifier + attribute + career.rank;
@@ -119,7 +119,7 @@ function rollForCraftedItem(actor, recipeId) {
 			    				let copy = templateItem.clone({}, true, {parent: actor});
 
 			    				actor.createEmbeddedDocuments("Item", [{name: templateItem.name,
-			    					                                    data: templateItem.data.data,
+			    					                                    data: templateItem.system,
 			    					                                    type: templateItem.type}], {parent: actor, render: true});
 			    				ui.notifications.info(game.i18n.format("bolme.notices.crafting.item.created", {name: templateItem.name}));
 			    			} else {

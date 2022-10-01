@@ -4,7 +4,7 @@
  * adding them to the boon.
  */
 function boonAddedToCharacter(actor, trait) {
-	let data = actor.data.data;
+	let data = actor.system;
 
 	if(data.points.starting.traits > 0) {
 		actor.update({data: {points: {starting: {traits: data.points.starting.traits - 1}}}});
@@ -26,13 +26,13 @@ function boonRemovedFromCharacter(actor, traitId) {
 	let trait = actor.items.find((e) => e.id === traitId);
 
 	if(trait) {
-		let actorChanges = {data: {points: {}}};
-		let data         = actor.data.data;
+		let actorChanges = {system: {points: {}}};
+		let data         = actor.system;
 
-		if(trait.data.data.startingPoints > 0) {
-			actorChanges.data.points.starting = {traits: data.points.starting.traits + trait.data.data.startingPoints};
-		} else if(trait.data.data.advancementPoints > 0) {
-			actorChanges.data.points.advancement = data.points.advancement + trait.data.data.advancementPoints;
+		if(trait.system.startingPoints > 0) {
+			actorChanges.system.points.starting = {traits: data.points.starting.traits + trait.system.startingPoints};
+		} else if(trait.system.advancementPoints > 0) {
+			actorChanges.system.points.advancement = data.points.advancement + trait.system.advancementPoints;
 		}
 
 		actor.deleteEmbeddedDocuments("Item", [traitId]);
@@ -47,7 +47,7 @@ function boonRemovedFromCharacter(actor, traitId) {
  * advancement points.
  */
 function flawAddedToCharacter(actor, trait) {
-	let data = actor.data.data;
+	let data = actor.system;
 
 	actor.update({data: {points: {advancement: data.points.advancement + 2}}});
 }
@@ -61,7 +61,7 @@ function flawRemovedFromCharacter(actor, traitId) {
 	let trait = actor.items.find((e) => e.id === traitId);
 
 	if(trait) {
-		let data = actor.data.data;
+		let data = actor.system;
 
 		if(data.points.advancement > 1) {
 			actor.deleteEmbeddedDocuments("Item", [traitId]);
@@ -82,7 +82,7 @@ function traitAddedToCharacter(actor, trait) {
 	let policed = game.settings.get("bolme", "policeAdvancements");
 
 	if(policed) {
-		if(trait.data.data.type === "boon") {
+		if(trait.system.type === "boon") {
 			boonAddedToCharacter(actor, trait);
 		} else {
 			flawAddedToCharacter(actor, trait);
@@ -100,7 +100,7 @@ function traitRemovedFromCharacter(actor, traitId) {
 	if(policed) {
 		let trait = actor.items.find((e) => e.id === traitId);
 
-		if(trait.data.data.type === "boon") {
+		if(trait.system.type === "boon") {
 			boonRemovedFromCharacter(actor, traitId);
 		} else {
 			flawRemovedFromCharacter(actor, traitId);

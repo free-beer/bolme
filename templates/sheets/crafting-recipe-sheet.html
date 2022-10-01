@@ -12,33 +12,33 @@
 
             <div class="grid-4-col">
 	            <div class="field">
-	                <label class="label" for="data.type">{{localize "bolme.fields.recipe.type.label"}}</label>
-					<select class="expanded type-selector" name="data.type" value="{{data.data.type}}">
+	                <label class="label" for="system.type">{{localize "bolme.fields.recipe.type.label"}}</label>
+					<select class="expanded type-selector" name="system.type" value="{{item.system.type}}">
 						{{#each constants.recipeTypes}}
-						    {{{selectOption ../data.data.type}}}
+						    {{{selectOption ../item.system.type}}}
 						{{/each}}
 					</select>
 				</div>
 
 				<div class="field">
-					<label class="label" for="data.cost">{{localize "bolme.fields.recipe.cost.label"}}</label>
-					<input name="data.cost" placeholder="{{localize 'bolme.fields.recipe.cost.placeholder'}}" readonly type="number" value="{{data.data.cost}}">
+					<label class="label" for="system.cost">{{localize "bolme.fields.recipe.cost.label"}}</label>
+					<input name="system.cost" placeholder="{{localize 'bolme.fields.recipe.cost.placeholder'}}" readonly type="number" value="{{item.system.cost}}">
 				</div>
 
 	            <div class="field">
-	                <label class="label" for="data.difficulty">{{localize "bolme.fields.recipe.difficulty.label"}}</label>
-					<select class="expanded" name="data.difficulty" value="{{data.data.difficulty}}">
+	                <label class="label" for="system.difficulty">{{localize "bolme.fields.recipe.difficulty.label"}}</label>
+					<select class="expanded" name="system.difficulty" value="{{item.system.difficulty}}">
 						{{#each constants.recipeDifficulties}}
-						    {{{selectOption ../data.data.difficulty}}}
+						    {{{selectOption ../item.system.difficulty}}}
 						{{/each}}
 					</select>
 				</div>
 
 	            <div class="field">
-	                <label class="label" for="data.subtype">{{localize "bolme.fields.recipe.subtype.label"}}</label>
-					<select class="expanded" name="data.subtype" value="{{data.data.subtype}}">
+	                <label class="label" for="system.subtype">{{localize "bolme.fields.recipe.subtype.label"}}</label>
+					<select class="expanded" name="system.subtype" value="{{item.system.subtype}}">
 						{{#each constants.recipeSubtypes}}
-						    {{{selectOption ../data.data.subtype}}}
+						    {{{selectOption ../item.system.subtype}}}
 						{{/each}}
 					</select>
 				</div>
@@ -46,20 +46,20 @@
 
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.recipe.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.recipe.description.label"}}</label>
+                {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
 
             <hr>
 
             <div class="crafting-recipe-sheet-product">
             	<h3>{{localize "bolme.crafting.recipes.item.product.title"}}</h3>
-            {{#if data.hasProduct}}
+            {{#if hasProduct}}
                 <div class="crafting-recipe-product-row">
-                	<div>{{data.data.item.name}}</div>
+                	<div>{{item.system.item.name}}</div>
                 	<div class="grid-3-col">
                 		<i class="fas fa-minus quantity-decrementer"></i>
-                		<center>{{data.data.item.quantity}}</center>
+                		<center>{{item.system.item.quantity}}</center>
                 		<i class="fas fa-plus quantity-incrementer"></i>
                 	</div>
                 	<div>

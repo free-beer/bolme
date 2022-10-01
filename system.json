@@ -23,7 +23,7 @@
   "gridUnits": "ft",
   "primaryTokenAttribute": "resources.hitPoints",
   "secondaryTokenAttribute": "resources.magicPoints",
-  "url": "https://your/hosted/system/repo/",
-  "manifest": "https://your/hosted/system/repo/system.json",
-  "download": "https://your/packaged/download/archive.zip"
+  "url": "https://github.com/free-beer/bolme",
+  "manifest": "https://raw.githubusercontent.com/free-beer/bolme/master/system.json",
+  "download": "https://github.com/free-beer/bolme/archive/refs/tags/v1.1.0.zip"
 }

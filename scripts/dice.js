@@ -64,13 +64,13 @@ function generateAttackRollFormula(actorId, attribute, ability, bonusDice, penal
         let modifier = 0;
 
         if(actor.type === "Character") {
-            let expandedAbility   = expandCombatAbility(actor.data, ability);
-            let expandedAttribute = expandAttribute(actor.data, attribute);
+            let expandedAbility   = expandCombatAbility(actor.system, ability);
+            let expandedAttribute = expandAttribute(actor.system, attribute);
 
             // Apply attribute, combat ability, career and range modifications.
             modifier = expandedAttribute.value + expandedAbility.value;
         } else {
-            modifier = actor.data.data[attribute] + actor.data.data[ability]
+            modifier = actor.system[attribute] + actor.system[ability]
         }
 
         modifier = (modifier + parseInt(`${rangeModifier}`)) - parseInt(`${defence}`)
@@ -139,12 +139,12 @@ function generateTaskRollFormula(actorId, attribute, careerRank, bonusDice, pena
         let modifier = 0;
 
         if(actor.type === "Character") {
-            let expandedAttribute = expandAttribute(actor.data, attribute);
+            let expandedAttribute = expandAttribute(actor.system, attribute);
 
             // Apply attribute, combat ability, career and range modifications.
             modifier = expandedAttribute.value + careerRank;
         } else {
-            modifier = actor.data.data[attribute] + careerRank;
+            modifier = actor.system[attribute] + careerRank;
         }
 
         if(modifier !== 0) {

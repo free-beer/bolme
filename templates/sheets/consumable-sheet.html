@@ -15,23 +15,23 @@
             <div class="grid-2-col">
 	            <div class="field horizontal-field">
 	            	<label class="label">{{localize "bolme.fields.consumable.uses.label"}}</label>
-	            	<input name="data.uses.max" type="number" value="{{data.data.uses.max}}">
-	            	<input name="data.uses.value" type="hidden" value="{{data.data.uses.value}}">
+	            	<input name="system.uses.max" type="number" value="{{item.system.uses.max}}">
+	            	<input name="system.uses.value" type="hidden" value="{{item.system.uses.value}}">
 	            </div>
 
 				<div>
-				{{#if data.data.rechargable}}
-				    <input checked name="data.rechargable" type="checkbox">
+				{{#if item.system.rechargable}}
+				    <input checked name="system.rechargable" type="checkbox">
 				{{else}}
-					<input name="data.rechargable" type="checkbox">
+					<input name="system.rechargable" type="checkbox">
 				{{/if}}
 				    <span class="checkbox-label">{{localize "bolme.fields.consumable.rechargable.label"}}</span>
 				</div>
             </div>
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.consumable.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.consumable.description.label"}}</label>
+                {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
 		</div>
 	</div>

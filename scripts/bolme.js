@@ -176,8 +176,9 @@ Hooks.once("init", () => {
     });
 
     Handlebars.registerHelper("tabActiveCheck", function(tabName, activeClass, inactiveClass) {
-        let data = Object.assign({tabs: {selected: "front_page"}}, this.actor.data.data);
-        return(tabName === data.tabs.selected ? activeClass : inactiveClass);
+        let data     = (this.actor ? this.actor.system : this.system);
+        let selected = data.tabs.selected || "front_page"
+        return(tabName === selected ? activeClass : inactiveClass);
     });
 
     Hooks.on("dropActorSheetData", (actor, sheet, data) => {
@@ -196,7 +197,7 @@ Hooks.once("init", () => {
                 let item = actor.items.contents[actor.items.contents.length - 1];
 
                 if(item.type === "career") {
-                    item.update({data: {startingPoints: 1}});
+                    item.update({system: {startingPoints: 1}});
                 }
             }, 250);
         }
@@ -210,10 +211,10 @@ Hooks.once("init", () => {
             let traits     = game.settings.get("bolme", "startingTraits");
 
             //console.log(`STARTING POINTS: attributes=${attributes}, careers=${careers}, combat=${combat}, traits: ${traits}`);
-            actor.update({data: {points: {starting: {attributes: attributes,
-                                                     careers:    careers,
-                                                     combat:     combat,
-                                                     traits:     traits}}}})
+            actor.update({system: {points: {starting: {attributes: attributes,
+                                                       careers:    careers,
+                                                       combat:     combat,
+                                                       traits:     traits}}}})
         }
     });
 

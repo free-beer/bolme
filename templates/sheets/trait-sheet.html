@@ -1,3 +1,4 @@
+{{log .}}
 <form class="{{cssClass}} bolme-form" autocomplete="off">
 	<div class="trait-sheet-body">
 		<div>
@@ -12,16 +13,16 @@
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.trait.type.label"}}</label>
-				<select name="data.type" value="{{data.data.type}}">
+				<select name="system.type" value="{{item.system.type}}">
 					{{#each constants.traitTypes}}
-					    {{{selectOption ../data.data.type}}}
+					    {{{selectOption ../item.system.type}}}
 					{{/each}}
 				</select>
 			</div>
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.trait.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.trait.description.label"}}</label>
+                {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
         </div>
 	</div>

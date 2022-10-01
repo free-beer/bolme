@@ -39,22 +39,22 @@ function calculateCareerRank(name, settings, ignorePolicing=false) {
 function careerAddedToCharacter(actor, career) {
 	let expanded = expandCareer(career);
 	let policed  = game.settings.get("bolme", "policeAdvancements");
-	let updates  = {data: {}};
+	let updates  = {system: {}};
 	let other;
 
 	other = findHighestRankeCareerWithGrant(actor, "arcane");
 	if(other) {
-		updates.data.arcanePoints = {max: 10 + other.rank};
+		updates.system.arcanePoints = {max: 10 + other.rank};
 	}
 
 	other = findHighestRankeCareerWithGrant(actor, "crafting");
 	if(other) {
-		updates.data.craftingPoints = {max: other.rank};
+		updates.system.craftingPoints = {max: other.rank};
 	}
 
 	other = findHighestRankeCareerWithGrant(actor, "fate");
 	if(other) {
-		updates.data.fatePoints = {max: other.rank};
+		updates.system.fatePoints = {max: other.rank};
 	}
 
 	if(policed) {
@@ -64,11 +64,11 @@ function careerAddedToCharacter(actor, career) {
 	    if(data.points.starting.careers > 0) {
 	    	console.log("Career is being paid for with starting points.");
 	    	career.update({data: {startingPoints: 1}});
-	    	updates.data.points = {starting: {careers: data.points.starting.careers - 1}};
+	    	updates.system.points = {starting: {careers: data.points.starting.careers - 1}};
 	    } else if(data.points.advancement > 0) {
 	    	console.log("Career is being paid for with advancement points.");
 	    	career.update({data: {advancementPoints: 1}});
-	    	updates.data.points = {points: {advancement: data.points.advancement - 1}};
+	    	updates.system.points = {points: {advancement: data.points.advancement - 1}};
 	    } else {
 	    	console.log(`Cannot add the ${career.name} career as their are insufficient points to pay for it.`);
 	    	ui.notifications.error(game.i18n.localize("bolme.errors.careers.unaffordable"));
@@ -79,7 +79,7 @@ function careerAddedToCharacter(actor, career) {
 		career.update({data: {advancementPoints: 1}});
 	}
 
-	if(updates.data !== {}) {
+	if(updates.system !== {}) {
 		actor.update(updates);
 	}
 }
@@ -96,8 +96,8 @@ function decrementCareerRank(actor, careerId, ignorePolicing=false) {
 		let expanded = expandCareer(career, ignorePolicing);
 
 		if(expanded.rank > 0) {
-			let actorChanges = {data: {}};
-			let data         = actor.data.data;
+			let actorChanges = {system: {}};
+			let data         = actor.system;
 			let policed      = game.settings.get("bolme", "policeAdvancements");
 
             // Check for arcane points affecting changes.
@@ -119,24 +119,24 @@ function decrementCareerRank(actor, careerId, ignorePolicing=false) {
 			}
 
 			if(!ignorePolicing && policed) {
-				let careerChanges = {data: {}};
+				let careerChanges = {system: {}};
 
                 console.log("Advancment policing is on.");
-                actorChanges.data.points = {};
-				if(career.data.data.advancementPoints > 0) {
+                actorChanges.system.points = {};
+				if(career.system.advancementPoints > 0) {
 					console.log("Decrementing career rank to return advancement points.");
-					actorChanges.data.points.advancement = data.points.advancement + expanded.decreaseRegain;
-					careerChanges.data.advancementPoints = career.data.data.advancementPoints - expanded.decreaseRegain;
+					actorChanges.system.points.advancement = data.points.advancement + expanded.decreaseRegain;
+					careerChanges.system.advancementPoints = career.data.data.advancementPoints - expanded.decreaseRegain;
 				} else {
 					console.log("Decrementing career rank to return starting points.");
-					actorChanges.data.points.starting = {careers: data.points.starting.careers + 1};
-					careerChanges.data.startingPoints = career.data.data.startingPoints - 1;
+					actorChanges.system.points.starting = {careers: data.points.starting.careers + 1};
+					careerChanges.system.startingPoints = career.system.startingPoints - 1;
 				}
 
 				career.update(careerChanges);
 			} else {
 				console.log("Advancment policing is off.");
-				career.update({data: {startingPoints: career.data.data.startingPoints - 1}});
+				career.update({data: {startingPoints: career.system.startingPoints - 1}});
 			}
 
 			actor.update(actorChanges);
@@ -157,50 +157,50 @@ function deleteCareer(actor, careerId) {
 
 	if(career) {
 		let policed = game.settings.get("bolme", "policeAdvancements");
-		let updates = {data: {}};
+		let updates = {system: {}};
 		let alternative;
 
         // Check if the career granted arcane points.
-        if(career.data.data.grants.arcane) {
+        if(career.system.grants.arcane) {
 			let alternative = findHighestRankeCareerWithGrant(actor, "arcane")
 
 			if(alternative) {
-				updates.data.arcanePoints = {max: 10 + alternative.rank};
+				updates.system.arcanePoints = {max: 10 + alternative.rank};
 			} else {
-				updates.data.arcanePoints = {max: 0, value: 0};
+				updates.system.arcanePoints = {max: 0, value: 0};
 			}
 		}
 
         // Check if the career granted crafting points.
-        if(career.data.data.grants.crafting) {
+        if(career.system.grants.crafting) {
 			let alternative = findHighestRankeCareerWithGrant(actor, "crafting")
 
 			if(alternative) {
-				updates.data.craftingPoints = {max: alternative.rank};
+				updates.system.craftingPoints = {max: alternative.rank};
 			} else {
-				updates.data.craftingPoints = {max: 0, value: 0};
+				updates.system.craftingPoints = {max: 0, value: 0};
 			}
 		}
 
         // Check if the career granted fate points.
-        if(career.data.data.grants.fate) {
+        if(career.system.grants.fate) {
 			let alternative = findHighestRankeCareerWithGrant(actor, "fate")
 
 			if(alternative) {
-				updates.data.fatePoints = {max: alternative.rank};
+				updates.system.fatePoints = {max: alternative.rank};
 			} else {
-				updates.data.fatePoints = {max: 0, value: 0};
+				updates.system.fatePoints = {max: 0, value: 0};
 			}
 		}
 
 		actor.deleteEmbeddedDocuments("Item", [careerId]);
 
 		if(policed) {
-			updates.data.points = {advancement: actor.data.data.points.advancement + career.data.data.advancementPoints,
-			                       starting: {careers: actor.data.data.points.starting.careers + career.data.data.startingPoints}};
+			updates.system.points = {advancement: actor.system.points.advancement + career.system.advancementPoints,
+			                       starting: {careers: actor.system.points.starting.careers + career.system.startingPoints}};
 		}
 
-		if(updates.data !== {}) {
+		if(updates.system !== {}) {
 		    actor.update(updates);
 		}
 	} else {
@@ -215,9 +215,9 @@ function deleteCareer(actor, careerId) {
 function expandCareer(career, ignorePolicing=false) {
 	let output = Object.assign({}, career);
 
-	output.rank           = calculateCareerRank(career.name, career.data.data, ignorePolicing);
+	output.rank           = calculateCareerRank(career.name, career.system, ignorePolicing);
     output.decreaseRegain = (output.rank > 0 ? output.rank : 0);
-    output.grants         = career.data.data.grants;
+    output.grants         = career.system.grants;
     output.id             = career.id;
     output.increaseCost   = output.rank + 1;
     output.name           = career.name;
@@ -236,7 +236,7 @@ function findHighestRankeCareerWithGrant(actor, grant) {
 
 	actor.items.forEach((item) => {
 		if(item.type === "career") {
-			if(item.data.data.grants[grant]) {
+			if(item.system.grants[grant]) {
 				let expanded = expandCareer(item);
 
 				if(career) {
@@ -282,8 +282,8 @@ function incrementCareerRank(actor, careerId, ignorePolicing=false) {
 		let expanded = expandCareer(career, ignorePolicing);
 
 		if(expanded.rank < 5) {
-			let actorChanges  = {data: {points: {}}};
-			let data          = actor.data.data;
+			let actorChanges  = {system: {points: {}}};
+			let data          = actor.system;
 			let policed       = game.settings.get("bolme", "policeAdvancements");
 
             // Check for arcane point affecting changes.
@@ -294,7 +294,7 @@ function incrementCareerRank(actor, careerId, ignorePolicing=false) {
 				if(role.id != expanded.id && role.rank > newRank) {
 					newRank = role.rank;
 				}
-				actorChanges.data.arcanePoints = {max: 10 + newRank};
+				actorChanges.system.arcanePoints = {max: 10 + newRank};
 			}
 
             // Check for crafting point affecting changes.
@@ -305,7 +305,7 @@ function incrementCareerRank(actor, careerId, ignorePolicing=false) {
 				if(role.id != expanded.id && role.rank > newRank) {
 					newRank = role.rank;
 				}
-				actorChanges.data.craftingPoints = {max: newRank};
+				actorChanges.system.craftingPoints = {max: newRank};
 			}
 
             // Check for arcane point affecting changes.
@@ -316,7 +316,7 @@ function incrementCareerRank(actor, careerId, ignorePolicing=false) {
 				if(role.id != expanded.id && role.rank > newRank) {
 					newRank = role.rank;
 				}
-				actorChanges.data.fatePoints = {max: newRank};
+				actorChanges.system.fatePoints = {max: newRank};
 			}
 
             if(!ignorePolicing && policed) {
@@ -327,16 +327,16 @@ function incrementCareerRank(actor, careerId, ignorePolicing=false) {
 				if(data.points.starting.careers > 0) {
 					console.log("Incrementing career rank using starting points.");
 					if(expanded.rank < 3) {
-						actorChanges.data.points.starting = {careers: data.points.starting.careers - 1};
-						careerChanges.data.startingPoints = career.data.data.startingPoints + 1;
+						actorChanges.system.points.starting = {careers: data.points.starting.careers - 1};
+						careerChanges.system.startingPoints = career.system.startingPoints + 1;
 						changed                           = true;
 					} else {
 						ui.notifications.error(game.i18n.localize("bolme.errors.careers.maxStart"));
 					}
 				} else if(data.points.advancement >= expanded.increaseCost) {
 					console.log("Incrementing career rank using advancement points.");
-					actorChanges.data.points.advancement = data.points.advancement - expanded.increaseCost;
-					careerChanges.data.advancementPoints = career.data.data.advancementPoints + expanded.increaseCost;
+					actorChanges.system.points.advancement = data.points.advancement - expanded.increaseCost;
+					careerChanges.system.advancementPoints = career.system.advancementPoints + expanded.increaseCost;
 					changed                              = true;
 				} else {
 					console.log(`Unable to increase the rank of the ${expanded.name} career as it costs more than is currently available.`);
@@ -348,10 +348,10 @@ function incrementCareerRank(actor, careerId, ignorePolicing=false) {
 				}
 			} else {
 				console.log("Advancment policing is off.");
-				career.update({data: {startingPoints: career.data.data.startingPoints + 1}});
+				career.update({data: {startingPoints: career.system.startingPoints + 1}});
 			}
 
-			if(actorChanges.data !== {}) {
+			if(actorChanges.system !== {}) {
 				actor.update(actorChanges);
 			}
 		} else {

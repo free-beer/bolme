@@ -62,7 +62,7 @@ function onInitiativeDowngrade(event, messageRoot) {
 
                 if(result === "failure") {
 					combat.setInitiative(combatant.id, RESULT_POSITION_MAP["calamitous"]);
-					actor.update({data: {heroPoints: actor.data.data.heroPoints + 1}});
+					actor.update({data: {heroPoints: actor.system.heroPoints + 1}});
 					removeInitiativeOptions(messageRoot);
 				}
 			} else {
@@ -91,7 +91,7 @@ function onInitiativeReroll(event, messageRoot) {
 
 					combatant = Array.from(combat.combatants).find((c) => c.id === event.currentTarget.dataset.combatant);
 					combat.updateEmbeddedDocuments("Combatant", [{_id: combatant.id, initiative: combatant.initiative}]);
-					actor.update({data: {heroPoints: actor.data.data.heroPoints - 1}});
+					actor.update({data: {heroPoints: actor.system.heroPoints - 1}});
 				});
 				removeInitiativeOptions(messageRoot);
 			}
@@ -126,7 +126,7 @@ function onInitiativeUpgrade(event, messageRoot) {
                 	let newSetting = (result === "success" ? RESULT_POSITION_MAP["mighty"] : RESULT_POSITION_MAP["legendary"]);
 
 					combat.setInitiative(combatant.id, newSetting);
-					actor.update({data: {heroPoints: actor.data.data.heroPoints - 1}});
+					actor.update({data: {heroPoints: actor.system.heroPoints - 1}});
 					removeInitiativeOptions(messageRoot);
 				}
 			} else {

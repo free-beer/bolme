@@ -11,21 +11,21 @@
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.attributes.strength.label"}}</label>
             			<div class="field">
-            				<input name="data.strength" type="number" value="{{data.data.strength}}">
+            				<input name="system.strength" type="number" value="{{actor.system.strength}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.attributes.agility.label"}}</label>
             			<div class="field">
-            				<input name="data.agility" type="number" value="{{data.data.agility}}">
+            				<input name="system.agility" type="number" value="{{actor.system.agility}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.attributes.mind.label"}}</label>
             			<div class="field">
-            				<input name="data.mind" type="number" value="{{data.data.mind}}">
+            				<input name="system.mind" type="number" value="{{actor.system.mind}}">
             			</div>
             		</div>
             	</div>
@@ -38,29 +38,29 @@
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.beast.attack.label"}}</label>
             			<div class="field">
-            				<input name="data.attack" type="number" value="{{data.data.attack}}">
+            				<input name="system.attack" type="number" value="{{actor.system.attack}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.beast.defence.label"}}</label>
             			<div class="field">
-            				<input name="data.defence" type="number" value="{{data.data.defence}}">
+            				<input name="system.defence" type="number" value="{{actor.system.defence}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row-text field">
         				<label>{{localize "bolme.fields.beast.damage.label"}}</label>
             			<div class="field">
-            				<input name="data.damage" type="text" value="{{data.data.damage}}">
+            				<input name="system.damage" type="text" value="{{actor.system.damage}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.beast.lifeblood.label"}}</label>
             			<div class="field">
-            				<input name="data.lifeblood.max" type="number" value="{{data.data.lifeblood.max}}">
-            				<input name="data.lifeblood.value" type="hidden" value="{{data.data.lifeblood.value}}">
+            				<input name="system.lifeblood.max" type="number" value="{{actor.system.lifeblood.max}}">
+            				<input name="system.lifeblood.value" type="hidden" value="{{actor.system.lifeblood.value}}">
             			</div>
             		</div>
             	</div>
@@ -74,14 +74,14 @@
 	        		<div class="attribute-list-row-text field">
 	    				<label>{{localize "bolme.fields.beast.protection.roll.label"}}</label>
 	        			<div class="field">
-	        				<input name="data.protection.roll" type="text" value="{{data.data.protection.roll}}">
+	        				<input name="system.protection.roll" type="text" value="{{actor.system.protection.roll}}">
 	        			</div>
 	        		</div>
 
 	        		<div class="attribute-list-row field">
 	    				<label>{{localize "bolme.fields.beast.protection.fixed.label"}}</label>
 	        			<div class="field">
-	        				<input name="data.protection.fixed" type="number" value="{{data.data.protection.fixed}}">
+	        				<input name="system.protection.fixed" type="number" value="{{actor.system.protection.fixed}}">
 	        			</div>
 	        		</div>
             	</div>
@@ -97,18 +97,18 @@
 			<div class="grid-2-col">
 				<div class="field">
 					<label>{{localize "bolme.fields.beast.size.label"}}</label>
-					<select class="expanded" name="data.size" value="{{data.data.size}}">
+					<select class="expanded" name="system.size" value="{{actor.system.size}}">
 						{{#each constants.sizes}}
-						    {{{selectOption ../data.data.size}}}
+						    {{{selectOption ../actor.system.size}}}
 						{{/each}}
 					</select>
 				</div>
 
                 <div class="field">
                 	<label>{{localize "bolme.fields.beast.priority.label"}}</label>
-					<select class="expanded" name="data.priority" value="{{data.data.priority}}">
+					<select class="expanded" name="system.priority" value="{{actor.system.priority}}">
 						{{#each constants.priorities}}
-						    {{{selectOption ../data.data.priority}}}
+						    {{{selectOption ../actor.system.priority}}}
 						{{/each}}
 					</select>
                 </div>
@@ -116,18 +116,17 @@
 
 			<div class="field">
 				<label>{{localize "bolme.fields.beast.found.label"}}</label>
-				<input name="data.found" type="text" value="{{data.data.found}}">
+				<input name="system.found" type="text" value="{{actor.system.found}}">
 			</div>
 			<br>
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.beast.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.beast.description.label"}}</label>
+                {{editor actor.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
 			<br>
 
-            {{log data}}
-            {{> "systems/bolme/templates/partials/traits-list.html" data}}
+            {{> "systems/bolme/templates/partials/traits-list.html" .}}
 		</section>
 	</div>
 </form>

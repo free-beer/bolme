@@ -7,9 +7,9 @@
             <section>
                 <div class="attribute-list-row-select field">
                 	<label>{{localize "bolme.fields.npc.priority.label"}}</label>
-					<select class="expanded" name="data.priority" value="{{data.data.priority}}">
+					<select class="expanded" name="system.priority" value="{{actor.system.priority}}">
 						{{#each constants.priorities}}
-						    {{{selectOption ../data.data.priority}}}
+						    {{{selectOption ../actor.system.priority}}}
 						{{/each}}
 					</select>
                 </div>
@@ -23,28 +23,28 @@
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.attributes.strength.label"}}</label>
             			<div class="field">
-            				<input name="data.strength" type="number" value="{{data.data.strength}}">
+            				<input name="system.strength" type="number" value="{{actor.system.strength}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.attributes.agility.label"}}</label>
             			<div class="field">
-            				<input name="data.agility" type="number" value="{{data.data.agility}}">
+            				<input name="system.agility" type="number" value="{{actor.system.agility}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.attributes.mind.label"}}</label>
             			<div class="field">
-            				<input name="data.mind" type="number" value="{{data.data.mind}}">
+            				<input name="system.mind" type="number" value="{{actor.system.mind}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.attributes.appeal.label"}}</label>
             			<div class="field">
-            				<input name="data.appeal" type="number" value="{{data.data.appeal}}">
+            				<input name="system.appeal" type="number" value="{{actor.system.appeal}}">
             			</div>
             		</div>
             	</div>
@@ -57,36 +57,36 @@
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.npc.initiative.label"}}</label>
             			<div class="field">
-            				<input name="data.initiative" type="number" value="{{data.data.initiative}}">
+            				<input name="system.initiative" type="number" value="{{actor.system.initiative}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.npc.melee.label"}}</label>
             			<div class="field">
-            				<input name="data.melee" type="number" value="{{data.data.melee}}">
+            				<input name="system.melee" type="number" value="{{actor.system.melee}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.npc.ranged.label"}}</label>
             			<div class="field">
-            				<input name="data.ranged" type="number" value="{{data.data.ranged}}">
+            				<input name="system.ranged" type="number" value="{{actor.system.ranged}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.npc.defence.label"}}</label>
             			<div class="field">
-            				<input name="data.defence" type="number" value="{{data.data.defence}}">
+            				<input name="system.defence" type="number" value="{{actor.system.defence}}">
             			</div>
             		</div>
 
             		<div class="attribute-list-row field">
         				<label>{{localize "bolme.fields.npc.lifeblood.label"}}</label>
             			<div class="field">
-            				<input name="data.lifeblood.max" type="number" value="{{data.data.lifeblood.max}}">
-            				<input name="data.lifeblood.value" type="hidden" value="{{data.data.lifeblood.value}}">
+            				<input name="system.lifeblood.max" type="number" value="{{actor.system.lifeblood.max}}">
+            				<input name="system.lifeblood.value" type="hidden" value="{{actor.system.lifeblood.value}}">
             			</div>
             		</div>
             	</div>
@@ -99,24 +99,24 @@
         		<div class="attribute-list-row field">
     				<label>{{localize "bolme.fields.npc.arcanePoints.label"}}</label>
         			<div class="field">
-        				<input name="data.arcanePoints.max" type="number" value="{{data.data.arcanePoints.max}}">
-        				<input name="data.arcanePoints.value" type="hidden" value="{{data.data.arcanePoints.value}}">
+        				<input name="system.arcanePoints.max" type="number" value="{{actor.system.arcanePoints.max}}">
+        				<input name="system.arcanePoints.value" type="hidden" value="{{actor.system.arcanePoints.value}}">
         			</div>
         		</div>
 
         		<div class="attribute-list-row field">
     				<label>{{localize "bolme.fields.npc.fatePoints.label"}}</label>
         			<div class="field">
-        				<input name="data.fatePoints.max" type="number" value="{{data.data.fatePoints.max}}">
-        				<input name="data.fatePoints.value" type="hidden" value="{{data.data.fatePoints.value}}">
+        				<input name="system.fatePoints.max" type="number" value="{{actor.system.fatePoints.max}}">
+        				<input name="system.fatePoints.value" type="hidden" value="{{actor.system.fatePoints.value}}">
         			</div>
         		</div>
 
         		<div class="attribute-list-row field">
     				<label>{{localize "bolme.fields.npc.villainPoints.label"}}</label>
         			<div class="field">
-        				<input name="data.villainPoints.max" type="number" value="{{data.data.villainPoints.max}}">
-        				<input name="data.villainPoints.value" type="hidden" value="{{data.data.villainPoints.value}}">
+        				<input name="system.villainPoints.max" type="number" value="{{actor.system.villainPoints.max}}">
+        				<input name="system.villainPoints.value" type="hidden" value="{{actor.system.villainPoints.value}}">
         			</div>
         		</div>
             </section>
@@ -140,60 +140,60 @@
 
             <section class="tab-body {{tabActiveCheck 'front_page' '' 'hidden'}}" id="front_page">
 				<div class="npc-weapons">
-					{{> "systems/bolme/templates/partials/weapons-list.html" data}}
+					{{> "systems/bolme/templates/partials/weapons-list.html" .}}
 				</div>
 				<br>
 
 				<div class="npc-armour">
-					{{> "systems/bolme/templates/partials/armour-list.html" data}}
+					{{> "systems/bolme/templates/partials/armour-list.html" .}}
 				</div>
 				<br>
 
 				<div class="npc-careers">
-					{{> "systems/bolme/templates/partials/careers-list.html" data}}
+					{{> "systems/bolme/templates/partials/careers-list.html" .}}
 				</div>
 				<br>
 
 				<div class="npc-traits">
-					{{> "systems/bolme/templates/partials/traits-list.html" data}}
+					{{> "systems/bolme/templates/partials/traits-list.html" .}}
 				</div>
 				<br>
 
 	            <div class="field">
-	                <label class="label" for="data.description">{{localize "bolme.fields.beast.description.label"}}</label>
-	                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+	                <label class="label" for="system.description">{{localize "bolme.fields.beast.description.label"}}</label>
+	                {{editor actor.system.description target="system.description" button=true owner=owner editable=editable}}
 	            </div>
             </section>
 
 	        <section class="tab-body {{tabActiveCheck 'magic_page' '' 'hidden'}}" id="magic_page">
 				<center class="header-field">
 					<div class="field horizontal-field">
-						<label class="label">{{localize "bolme.fields.character.arcane.header" maximum=data.data.arcanePoints.max}}</label>
-						<input name="data.arcanePoints.current" readonly type="number" value="{{data.data.arcanePoints.value}}">
+						<label class="label">{{localize "bolme.fields.character.arcane.header" maximum=actor.system.arcanePoints.max}}</label>
+						<input name="system.arcanePoints.current" readonly type="number" value="{{actor.system.arcanePoints.value}}">
 						<i class="fas fa-undo-alt reset-arcane-icon" data-actor="{{actor.id}}" title="{{localize 'bolme.icons.arcane.reset.titles'}}"></i>
 					</div>
 				</center>
-			{{#if data.spells.hasCantrip}}
+			{{#if spells.hasCantrip}}
 			    <h2>{{localize "bolme.spells.magnitudes.titles.cantrip"}}</h2>
-			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.cantrip}}
+			    {{> "systems/bolme/templates/partials/spell-list.html" spells.cantrip}}
 			    <br>
 			{{/if}}
 
-			{{#if data.spells.hasFirst}}
+			{{#if spells.hasFirst}}
 			    <h2>{{localize "bolme.spells.magnitudes.titles.first"}}</h2>
-			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.first}}
+			    {{> "systems/bolme/templates/partials/spell-list.html" spells.first}}
 			    <br>
 			{{/if}}
 
-			{{#if data.spells.hasSecond}}
+			{{#if spells.hasSecond}}
 			    <h2>{{localize "bolme.spells.magnitudes.titles.second"}}</h2>
-			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.second}}
+			    {{> "systems/bolme/templates/partials/spell-list.html" spells.second}}
 			    <br>
 			{{/if}}
 
-			{{#if data.spells.hasThird}}
+			{{#if spells.hasThird}}
 			    <h2>{{localize "bolme.spells.magnitudes.titles.third"}}</h2>
-			    {{> "systems/bolme/templates/partials/spell-list.html" data.spells.third}}
+			    {{> "systems/bolme/templates/partials/spell-list.html" spells.third}}
 			{{/if}}
 
 	        </section>

@@ -12,10 +12,10 @@ function decrementConsumableItem(event) {
         let consumable = actor.items.find((i) => i.id === node.dataset.item);
 
         if(consumable) {
-            if(consumable.data.data.uses.value > 0) {
-                let uses = consumable.data.data.uses.value - 1;
+            if(consumable.system.uses.value > 0) {
+                let uses = consumable.system.uses.value - 1;
 
-                if(uses > 0 || consumable.data.data.rechargable) {
+                if(uses > 0 || consumable.system.rechargable) {
                     consumable.update({data: {uses: {value: uses}}});
                 } else {
                     ui.notifications.info(game.i18n.format("bolme.notices.consumables.consumed", {name: consumable.name}));
@@ -46,8 +46,8 @@ function incrementConsumableItem(event) {
         let consumable = actor.items.find((i) => i.id === node.dataset.item);
 
         if(consumable) {
-            if(consumable.data.data.uses.value < consumable.data.data.uses.max) {
-                    consumable.update({data: {uses: {value: consumable.data.data.uses.value + 1}}});
+            if(consumable.system.uses.value < consumable.system.uses.max) {
+                    consumable.update({data: {uses: {value: consumable.system.uses.value + 1}}});
             } else {
                     ui.notifications.error(game.i18n.localize("bolme.errors.consumables.maxedOut"));
             }

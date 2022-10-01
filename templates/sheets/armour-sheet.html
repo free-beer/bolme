@@ -1,3 +1,4 @@
+{{log .}}
 <form class="{{cssClass}} bolme-form" autocomplete="off">
 	<div class="armour-sheet-body">
 		<div>
@@ -6,21 +7,21 @@
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.armour.type.label"}}</label>
-				<select class="expanded" name="data.type">
+				<select class="expanded" name="system.type" value="{{item.system.type}}">
 				{{#each constants.armourTypes}}
-					{{{selectOption ../data.data.type}}}
+					{{{selectOption ../item.system.type}}}
 				{{/each}}
 				</select>
 			</div>
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.armour.protection.label"}}</label>
-				<input name="data.protection" placeholder="{{localize 'bolme.fields.armour.protection.placeholder'}}" type="text" value="{{data.data.protection}}">
+				<input name="system.protection" placeholder="{{localize 'bolme.fields.armour.protection.placeholder'}}" type="text" value="{{item.system.protection}}">
 			</div>
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.armour.arcaneCost.label"}}</label>
-				<input name="data.arcaneCost" placeholder="{{localize 'bolme.fields.armour.arcaneCost.placeholder'}}" type="text" value="{{data.data.arcaneCost}}">
+				<input name="system.arcaneCost" placeholder="{{localize 'bolme.fields.armour.arcaneCost.placeholder'}}" type="text" value="{{item.system.arcaneCost}}">
 			</div>
 		</div>
 
@@ -32,13 +33,13 @@
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.armour.penalties.label"}}</label>
-				<input name="data.penalties" placeholder="{{localize 'bolme.fields.armour.penalties.placeholder'}}" type="text" value="{{data.data.penalties}}">
+				<input name="system.penalties" placeholder="{{localize 'bolme.fields.armour.penalties.placeholder'}}" type="text" value="{{item.system.penalties}}">
 			</div>
 			<hr>
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.career.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.career.description.label"}}</label>
+                {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
         </div>
 	</div>

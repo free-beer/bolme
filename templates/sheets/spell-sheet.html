@@ -13,23 +13,23 @@
 			<div class="grid-3-col">
 				<div class="field">
 					<label class="label">{{localize "bolme.fields.spells.magnitude.label"}}</label>
-					<select class="expanded" name="data.magnitude">
+					<select class="expanded" name="system.magnitude">
 					{{#each constants.magnitudes}}
-						{{{selectOption ../data.data.magnitude}}}
+						{{{selectOption ../item.system.magnitude}}}
 					{{/each}}
 					</select>
 				</div>
 
 				<div class="field">
 					<label class="label">{{localize "bolme.fields.spells.cost.label"}}</label>
-					<input name="data.cost" type="number" value="{{data.data.cost}}">
+					<input name="system.cost" type="number" value="{{item.system.cost}}">
 				</div>
 
 				<div class="field">
 					<label class="label">{{localize "bolme.fields.spells.difficulty.label"}}</label>
-					<select class="expanded" name="data.difficulty">
+					<select class="expanded" name="system.difficulty">
 					{{#each constants.difficulties}}
-						{{{selectOption ../data.data.difficulty}}}
+						{{{selectOption ../item.system.difficulty}}}
 					{{/each}}
 					</select>
 				</div>
@@ -37,38 +37,38 @@
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.spells.requirements.label"}}</label>
-			    <select class="expanded stacked-input" name="data.requirements.first">
+			    <select class="expanded stacked-input" name="system.requirements.first">
 			        <option value=""></option>
                 {{#each requirementOptions}}
-			        {{{selectOption ../data.data.requirements.first}}}
+			        {{{selectOption ../item.system.requirements.first}}}
 				{{/each}}
 			    </select>
 
-			    <select class="expanded stacked-input" name="data.requirements.second">
+			    <select class="expanded stacked-input" name="system.requirements.second">
 			        <option value=""></option>
                 {{#each requirementOptions}}
-			        {{{selectOption ../data.data.requirements.second}}}
+			        {{{selectOption ../item.system.requirements.second}}}
 				{{/each}}
 			    </select>
 
-			    <select class="expanded stacked-input" name="data.requirements.third">
+			    <select class="expanded stacked-input" name="system.requirements.third">
 			        <option value=""></option>
                 {{#each requirementOptions}}
-			        {{{selectOption ../data.data.requirements.third}}}
+			        {{{selectOption ../item.system.requirements.third}}}
 				{{/each}}
 			    </select>
 
-			    <select class="expanded stacked-input" name="data.requirements.fourth">
+			    <select class="expanded stacked-input" name="system.requirements.fourth">
 			        <option value=""></option>
                 {{#each requirementOptions}}
-			        {{{selectOption ../data.data.requirements.fourth}}}
+			        {{{selectOption ../item.system.requirements.fourth}}}
 				{{/each}}
 			    </select>
 			</div>
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.spells.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.spells.description.label"}}</label>
+                {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
         </div>
 	</div>

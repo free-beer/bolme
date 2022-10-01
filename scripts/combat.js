@@ -17,8 +17,8 @@ const RESULT_POSITION_MAP = {
  * function returns a promise that returns the Roll object when it is realized. 
  */
 function generateCharacterInitiativeRoll(actor, modifier=0) {
-	let mind          = calculateAttributeValue("mind", actor.data.data.attributes.mind);
-	let initiative    = calculateCombatAbilityValue("initiative", actor.data.data.combat.initiative);
+	let mind          = calculateAttributeValue("mind", actor.system.attributes.mind);
+	let initiative    = calculateCombatAbilityValue("initiative", actor.system.combat.initiative);
 	let totalModifier = mind + initiative + modifier;
 	let formula;
 
@@ -48,7 +48,7 @@ function isInitiativeChangeAllowed(actor, result, type) {
 
 		if(combat) {
 			if(!combat.started) {
-				if(type === "downgrade" || actor.data.data.heroPoints > 0) {
+				if(type === "downgrade" || actor.system.heroPoints > 0) {
 					let combatant = combat.getCombatantByActor(actor.id);
 
 					if(combatant) {
@@ -103,7 +103,7 @@ function onDowngradeInitiativeClicked(event) {
 		let combatant = combat.getCombatantByActor(actor.id);
 
 		combat.setInitiative(combatant.id, 7);
-		actor.update({data: {heroPoints: actor.data.data.heroPoints + 1}});
+		actor.update({data: {heroPoints: actor.system.heroPoints + 1}});
 	} else {
 		ui.notifications.error(game.i18n.localize("bolme.errors.combat.actor.notFound"));
 	}
@@ -122,7 +122,7 @@ function onUpgradeInitiativeClicked(event) {
 		let combatant = combat.getCombatantByActor(actor.id);
 
 		combat.setInitiative(combatant.id, (result === "success" ? RESULT_POSITION_MAP["mighty"] : RESULT_POSITION_MAP["legendary"]));
-		actor.update({data: {heroPoints: actor.data.data.heroPoints - 1}});
+		actor.update({data: {heroPoints: actor.system.heroPoints - 1}});
 	} else {
 		ui.notifications.error(game.i18n.localize("bolme.errors.combat.actor.notFound"));
 	}

@@ -27,8 +27,8 @@ export default class ConsumableSheet extends ItemSheet {
     activateListeners(html) {
         super.activateListeners(html);
         if(this.options.editable) {
-            let fields = [html[0].querySelector('input[name="data.uses.max"]'),
-                          html[0].querySelector('input[name="data.uses.value"]')];
+            let fields = [html[0].querySelector('input[name="system.uses.max"]'),
+                          html[0].querySelector('input[name="system.uses.value"]')];
 
             fields[0].addEventListener("input", () => {
                 fields[1].value = fields[0].value;

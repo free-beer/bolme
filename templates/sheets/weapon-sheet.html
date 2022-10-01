@@ -7,30 +7,30 @@
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.weapon.type.label"}}</label>
-				<select class="expanded" name="data.type" value="{{data.data.type}}">
+				<select class="expanded" name="system.type" value="{{system.type}}">
 					{{#each constants.weaponTypes}}
-					    {{{selectOption ../data.data.type}}}
+					    {{{selectOption ../item.system.type}}}
 					{{/each}}
 				</select>
 			</div>
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.weapon.hands.label"}}</label>
-				<select class="expanded" name="data.hands" value="{{data.data.hands}}">
+				<select class="expanded" name="system.hands" value="{{system.hands}}">
 					{{#each constants.weaponHands}}
-					    {{{selectOption ../data.data.hands}}}
+					    {{{selectOption ../item.system.hands}}}
 					{{/each}}
 				</select>
 			</div>
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.weapon.damage.label"}}</label>
-				<input name="data.damage" placeholder="{{localize 'bolme.fields.weapon.damage.placeholder'}}" type="text" value="{{data.data.damage}}">
+				<input name="system.damage" placeholder="{{localize 'bolme.fields.weapon.damage.placeholder'}}" type="text" value="{{item.system.damage}}">
 			</div>
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.weapon.rangeIncrement.label"}}</label>
-				<input name="data.rangeIncrement" placeholder="{{localize 'bolme.fields.weapon.rangeIncrement.placeholder'}}" type="text" value="{{data.data.rangeIncrement}}">
+				<input name="system.rangeIncrement" placeholder="{{localize 'bolme.fields.weapon.rangeIncrement.placeholder'}}" type="text" value="{{item.system.rangeIncrement}}">
 			</div>
 		</div>
 
@@ -40,45 +40,15 @@
 				<input name="name" placeholder="{{localize 'bolme.fields.name.placeholder'}}" type="text" value="{{item.name}}">
 			</div>
 
-<!--             <div class="grid-4-col">
-				<div class="field">
-					<label class="label">{{localize "bolme.fields.weapon.damage.label"}}</label>
-					<input name="data.damage" placeholder="{{localize 'bolme.fields.weapon.damage.placeholder'}}" type="text" value="{{data.data.damage}}">
-				</div>
-
-				<div class="field">
-					<label class="label">{{localize "bolme.fields.weapon.type.label"}}</label>
-					<select class="expanded" name="data.type" value="{{data.data.type}}">
-						{{#each constants.weaponTypes}}
-						    {{{selectOption ../data.data.type}}}
-						{{/each}}
-					</select>
-				</div>
-
-				<div class="field">
-					<label class="label">{{localize "bolme.fields.weapon.hands.label"}}</label>
-					<select class="expanded" name="data.hands" value="{{data.data.hands}}">
-						{{#each constants.weaponHands}}
-						    {{{selectOption ../data.data.hands}}}
-						{{/each}}
-					</select>
-				</div>
-
-				<div class="field">
-					<label class="label">{{localize "bolme.fields.weapon.rangeIncrement.label"}}</label>
-					<input name="data.rangeIncrement" placeholder="{{localize 'bolme.fields.weapon.rangeIncrement.placeholder'}}" type="text" value="{{data.data.rangeIncrement}}">
-				</div>
-			</div> -->
-
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.weapon.notes.label"}}</label>
-				<input name="data.notes" placeholder="{{localize 'bolme.fields.weapon.notes.placeholder'}}" type="text" value="{{data.data.notes}}">
+				<input name="system.notes" placeholder="{{localize 'bolme.fields.weapon.notes.placeholder'}}" type="text" value="{{item.system.notes}}">
 			</div>
 
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.weapon.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.weapon.description.label"}}</label>
+                {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
         </div>
 	</div>

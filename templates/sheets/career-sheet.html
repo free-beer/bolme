@@ -12,40 +12,40 @@
 
 			<div class="field">
 				<label class="label">{{localize "bolme.fields.career.alternativeNames.label"}}</label>
-				<input name="data.alternativeNames" placeholder="{{localize 'bolme.fields.career.alternativeNames.placeholder'}}" type="text" value="{{data.data.alternativeNames}}">
+				<input name="system.alternativeNames" placeholder="{{localize 'bolme.fields.career.alternativeNames.placeholder'}}" type="text" value="{{item.system.alternativeNames}}">
 			</div>
 
             <label class="label">{{localize "bolme.fields.career.grants.label"}}</label>
 			<div class="grid-3-col">
 				<div>
-				{{#if data.data.grants.arcane}}
-				    <input checked name="data.grants.arcane" type="checkbox">
+				{{#if item.system.grants.arcane}}
+				    <input checked name="system.grants.arcane" type="checkbox">
 				{{else}}
-					<input name="data.grants.arcane" type="checkbox">
+					<input name="system.grants.arcane" type="checkbox">
 				{{/if}}
 				    <span class="checkbox-label">{{localize "bolme.fields.career.grants.arcane.label"}}</span>
 				</div>
 				<div>
-				{{#if data.data.grants.crafting}}
-				    <input checked name="data.grants.crafting" type="checkbox">
+				{{#if item.system.grants.crafting}}
+				    <input checked name="system.grants.crafting" type="checkbox">
 				{{else}}
-					<input name="data.grants.crafting" type="checkbox">
+					<input name="system.grants.crafting" type="checkbox">
 				{{/if}}
 				    <span class="checkbox-label">{{localize "bolme.fields.career.grants.crafting.label"}}</span>
 				</div>
 				<div>
-				{{#if data.data.grants.fate}}
-				    <input checked name="data.grants.fate" type="checkbox">
+				{{#if item.system.grants.fate}}
+				    <input checked name="ystem.grants.fate" type="checkbox">
 				{{else}}
-					<input name="data.grants.fate" type="checkbox">
+					<input name="system.grants.fate" type="checkbox">
 				{{/if}}
 					<span class="checkbox-label">{{localize "bolme.fields.career.grants.fate.label"}}</span>
 				</div>
 			</div>
 
             <div class="field">
-                <label class="label" for="data.description">{{localize "bolme.fields.career.description.label"}}</label>
-                {{editor content=data.data.description target="data.description" button=true owner=owner editable=editable}}
+                <label class="label" for="system.description">{{localize "bolme.fields.career.description.label"}}</label>
+                {{editor item.system.description target="system.description" button=true owner=owner editable=editable}}
             </div>
         </div>
 	</div>

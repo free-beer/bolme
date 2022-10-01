@@ -45,93 +45,93 @@ export default class BoLMECharacterSheet extends ActorSheet {
 
     /** @override */
     getData() {
-        const context = super.getData();
+        const context = super.getData().actor;
         let career;
         let policed = game.settings.get("bolme", "policeAdvancements");
 
         context.constants = constants;
-        Object.keys(context.data.data.attributes).forEach((attribute) => {
-            context.data.data[attribute] = expandAttribute(context.data, attribute);
+        Object.keys(context.system.attributes).forEach((attribute) => {
+            context.system[attribute] = expandAttribute(context.system, attribute);
         });
 
-        Object.keys(context.data.data.combat).forEach((ability) => {
-            context.data.data[ability] = expandCombatAbility(context.data, ability);
+        Object.keys(context.system.combat).forEach((ability) => {
+            context.system[ability] = expandCombatAbility(context.system, ability);
         });
 
-        context.data.data.lifeblood.max = context.data.data.strength.value + 10;
+        context.system.lifeblood.max = context.system.strength.value + 10;
 
-        context.data.actorId     = this.actor.id;
-        context.data.armour      = [];
-        context.data.boons       = [];
-        context.data.consumables = [];
-        context.data.flaws       = [];
-        context.data.equipment   = [];
-        context.data.languages   = [];
-        context.data.recipes     = [];
-        context.data.shields     = [];
-        context.data.spells      = {cantrip: [],
-                                    first:   [],
-                                    second:  [],
-                                    third:   []};
-        context.data.weapons     = [];
-        context.actor.items.forEach((item) => {
+        context.system.actorId     = this.actor.id;
+        context.system.armour      = [];
+        context.system.boons       = [];
+        context.system.consumables = [];
+        context.system.flaws       = [];
+        context.system.equipment   = [];
+        context.system.languages   = [];
+        context.system.recipes     = [];
+        context.system.shields     = [];
+        context.system.spells      = {cantrip: [],
+                                      first:   [],
+                                      second:  [],
+                                      third:   []};
+        context.system.weapons     = [];
+        context.items.forEach((item) => {
             switch(item.type) {
                 case "armour":
-                    context.data.armour.push(this._generateArmourData(item));
+                    context.system.armour.push(this._generateArmourData(item));
                     break;
 
                 case "crafting recipe":
-                    context.data.recipes.push(this._generateRecipeDetails(item));
+                    context.system.recipes.push(this._generateRecipeDetails(item));
                     break;
 
                 case "consumable":
-                    context.data.consumables.push(item);
+                    context.system.consumables.push(item);
                     break;
 
                 case "equipment":
-                    context.data.equipment.push(item);
+                    context.system.equipment.push(item);
                     break;
 
                 case "language":
-                    context.data.languages.push(item);
+                    context.system.languages.push(item);
                     break;
 
                 case "shield":
-                    if(!context.data.hasShield) {
-                        context.data.hasShield = true;
+                    if(!context.system.hasShield) {
+                        context.system.hasShield = true;
                     }
-                    context.data.shields.push(item);
-                    context.data.armour.push(this._generateArmourData(item));
+                    context.system.shields.push(item);
+                    context.system.armour.push(this._generateArmourData(item));
                     break;
 
                 case "spell":
-                    let magnitude = item.data.data.magnitude;
-                    context.data.spells[magnitude].push(item);
-                    context.data.spells[`has${magnitude.substr(0, 1).toUpperCase()}${magnitude.substr(1)}`] = true;
+                    let magnitude = item.system.magnitude;
+                    context.system.spells[magnitude].push(item);
+                    context.system.spells[`has${magnitude.substr(0, 1).toUpperCase()}${magnitude.substr(1)}`] = true;
                     break;
 
                 case "trait":
-                    if(item.data.data.type === "boon") {
-                        context.data.boons.push(item);
+                    if(item.system.type === "boon") {
+                        context.system.boons.push(item);
                     } else {
-                        context.data.flaws.push(item);
+                        context.system.flaws.push(item);
                     }
                     break;
 
                 case "weapon":
-                    context.data.weapons.push(item);
+                    context.system.weapons.push(item);
                     break;
             }
         });
 
-        context.data.careers = generateCareerList(context.actor);
+        context.system.careers = generateCareerList(context);
 
-        context.data.data.spentAdvancements = calculateSpentAdvancements(context.actor);
-        context.data.data.starting = (policed &&
-                                      (context.data.data.points.starting.attributes > 0 ||
-                                       context.data.data.points.starting.careers > 0 ||
-                                       context.data.data.points.starting.combat > 0 ||
-                                       context.data.data.points.starting.traits > 0));
+        context.system.spentAdvancements = calculateSpentAdvancements(context);
+        context.system.starting = (policed &&
+                                   (context.system.points.starting.attributes > 0 ||
+                                    context.system.points.starting.careers > 0 ||
+                                    context.system.points.starting.combat > 0 ||
+                                    context.system.points.starting.traits > 0));
 
         return(context);
     }
@@ -212,12 +212,12 @@ export default class BoLMECharacterSheet extends ActorSheet {
                 id:          armour.id,
                 kind:        this._generateArmourKind(armour),
                 name:        armour.name,
-                protection:  armour.data.data.protection,
+                protection:  armour.system.protection,
                 type:        armour.type});
     }
 
     _generateArmourDescription(armour) {
-        let data        = armour.data.data;
+        let data        = armour.system;
         let description = data.description.trim();
         let penalties   = (data.penalties || "").trim();
         let text        = "";
@@ -237,7 +237,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
     }
 
     _generateArmourKind(armour) {
-        let data = armour.data.data;
+        let data = armour.system;
 
         if(armour.type === "armour") {
             return(game.i18n.localize(`bolme.armour.${data.type}.label`));
@@ -248,7 +248,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
     }
 
     _generateShieldDescription(shield) {
-        return(game.i18n.localize(`bolme.shields.descriptions.${shield.data.data.size}`));
+        return(game.i18n.localize(`bolme.shields.descriptions.${shield.system.size}`));
     }
 
     _itemNameClicked(event) {
@@ -280,7 +280,7 @@ export default class BoLMECharacterSheet extends ActorSheet {
     }
 
     _resetCraftingPoints(actor) {
-        actor.update({data: {craftingPoints: {value: actor.data.data.craftingPoints.max}}});
+        actor.update({data: {craftingPoints: {value: actor.system.craftingPoints.max}}});
     }
 
     _showAttackDialog(event) {
@@ -293,9 +293,9 @@ export default class BoLMECharacterSheet extends ActorSheet {
                 let target = game.user.targets.first().actor;
 
                 if(target.type === "Character") {
-                    defence = expandCombatAbility(target.data, "defence").value;
+                    defence = expandCombatAbility(target.system, "defence").value;
                 } else {
-                    defence = target.data.data.defence;
+                    defence = target.system.defence;
                 }
             }
         }

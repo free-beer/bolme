@@ -28,7 +28,7 @@ function calculateAttributeValue(attribute, settings) {
  * taken below -1.
  */
 function decrementAttribute(actor, attribute) {
-	let data    = actor.data.data;
+	let data    = actor.system;
 	let policed = game.settings.get("bolme", "policeAdvancements");
 
 	if(policed) {
@@ -41,15 +41,15 @@ function decrementAttribute(actor, attribute) {
 		benefit = data[attribute].decreaseRegain;
 
 	    if(data[attribute].value > -1) {
-			let changes = {data: {attributes: {},
-		                          points: {}}};
+			let changes = {system: {attributes: {},
+		                            points: {}}};
 
 		    if(data[attribute].advancementPoints > 0) {
-				changes.data.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints - benefit};
-				changes.data.points.advancement    = data.points.advancement + benefit;
+				changes.system.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints - benefit};
+				changes.system.points.advancement    = data.points.advancement + benefit;
 		    } else {
-				changes.data.attributes[attribute] = {startingPoints: data[attribute].startingPoints - 1};
-				changes.data.points.starting       = {attributes: data.points.starting.attributes + 1};
+				changes.system.attributes[attribute] = {startingPoints: data[attribute].startingPoints - 1};
+				changes.system.points.starting       = {attributes: data.points.starting.attributes + 1};
 		    }
 		    actor.update(changes);
 	    } else {
@@ -60,7 +60,7 @@ function decrementAttribute(actor, attribute) {
 		let changes = {data: {attributes: {}}};
 
 		console.log("Advancment policing is off.");
-		changes.data.attributes[attribute] = {startingPoints: actor.data.data.attributes[attribute].startingPoints - 1};
+		changes.system.attributes[attribute] = {startingPoints: actor.system.attributes[attribute].startingPoints - 1};
 		actor.update(changes);
 	}
 }
@@ -71,7 +71,7 @@ function decrementAttribute(actor, attribute) {
  * can be upgrade or downgraded.
  */
 function expandAttribute(character, attribute) {
-	let output = Object.assign({}, character.data.attributes[attribute]);
+	let output = Object.assign({}, character.attributes[attribute]);
 
     output.value          = calculateAttributeValue(attribute, output);
     output.decreaseRegain = Math.abs(((output.value - 1) * 2) + 1);
@@ -86,7 +86,7 @@ function expandAttribute(character, attribute) {
  * points total as needed.
  */
 function incrementAttribute(actor, attribute) {
-	let data    = actor.data.data;
+	let data    = actor.system;
 	let policed = game.settings.get("bolme", "policeAdvancements");
 
 	if(policed) {
@@ -94,27 +94,27 @@ function incrementAttribute(actor, attribute) {
 
         console.log("Advancment policing is on.");
 		if(!data[attribute]) {
-			data[attribute] = expandAttribute(actor.data, attribute);
+			data[attribute] = expandAttribute(actor.system, attribute);
 		}
 		cost  = data[attribute].increaseCost;
 
 		if(data.points.starting.attributes > 0 || data.points.advancement >= cost) {
-			let changes = {data: {attributes: {},
-		                          points: {}}};
+			let changes = {system: {attributes: {},
+		                            points: {}}};
 
 			if(data.points.starting.attributes > 0) {
 				let value = data.attributes[attribute].startingPoints + 1;
 
 				if(value < 4) {
-					changes.data.attributes[attribute] = {startingPoints: value};
-					changes.data.points.starting       = {attributes: data.points.starting.attributes - 1};
+					changes.system.attributes[attribute] = {startingPoints: value};
+					changes.system.points.starting       = {attributes: data.points.starting.attributes - 1};
 				} else {
 					console.error(`You can't use starting points to increment an attribute higher than 3.`);
 					ui.notifications.error(game.i18n.localize("bolme.errors.attributes.increment.starting"));
 				}
 			} else {
-				changes.data.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints + cost};
-				changes.data.points.advancement    = data.points.advancement - cost;
+				changes.system.attributes[attribute] = {advancementPoints: data.attributes[attribute].advancementPoints + cost};
+				changes.system.points.advancement    = data.points.advancement - cost;
 			}
 			actor.update(changes);
 		} else {
@@ -125,7 +125,7 @@ function incrementAttribute(actor, attribute) {
 		let changes = {data: {attributes: {}}};
 
 		console.log("Advancment policing is off.");
-		changes.data.attributes[attribute] = {startingPoints: actor.data.data.attributes[attribute].startingPoints + 1};
+		changes.system.attributes[attribute] = {startingPoints: actor.system.attributes[attribute].startingPoints + 1};
 		actor.update(changes);
 	}
 }

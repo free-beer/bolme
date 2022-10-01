@@ -35,7 +35,7 @@ export default class BoLMECombatant extends Combatant {
             if(this.actor.type === "Character" && this._initiativeRoll) {
                 level = getRollResultLevel(this._initiativeRoll);
             } else {
-                level = this.actor.data.data.priority;
+                level = this.actor.system.priority;
             }
         }
 
@@ -51,7 +51,7 @@ export default class BoLMECombatant extends Combatant {
         if(this.actor.type === "Character") {
             return(generateCharacterInitiativeRoll(this.actor));
         } else {
-            return(new Roll(`${RESULT_POSITION_MAP[this.actor.data.data.priority]}`));
+            return(new Roll(`${RESULT_POSITION_MAP[this.actor.system.priority]}`));
         }
     }
 
@@ -84,7 +84,7 @@ export default class BoLMECombatant extends Combatant {
 
                     });
             } else {
-                this._initiativeValue = RESULT_POSITION_MAP[actor.data.data.priority];
+                this._initiativeValue = RESULT_POSITION_MAP[actor.system.priority];
                 console.log(`Generated initiative for '${actor.name}', value is ${this._initiativeValue}.`);
                 this.update({initiative: this._initiativeValue});
             }

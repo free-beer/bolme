@@ -21,7 +21,7 @@ export default class CraftingRecipeSheet extends ItemSheet {
         context.constants = {recipeDifficulties: constants.crafting.recipes.difficulties,
                              recipeSubtypes: constants.crafting.recipes.subtypes,
                              recipeTypes: constants.crafting.recipes.types};
-        context.data.hasProduct = (context.data.data.item.id !== "");
+        context.hasProduct = (context.item.system.item.id !== "");
 
         return(context);
     }
@@ -36,22 +36,23 @@ export default class CraftingRecipeSheet extends ItemSheet {
             html.find(".quantity-decrementer").click((event) => this._decrementRecipeProductQuantity());
             html.find(".quantity-incrementer").click((event) => this._incrementRecipeProductQuantity());
             html.find(".type-selector").change((event) => {
-                let value = event.currentTarget.value;
-                let field = html.find('input[name="data.cost"]')[0];
-                let type  = constants.crafting.recipes.types.find((t) => t.key === value);
+                let value  = event.currentTarget.value;
+                let field  = html.find('input[name="system.cost"]')[0];
+                let recipe = game.items.find((i) => i.id === itemId);
+                let type   = constants.crafting.recipes.types.find((t) => t.key === value);
 
-                console.log(`TYPE CHANGED TO: ${value}`);
-                field.value = type.cost;
+                recipe.update({system: {cost: type.cost}});
             });
 
             // Add appropriate drag & drop handlers.
             html[0].addEventListener("drop", (event) => {
-                let recipe = game.items.find((i) => i.id === itemId);
-                let data   = JSON.parse(event.dataTransfer.getData("text/plain"));
-                let item   = game.items.find((i) => i.id === data.id);
+                let recipe   = game.items.find((i) => i.id === itemId);
+                let data     = JSON.parse(event.dataTransfer.getData("text/plain"));
+                let outputId = (data.id || data.uuid.substring(5));
+                let item     = game.items.find((i) => i.id === outputId);
 
                 if(item.type !== "crafting recipe") {
-                    recipe.update({data: {item: {id: data.id, name: item.name}}});
+                    recipe.update({system: {item: {id: outputId, name: item.name}}});
                 }
             });
             html[0].addEventListener("dragenter", (event) => {
@@ -64,20 +65,20 @@ export default class CraftingRecipeSheet extends ItemSheet {
     }
 
     _decrementRecipeProductQuantity() {
-        let quantity = this.item.data.data.item.quantity;
+        let quantity = this.item.system.item.quantity;
 
         if(quantity > 1) {
             quantity--;
         }
-        this.item.update({data: {item: {quantity: quantity}}});
+        this.item.update({system: {item: {quantity: quantity}}});
     }
 
     _deleteRecipeProduct() {
-        this.item.update({data: {item: {id: "", name: "", quantity: 1}}});
+        this.item.update({system: {item: {id: "", name: "", quantity: 1}}});
     }
 
     _incrementRecipeProductQuantity() {
-        let quantity = this.item.data.data.item.quantity + 1;
-        this.item.update({data: {item: {quantity: quantity}}});
+        let quantity = this.item.system.item.quantity + 1;
+        this.item.update({system: {item: {quantity: quantity}}});
     }
 }

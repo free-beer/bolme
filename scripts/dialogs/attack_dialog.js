@@ -140,8 +140,8 @@ export default class AttackDialog extends Dialog {
             if(element.dataset.weapon && element.dataset.weapon !== "") {
                 weapon = actor.items.find((i) => i.id === element.dataset.weapon);
                 if(weapon) {
-                    data.combat     = weapon.data.data.type;
-                    data.damage     = weapon.data.data.damage;
+                    data.combat     = weapon.system.type;
+                    data.damage     = weapon.system.damage;
                     data.name       = weapon.name;
                     data.weaponId   = weapon.id;
                     data.weaponUsed = true;

@@ -4,13 +4,13 @@
 		<div class="weapons-list">
 		{{#each weapons}}
 			<div class="weapon-row">
-				<div><span class="item-name" data-actor="{{actor.id}}" data-id="{{id}}">{{name}}</span></div>
-				<div><center>{{localizeWeaponType data.data.type}}</center></div>
-				<div><center>{{data.data.damage}}</center></div>
+				<div><span class="item-name" data-actor="{{../actor.id}}" data-id="{{_id}}">{{name}}</span></div>
+				<div><center>{{localizeWeaponType system.type}}</center></div>
+				<div><center>{{system.damage}}</center></div>
 				<div>
-					<i class="attack-icon fas fa-dice weapon-icon" data-actor="{{actor.id}}" data-weapon="{{id}}"></i>
-					<i class="info-icon fas fa-info-circle" data-description="{{data.data.description}}"></i>
-					<i class="fas fa-times-circle item-deleter weapon-icon" data-id="{{id}}"></i>
+					<i class="attack-icon fas fa-dice weapon-icon" data-actor="{{../actor.id}}" data-weapon="{{id}}"></i>
+					<i class="info-icon fas fa-info-circle" data-description="{{system.description}}"></i>
+					<i class="fas fa-times-circle item-deleter weapon-icon" data-id="{{_id}}"></i>
 				</div>
 			</div>
 		{{/each}}

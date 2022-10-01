@@ -14,7 +14,7 @@ function onTabSelected(event, root, actor) {
             tabElement.classList.remove("hidden");
             event.currentTarget.classList.add("selected");
             console.log(`Updating tab selection to '${tabId}'.`);
-            actor.update({data: {tabs: {selected: tabId}}});
+            actor.update({system: {tabs: {selected: tabId}}});
         } else {
             console.error(`Unable to locate a tab body element with the id '${tabId}'.`);
         }

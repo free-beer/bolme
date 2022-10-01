@@ -21,16 +21,16 @@ export default class BoLMEBeastSheet extends ActorSheet {
 
         context.constants = {priorities: constants.beasts.priorities,
                              sizes: constants.beasts.sizes};
-        context.data.traits = this.actor.items.filter((i) => i.type === "trait");
-        context.data.boons  = context.data.traits.filter((t) => t.data.data.type === "boon");
-        context.data.flaws  = context.data.traits.filter((t) => t.data.data.type === "flaw");
+        context.traits = this.actor.items.filter((i) => i.type === "trait");
+        context.boons  = context.traits.filter((t) => t.system.type === "boon");
+        context.flaws  = context.traits.filter((t) => t.system.type === "flaw");
 
         return(context);
     }
 
     activateListeners(html) {
-        let lifebloodFields = [html[0].querySelector('input[name="data.lifeblood.max"]'),
-                               html[0].querySelector('input[name="data.lifeblood.value"]')];
+        let lifebloodFields = [html[0].querySelector('input[name="system.lifeblood.max"]'),
+                               html[0].querySelector('input[name="system.lifeblood.value"]')];
         super.activateListeners(html);
 
         lifebloodFields[0].addEventListener("input", () => lifebloodFields[1].value = lifebloodFields[0].value);

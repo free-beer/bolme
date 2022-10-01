@@ -24,7 +24,7 @@ function calculateCombatAbilityValue(ability, settings) {
  * ability to be taken below -1.
  */
 function decrementCombatAbility(actor, ability) {
-	let data    = actor.data.data;
+	let data    = actor.system;
 	let policed = game.settings.get("bolme", "policeAdvancements");
 
 	if(policed) {
@@ -32,20 +32,20 @@ function decrementCombatAbility(actor, ability) {
 
         console.log("Advancment policing is on.");
 		if(!data[ability]) {
-			data[ability] = expandCombatAbility(actor.data, ability);
+			data[ability] = expandCombatAbility(actor.system, ability);
 		}
 		benefit = data[ability].decreaseRegain;
 
 	    if(data[ability].value > -1) {
-			let changes = {data: {combat: {},
-		                          points: {}}};
+			let changes = {system: {combat: {},
+		                            points: {}}};
 
 		    if(data[ability].advancementPoints > 0) {
-				changes.data.combat[ability] = {advancementPoints: data.combat[ability].advancementPoints - benefit};
-				changes.data.points.advancement    = data.points.advancement + benefit;
+				changes.system.combat[ability] = {advancementPoints: data.combat[ability].advancementPoints - benefit};
+				changes.system.points.advancement    = data.points.advancement + benefit;
 		    } else {
-				changes.data.combat[ability] = {startingPoints: data[ability].startingPoints - 1};
-				changes.data.points.starting       = {combat: data.points.starting.combat + 1};
+				changes.system.combat[ability] = {startingPoints: data[ability].startingPoints - 1};
+				changes.system.points.starting       = {combat: data.points.starting.combat + 1};
 		    }
 		    actor.update(changes);
 	    } else {
@@ -56,7 +56,7 @@ function decrementCombatAbility(actor, ability) {
 		let changes = {data: {combat: {}}};
 
 		console.log("Advancment policing is off.");
-		changes.data.combat[ability] = {startingPoints: actor.data.data.combat[ability].startingPoints - 1};
+		changes.system.combat[ability] = {startingPoints: actor.system.combat[ability].startingPoints - 1};
 		actor.update(changes);
 	}
 }
@@ -67,7 +67,7 @@ function decrementCombatAbility(actor, ability) {
  * can be upgrade or downgraded.
  */
 function expandCombatAbility(character, ability) {
-	let output = Object.assign({}, character.data.combat[ability]);
+	let output = Object.assign({}, character.combat[ability]);
 
     output.value          = calculateCombatAbilityValue(ability, output);
     output.decreaseRegain = Math.abs(output.value);
@@ -84,7 +84,7 @@ function expandCombatAbility(character, ability) {
  * points total as needed.
  */
 function incrementCombatAbility(actor, ability) {
-	let data = actor.data.data;
+	let data = actor.system;
 	let policed = game.settings.get("bolme", "policeAdvancements");
 
 	if(policed) {
@@ -92,27 +92,27 @@ function incrementCombatAbility(actor, ability) {
 
         console.log("Advancment policing is on.");
 		if(!data[ability]) {
-			data[ability] = expandCombatAbility(actor.data, ability);
+			data[ability] = expandCombatAbility(actor.system, ability);
 		}
 		cost = data[ability].increaseCost;
 
 		if(data.points.starting.combat > 0 || data.points.advancement >= cost) {
-			let changes = {data: {combat: {},
-		                          points: {}}};
+			let changes = {system: {combat: {},
+		                            points: {}}};
 
 			if(data.points.starting.combat > 0) {
 				let value = data.combat[ability].startingPoints + 1;
 
 				if(value < 4) {
-					changes.data.combat[ability] = {startingPoints: value};
-					changes.data.points.starting = {combat: data.points.starting.combat - 1};
+					changes.system.combat[ability] = {startingPoints: value};
+					changes.system.points.starting = {combat: data.points.starting.combat - 1};
 				} else {
 					console.error(`You can't use starting points to increment a combat ability higher than 3.`);
 					ui.notifications.error(game.i18n.localize("bolme.errors.combatAbilities.increment.starting"));
 				}
 			} else {
-				changes.data.combat[ability]    = {advancementPoints: data.combat[ability].advancementPoints + cost};
-				changes.data.points.advancement = data.points.advancement - cost;
+				changes.system.combat[ability]    = {advancementPoints: data.combat[ability].advancementPoints + cost};
+				changes.system.points.advancement = data.points.advancement - cost;
 			}
 			actor.update(changes);
 		} else {
@@ -123,7 +123,7 @@ function incrementCombatAbility(actor, ability) {
 		let changes = {data: {combat: {}}};
 
 		console.log("Advancment policing is off.");
-		changes.data.combat[ability] = {startingPoints: actor.data.data.combat[ability].startingPoints + 1};
+		changes.system.combat[ability] = {startingPoints: actor.system.combat[ability].startingPoints + 1};
 		actor.update(changes);
 	}
 }

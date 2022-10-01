@@ -30,67 +30,67 @@ export default class BoLMENPCSheet extends ActorSheet {
         const context = super.getData();
 
         context.constants = {priorities: constants.npcs.priorities};
-        context.data.traits = this.actor.items.filter((i) => i.type === "trait");
+        context.traits = context.items.filter((i) => i.type === "trait");
 
-        context.data.actorId = this.actor.id;
-        context.data.armour  = [];
-        context.data.boons   = [];
-        context.data.careers = generateCareerList(context.actor, true);
-        context.data.flaws   = [];
-        context.data.shields = [];
-        context.data.spells  = {cantrip:    [],
-                                first:      [],
-                                hasCantrip: false,
-                                hasFirst:   false,
-                                hasSecond:  false,
-                                hasThird:   false,
-                                second:     [],
-                                third:      []};
-        context.data.weapons = [];
+        context.actorId = this.actor.id;
+        context.armour  = [];
+        context.boons   = [];
+        context.careers = generateCareerList(context.actor, true);
+        context.flaws   = [];
+        context.shields = [];
+        context.spells  = {cantrip:    [],
+                           first:      [],
+                           hasCantrip: false,
+                           hasFirst:   false,
+                           hasSecond:  false,
+                           hasThird:   false,
+                           second:     [],
+                           third:      []};
+        context.weapons = [];
 
-        context.actor.items.forEach((item) => {
+        context.items.forEach((item) => {
             switch(item.type) {
                 case "armour":
-                    context.data.armour.push(item);
+                    context.armour.push(item);
                     break;
 
                 case "shield":
-                    context.data.shields.push(item);
+                    context.shields.push(item);
                     break;
 
                 case "spell":
-                    let magnitude = item.data.data.magnitude;
-                    context.data.spells[magnitude].push(item);
-                    context.data.spells[`has${magnitude.substr(0, 1).toUpperCase()}${magnitude.substr(1)}`] = true;
+                    let magnitude = item.system.magnitude;
+                    context.spells[magnitude].push(item);
+                    context.spells[`has${magnitude.substr(0, 1).toUpperCase()}${magnitude.substr(1)}`] = true;
                     break;
 
                 case "trait":
-                    if(item.data.data.type === "boon") {
-                        context.data.boons.push(item);
+                    if(item.system.type === "boon") {
+                        context.boons.push(item);
                     } else {
-                        context.data.flaws.push(item);
+                        context.flaws.push(item);
                     }
                     break;
 
                 case "weapon":
-                    context.data.weapons.push(item);
+                    context.weapons.push(item);
                     break;
             }
         });
-        context.data.hasShield = (context.data.shields.length > 0);
+        context.asShield = (context.shields.length > 0);
 
         return(context);
     }
 
     activateListeners(html) {
-        let arcaneFields    = [html[0].querySelector('input[name="data.arcanePoints.max"]'),
-                               html[0].querySelector('input[name="data.arcanePoints.value"]')];
-        let fateFields      = [html[0].querySelector('input[name="data.fatePoints.max"]'),
-                               html[0].querySelector('input[name="data.fatePoints.value"]')];
-        let lifebloodFields = [html[0].querySelector('input[name="data.lifeblood.max"]'),
-                               html[0].querySelector('input[name="data.lifeblood.value"]')];
-        let villainFields   = [html[0].querySelector('input[name="data.villainPoints.max"]'),
-                               html[0].querySelector('input[name="data.villainPoints.value"]')];
+        let arcaneFields    = [html[0].querySelector('input[name="system.arcanePoints.max"]'),
+                               html[0].querySelector('input[name="system.arcanePoints.value"]')];
+        let fateFields      = [html[0].querySelector('input[name="system.fatePoints.max"]'),
+                               html[0].querySelector('input[name="system.fatePoints.value"]')];
+        let lifebloodFields = [html[0].querySelector('input[name="system.lifeblood.max"]'),
+                               html[0].querySelector('input[name="system.lifeblood.value"]')];
+        let villainFields   = [html[0].querySelector('input[name="system.villainPoints.max"]'),
+                               html[0].querySelector('input[name="system.villainPoints.value"]')];
 
         super.activateListeners(html);
 
@@ -137,9 +137,9 @@ export default class BoLMENPCSheet extends ActorSheet {
                 let target = game.user.targets.first().actor;
 
                 if(target.type === "Character") {
-                    defence = expandCombatAbility(target.data, "defence").value;
+                    defence = expandCombatAbility(target.system, "defence").value;
                 } else {
-                    defence = target.data.data.defence;
+                    defence = target.system.defence;
                 }
             }
         }

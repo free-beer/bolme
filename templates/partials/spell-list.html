@@ -2,10 +2,10 @@
 {{#each .}}
     <div class="spell-row">
     	<div>{{name}}</div>
-    	<div>{{data.data.cost}} AP</div>
+    	<div>{{system.cost}} AP</div>
     	<div>
     		<i class="fas fa-magic spell-cast-icon" data-actor="{{actor.id}}" data-spell="{{id}}"></i>
-    		<i class="fas fa-info-circle info-icon" data-description="{{data.data.description}}"></i>
+    		<i class="fas fa-info-circle info-icon" data-description="{{system.description}}"></i>
     		<i class="fas fa-times-circle item-deleter" data-id="{{id}}"></i>
     	</div>
     </div>

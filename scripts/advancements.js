@@ -1,6 +1,6 @@
 function calculateSpentAdvancements(actor) {
 	let total = 0;
-	let data  = actor.data.data;
+	let data  = actor.system;
 
 	Object.keys(data.attributes).forEach((attribute) => {
 		total += data.attributes[attribute].advancementPoints;
@@ -12,7 +12,7 @@ function calculateSpentAdvancements(actor) {
 
 	actor.items.forEach((item) => {
 		if(item.type === "career" || item.type === "trait") {
-			total += item.data.data.advancementPoints;
+			total += item.system.advancementPoints;
 		}
 	});
 

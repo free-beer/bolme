@@ -45,7 +45,7 @@ export default class SpellCastDialog extends Dialog {
     }
 
     attributeRating(attribute) {
-        return(calculateAttributeValue(this.attribute, this.actor.data.data.attributes[this.attribute]));
+        return(calculateAttributeValue(this.attribute, this.actor.system.attributes[this.attribute]));
     }
 
     get bonusDice() {
@@ -53,7 +53,7 @@ export default class SpellCastDialog extends Dialog {
     }
 
     get casterArcanePoints() {
-        return(this.actor.data.data.arcanePoints.value);
+        return(this.actor.system.arcanePoints.value);
     }
 
     get careerRank() {
@@ -61,11 +61,11 @@ export default class SpellCastDialog extends Dialog {
     }
 
     get cost() {
-        return(this.spell.data.data.cost + this.armourPenalty);
+        return(this.spell.system.cost + this.armourPenalty);
     }
 
     get difficulty() {
-        return(this.spell.data.data.difficulty);
+        return(this.spell.system.difficulty);
     }
 
     get difficultyPenalty() {
@@ -114,7 +114,7 @@ export default class SpellCastDialog extends Dialog {
                          spellId:           spell.id,
                          spellName:         spell.name};
 
-            actor.update({data: {arcanePoints: {value: actor.data.data.arcanePoints.value - data.cost}}});
+            actor.update({data: {arcanePoints: {value: actor.system.arcanePoints.value - data.cost}}});
             if(data.difficulty !== "automatic") {
                 let dice;
 
@@ -177,16 +177,16 @@ export default class SpellCastDialog extends Dialog {
     }
 
     static difficultyPenalty(spell) {
-        let difficulty = constants.spells.difficulties.find((d) => d.key === spell.data.data.difficulty);
+        let difficulty = constants.spells.difficulties.find((d) => d.key === spell.system.difficulty);
 
         return(difficulty ? difficulty.modifier : 0); 
     }
 
     static mindRating(actor) {
-        if(actor.data.data.attributes) {
-            return(calculateAttributeValue("mind", actor.data.data.attributes.mind));
+        if(actor.system.attributes) {
+            return(calculateAttributeValue("mind", actor.system.attributes.mind));
         } else {
-            return(actor.data.data.mind);
+            return(actor.system.mind);
         }
     }
 

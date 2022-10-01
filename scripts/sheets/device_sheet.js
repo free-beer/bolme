@@ -6,7 +6,7 @@ export default class DeviceSheet extends ItemSheet {
         return(mergeObject(super.defaultOptions,
                            {classes: ["bolme", "item-sheet", "device-sheet"],
                             height:  430,
-                            width:   530}));
+                            width:   600}));
     }
 
     /** @override */
