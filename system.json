@@ -1,12 +1,20 @@
 {
-  "name": "bolme",
-  "title": "Barbarians Of Lemuria (Mythic Edition)",
-  "description": "An implementation of the Barbarian Of Lemuria RPG, based off the Mythic Edition of the game, for the Foundry VTT.",
-  "version": "1.0.0",
-  "minimumCoreVersion": "9",
-  "compatibleCoreVersion": "9",
+  "id": "bolme",
+  "title": "Barbarians Of Lemuria - Mythic Edition (Unofficial))",
+  "description": "An unofficial implementation of the Barbarian Of Lemuria RPG, based off the Mythic Edition of the game, for the Foundry VTT.",
+  "version": "1.1.0",
+  "compatibility": {
+    "minimum": 9,
+    "verified": "10.286"
+  },
   "templateVersion": 2,
-  "author": "Peter Wood",
+  "authors": [
+        {
+            "name": "Peter Wood",
+            "url": "https://ko-fi.com/peterwood",
+            "ko-fi": "peterwood"
+        }
+    ],
   "esmodules": [
     "scripts/bolme.js"
   ],
